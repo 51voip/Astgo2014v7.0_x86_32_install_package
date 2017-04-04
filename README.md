@@ -6,7 +6,7 @@
 1. 自带触屏版WAP
 
 ![输入图片说明](http://git.oschina.net/uploads/images/2017/0404/103852_d7b9f916_1295458.jpeg "在这里输入图片标题")
-
+![输入图片说明](http://git.oschina.net/uploads/images/2017/0404/110310_9dc99850_1295458.jpeg "在这里输入图片标题")
 ### ·首先确定你需要使用astgo 2014 7.0还是7.3：
 
 
