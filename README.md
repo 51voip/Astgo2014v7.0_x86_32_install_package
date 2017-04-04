@@ -83,7 +83,7 @@ Listen 1733
 1. WAP:  http://IP/
 1. 用户查费：http://IP/user/
 1. API接口目录：http://IP/api/   接口文档请访问 http://www.51voip.org/link/jc/
-1. 后台总管理账户 admin 密码admin 财务密码admincw
+1.   :beer: **后台总管理账户 admin 密码admin 财务密码admincw** 
 
 登录后台后进入系统设置，配置 回拨二次拨号使用外部IVR 为 关闭状态，然后 在 系统IP地址设置 一栏 进行配置
 
