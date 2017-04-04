@@ -74,7 +74,20 @@ source /root/astgo2014/astgodb.sql
 quit
 echo "----------install success-----------"
 ```
+### ·安装完成后的初始化参数：
 
+安装后默认端口为80，可修改 /etc/httpd/conf/httpd.conf里面的Listen 80为别的端口例如
+Listen 1733
+
+1. 后台网址：http://IP/astgo2011/  
+1. WAP:  http://IP/
+1. 用户查费：http://IP/user/
+1. API接口目录：http://IP/api/   接口文档请访问 http://www.51voip.org/link/jc/
+1. 后台总管理账户 admin 密码admin 财务密码admincw
+
+登录后台后进入系统设置，配置 回拨二次拨号使用外部IVR 为 关闭状态，然后 在 系统IP地址设置 一栏 进行配置
+
+ **SIP 本地IP地址** ， **SIP1本地IP地址** ， **H323本地IP地址**  三个栏目的IP地址均填当前服务器的公网IP地址，端口号从上往下依次为 5060 5080 1720，然后加载配置保存即可生效，如下图示例：![输入图片说明](http://git.oschina.net/uploads/images/2017/0404/205718_682b128b_1295458.jpeg "在这里输入图片标题")
 
 ### ·激活授权：
 
