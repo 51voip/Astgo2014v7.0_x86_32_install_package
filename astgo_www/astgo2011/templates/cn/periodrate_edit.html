@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="css/mainstyle.css"/>
+<title>编辑时段费率</title>
+<script>
+	//所有input 去空格
+	function trim_all_input()
+	{
+		var inpus = document.getElementsByTagName("INPUT")
+        for(var i=0; i<inpus.length; i++)
+        {
+            if(inpus[i].type=="text")
+            {
+               inpus[i].value =  inpus[i].value.replace(/\s/g,"");
+            }
+        }
+		
+	}
+	
+	// 提交前检测输入是否合法
+	function check()
+	{
+		trim_all_input(); //所有input 去空格
+		
+		//时间HH:mm:ss 验证
+		var re=/^(([0-1][0-9])|([2][0-4]))(\:)[0-5][0-9](\:)[0-5][0-9]$/g
+		
+		var r = document.form1.begin_time.value.match(re); 
+		if (r==null)
+        { 
+		   document.getElementById("userTip").innerHTML="<div align='center'><span class='STYLE4'><font color=red>开始时间错误,请以hh:mm:ss格式输入时间</font></span></div>";
+           document.form1.begin_time.focus();
+		   return false;
+       }
+	   
+		var r = document.form1.end_time.value.match(re); 
+		if (r==null)	   
+         {
+			document.getElementById("userTip").innerHTML="<div align='center'><span class='STYLE4'><font color=red>结束时间，请以hh:mm:ss格式输入时间</font></span></div>";
+      		document.form1.end_time.focus();
+			return false;
+         }
+
+
+		return true;
+
+	}
+
+	function goback(curpage,ratepackage_id,old_curpage,agent_id)
+	{
+		var gotourl = '?action=list&curpage='+curpage+'&ratepackage_id='+ratepackage_id+'&old_curpage='+old_curpage+'&agent_id='+agent_id; 
+		//alert(gotourl);
+	    document.form1.action = gotourl;
+		document.form1.submit();
+	}
+    </script>
+
+<body>
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="24" bgcolor="#353c44"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="2%" height="19" valign="bottom"><div align="center"><img src="images/tb.gif" width="14" height="14" /></div></td>
+                <td width="98%" valign="bottom"><span class="table_caption">  <% if $action eq 'edit_post' %> 修改时段费率 <% elseif $action eq 'add_post' %> 新增时段费率<%else%>时段费率管理<%/if%></span></td>
+              </tr>
+            </table></td>
+            <td><div align="right"><span class="table_caption">
+              </span></div></td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+ 
+     
+      <td><table width="605" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">
+        <form name="form1" method="post" action="?action=<% $action %>&id=<% $periodrate.decode_id %>&curpage=<% $curpage %>&old_curpage=<% $old_curpage %>&ratepackage_id=<% $ratepackage_id %>&agent_id=<% $agent_id %>">
+
+ <tr>
+            <td height="23" align="right" bgcolor="#FFFFFF"><span   class="STYLE1" >套餐名称</span></td>
+            <td height="23" colspan="2" bgcolor="#FFFFFF"><label for="packagename"><span class="STYLE7">
+              <input name="packagename" type="text" class="STYLE1" style="height:18px; width:120px;" size="30"   disabled  value='<% $packagename %>' />
+              </span></label></td>
+          </tr>
+          <tr>
+            <td height="25" align="right" bgcolor="#FFFFFF"><span   class="STYLE1" >开始时段</span></td>
+            <td height="25" colspan="2" bgcolor="#FFFFFF"><label for="begin_week"><span class="STYLE2 STYLE1">
+              <select name="begin_week" id="begin_week"  >
+                <option  value="0" <% if  $periodrate.begin_week eq '0'%> selected <%/if%> > 星期日 </option>
+                <option  value="1" <% if  $periodrate.begin_week eq '1'%> selected <%/if%> > 星期一 </option>
+                <option  value="2" <% if  $periodrate.begin_week eq '2'%> selected <%/if%> > 星期二 </option>
+                <option  value="3" <% if  $periodrate.begin_week eq '3'%> selected <%/if%> > 星期三 </option>
+                <option  value="4" <% if  $periodrate.begin_week eq '4'%> selected <%/if%> > 星期四 </option>
+                <option  value="5" <% if  $periodrate.begin_week eq '5'%> selected <%/if%> > 星期五 </option>
+                <option  value="6" <% if  $periodrate.begin_week eq '6'%> selected <%/if%> > 星期六 </option>
+              </select>
+              <span class="STYLE7">
+              <input name="begin_time" type="text" class="STYLE1" style="height:18px; width:120px;" size="30"  value='<% $periodrate.begin_time %>' />
+              </span></span></label></td>
+          </tr>
+          <tr>
+            <td height="25" align="right" bgcolor="#FFFFFF"><span   class="STYLE1" >终止时段</span></td>
+            <td height="25" colspan="2" bgcolor="#FFFFFF"><label for="end_week"></label>
+              <span class="STYLE2 STYLE1">
+                <select name="end_week" id="end_week"  >
+                <option  value="0" <% if  $periodrate.end_week eq '0'%> selected <%/if%> > 星期日 </option>
+                <option  value="1" <% if  $periodrate.end_week eq '1'%> selected <%/if%> > 星期一 </option>
+                <option  value="2" <% if  $periodrate.end_week eq '2'%> selected <%/if%> > 星期二 </option>
+                <option  value="3" <% if  $periodrate.end_week eq '3'%> selected <%/if%> > 星期三 </option>
+                <option  value="4" <% if  $periodrate.end_week eq '4'%> selected <%/if%> > 星期四 </option>
+                <option  value="5" <% if  $periodrate.end_week eq '5'%> selected <%/if%> > 星期五 </option>
+                <option  value="6" <% if  $periodrate.end_week eq '6'%> selected <%/if%> > 星期六 </option>
+              </select>
+                <span class="STYLE7">
+                <input name="end_time" type="text" class="STYLE1" style="height:18px; width:120px;" size="30"  value='<% $periodrate.end_time %>' />
+                </span></span></td>
+          </tr>
+          <tr>
+            <td height="21" align="right" bgcolor="#FFFFFF"><span   class="STYLE1" >主叫匹配</span></td>
+            <td height="21" colspan="2" bgcolor="#FFFFFF"><label for="caller_prex"></label>
+              <span class="STYLE7">
+              <input name="caller_prex" type="text" class="STYLE1" style="height:18px; width:120px;" size="30"  value='<% $periodrate.caller_prex %>' />
+</span></td>
+          </tr>
+          <tr>
+            <td height="23" align="right" bgcolor="#FFFFFF"><span   class="STYLE1" >本时段计费费率组</span></td>
+            <td height="23" colspan="2" bgcolor="#FFFFFF"><span class="STYLE1">
+              <select name="rategroupid" id="rategroupid"  >
+               <%foreach from=$rategroups item=eachone key=keyname %>
+        <option  value="<% $eachone.decode_id %>" <% if $eachone.id eq $periodrate.rategroupid %> selected <%/if%> ><% $eachone.rategroupname %> </option>
+                <%/foreach%>
+              </select>
+            </span></td>
+          </tr>
+
+   
+  
+          <tr>
+            <td id="userTip" height="18" colspan="3" align="right" bgcolor="#FFFFFF"></td>
+          </tr>
+          <tr>
+            <td height="18" colspan="3" align="center" bgcolor="#FFFFFF"><input type="submit"  class="STYLE1"   name="submitbtn" id="submitbtn"   onClick="return check()" value=" 确认提交 ">
+              <input  type="button"  class="STYLE1"   name="backbutton" id="button"   onClick="goback('<% $curpage %>','<% $ratepackage_id %>','<% $old_curpage %>','<% $agent_id %>')" value=" 取消返回 "></td>
+            </tr>
+              </form> 
+    </table></td>
+  </tr>
+
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+       
+        <td width="67%"><table width="312" border="0" align="right" cellpadding="0" cellspacing="0">
+          <tr>
+
+            <td width="35">&nbsp;</td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+<p class="STYLE19">&nbsp;</p>
+</body>
+</html>

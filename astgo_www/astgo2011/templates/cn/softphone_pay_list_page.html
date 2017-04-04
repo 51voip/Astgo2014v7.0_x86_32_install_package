@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="css/mainstyle.css"/>
+<script src="./js/jquery-1.6.2.min.js"></script>
+<title>运营网站套餐卡管理</title>
+</head>
+
+<script>
+
+
+
+//页码导航 
+function post_list(index,curpage,maxpage,agent_id)
+{ 
+     if (parseInt(index) <= parseInt(maxpage) && parseInt(index) > 0  && parseInt(curpage)!=parseInt(index) )
+	 {
+        document.form1.action = '?action=user_pay_list&curpage='+index+'&agent_id='+agent_id; 
+	    document.form1.submit(); 
+	    return true;
+	 }
+	 return false;
+}
+
+function  change_acct_id(acct_id)
+{
+        //document.form1.action = '?action=list&curpage='+goto_index; 
+		
+		//alert(acct_id);
+	    document.form1.submit(); 
+	    return true;		 
+	
+}	
+	
+</script>
+<body>
+  <form name="form1" method="post" action="?action=user_pay_list">
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="24" bgcolor="#353c44"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                
+                <td width="97%" valign="bottom"><span class="table_caption">运营网站充值记录</span></td>
+              </tr>
+            </table></td>
+            <td><div align="right"><span class="table_caption">
+            </span>
+             
+             </div></td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td><table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">
+
+  <tr>
+    <td   height="24" colspan="9"   bgcolor="#FFFFFF" class="STYLE6"><span class="STYLE1">代理商：
+                      <select name="agent_id" class="STYLE1" id="agent_id" onchange= "change_acct_id(this.value)" >
+                <option  value="" > --全部-- </option>
+                     <%foreach from=$acctchild item=eachone key=keyname %>
+                   <option  value="<% $eachone.decode_id %>" <% if $eachone.decode_id eq $agent_id %> selected <%/if%> >
+                     <% $eachone.acctname %>
+                   </option>
+                   <%/foreach%>
+                 </select>
+                      <label for="out_trade_no"><span class="table_title">订单号</span></label>
+                      <input name="out_trade_no" type="text" class="STYLE1" id="out_trade_no" size="20" maxlength="30" value='<% $post_data.out_trade_no %>' />
+                      <label for="subject"><span class="table_title">订单名称</span></label>
+                      <input name="subject" type="text" class="STYLE1" id="subject" size="20" maxlength="30" value='<% $post_data.subject %>' />
+                      <label for="body"><span class="table_title">描述</span></label>
+                      <input name="body" type="text" class="STYLE1" id="body" size="20" maxlength="30" value='<% $post_data.body %>' />
+状态
+<select name="state" class="STYLE1" id="state" >
+  <option  value="-1"  > 不限 </option>
+  <option  value="1" <% if $post_data.state eq '1' %> selected="selected" <%/if%>  > 成功 </option>
+  <option  value="0" <% if $post_data.state eq '0' %> selected="selected" <%/if%>  > 发起 </option>
+</select>
+    <input name="querybtn" type="submit" class="STYLE1"   id="querybtn"  value=" 查询 " />
+    </span></td>
+  </tr>
+  <tr>
+            <td width="2%"   height="24"   bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">序号</div></td>
+            <td width="6%"  height="24"   bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">代理商</div></td>
+            <td width="6%"  height="24"   bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">帐号</div></td>
+            <td width="12%" height="24"   bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">订单号</div></td>
+            <td width="8%"  height="24"   bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">订单名称</div></td>
+            <td width="20%"  height="24"   bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">描述</div></td>
+            <td width="6%"  height="24"   bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">支付平台</div></td>
+            <td width="10%"  height="24"   bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">购买类型</div></td>
+            <td width="4%"  height="24"   bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">状态</div></td>
+          
+
+          </tr>      
+
+          <% foreach from=$table_array item=eachone key=keyname %>  	
+          <tr>
+            <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"><% $eachone.check_id %></div></td>
+            <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"><% $eachone.agent_acctname %></div></td>
+            <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"><% $eachone.acctname %></div></td>
+            <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"><% $eachone.out_trade_no %></div></td>
+            <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"><% $eachone.subject %></div></td>
+            <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"><% $eachone.body %></div></td>
+            <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"> <% $eachone.payway %></div></td>
+            <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"> <% if $eachone.rechargetype  eq '1' %>套餐:<% $eachone.packagename %><%else%>金额: <% $eachone.balance|string_format:"%.2f" %>元<%/if%>  </div></td>
+            <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"> <% if $eachone.state eq '0' %>发起<%else%>成功<%/if%>  </div></td>
+   
+          </tr>
+        <% /foreach %>
+    </table></td>
+  </tr>
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="33%"><div align="left"><span class="STYLE21">共
+              <% $record_count %>
+              条记录，当前第
+              <% $curpage %>
+              /
+              <% $maxpage %>
+              页，每页
+              <% $pagelimtcount %>
+          条记录</span></div></td>
+        <td width="67%"><table width="180" border="0" align="right" cellpadding="0" cellspacing="0">
+          <tr>
+            <td width="40"><div align="center"> <a href="#" class="STYLE21" onClick="return post_list('1','<% $curpage %>','<% $maxpage %>','<% $agent_id %>')" >首页</a> </div></td>
+            <td width="40"><div align="center"> <a href="#" class="STYLE21" onClick="return post_list('<% $curpage-1 %>','<% $curpage %>','<% $maxpage %>','<% $agent_id %>')" >上一页</a></div></td>
+            <td width="40"><div align="center"> <a href="#" class="STYLE21" onClick="return post_list('<% $curpage+1 %>','<% $curpage %>','<% $maxpage %>','<% $agent_id %>')" >下一页</a></div></td>
+            <td width="40"><div align="center"> <a href="#" class="STYLE21" onClick="return post_list('<% $maxpage  %>','<% $curpage %>','<% $maxpage %>','<% $agent_id %>')" >尾页</a></div></td>
+           
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+</form>
+</body>
+</html>

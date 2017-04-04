@@ -1,0 +1,298 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="css/mainstyle.css"/>
+	<link rel="stylesheet" href="./css/themes/base/jquery.ui.all.css">
+	<script src="./js/jquery-1.6.2.min.js"></script>
+    
+<title>坐席队列编辑</title>
+<script>
+
+
+	//所有input 去空格
+	function trim_all_input()
+	{
+		var inpus = document.getElementsByTagName("INPUT")
+        for(var i=0; i<inpus.length; i++)
+        {
+            if(inpus[i].type=="text")
+            {
+               inpus[i].value =  inpus[i].value.replace(/\s/g,"");
+            }
+        }
+		
+	}
+	
+    function check()
+	{
+		 trim_all_input(); //所有input 去空格
+
+    
+		
+		if ( $('#name').val() == '' ||  isNaN($('#name').val()) )
+		{
+		  alert('请输入正确的队列号码,必须是数字');
+		  return false;
+		}
+		
+		if ( $('#timeout').val() == '' ||  isNaN($('#timeout').val()) )
+		{
+		  alert('呼叫队列等待时间!');
+		  return false;
+		}
+				
+
+		return true;
+	}
+
+	function goback(curpage)
+	{
+	    document.form1.action = '?action=list&curpage='+curpage;
+		document.form1.submit();
+	}
+	
+function  change_acct_id(curpage)
+{
+	
+	
+	    document.form1.action = '?action=add_send&curpage='+curpage;
+	    document.form1.submit(); 
+	    return true;		 
+	
+}
+	
+    </script>
+
+<body>
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="24" bgcolor="#353c44"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="2%" height="19" valign="bottom"><div align="center"><img src="images/tb.gif" width="14" height="14" /></div></td>
+                <td width="98%" valign="bottom"><span class="STYLE10"> 添加、编辑队列</span></td>
+              </tr>
+            </table></td>
+            <td><div align="right"><span class="STYLE1">
+              </span></div></td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+  <form name="form1"  id="form1"  method="post" action="?action=<% $action %>&curpage=<% $curpage %>&id=<% $queue.decode_id %>">
+  <tr>
+    <td><table width="687" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">
+     
+         
+          <tr>
+            <td height="18" colspan="4" bgcolor="#FFFFFF">&nbsp;
+            </td>
+            </tr>
+         
+          <tr>
+            <td height="18" colspan="2" align="right" bgcolor="#FFFFFF"><span   class="STYLE1" >代理名称</span></td>
+            <td height="18" colspan="2" bgcolor="#FFFFFF"><label for="host"><span class="STYLE2 STYLE1">
+            
+             <select name="agent_id" class="STYLE1" id="agent_id"  <% if  $action   eq 'edit_post' %>  disabled <%/if%> onchange= "change_acct_id(this.value)"  >
+                <option  value="<% $res_acct.decode_id%>"  <% if $res_acct.decode_id eq $agent_id %> selected <%/if%>> <% $res_acct.acctname %> </option>
+                  <%foreach from=$acctchild item=eachone key=keyname %>
+                  <option  value="<% $eachone.decode_id %>" <% if $eachone.decode_id eq $agent_id %> selected="selected" <%/if%> >
+                    <% $eachone.acctname %>
+                  </option>
+                  <%/foreach%>
+                </select>
+            
+            </span></label></td>
+          </tr>
+        
+          <tr>
+            <td height="18" colspan="2" align="right" bgcolor="#FFFFFF"><span   class="STYLE1" >队列号码</span></td>
+            <td height="18" colspan="2" bgcolor="#FFFFFF"><label for="host"><span class="STYLE7">
+              <input name="name" id="name" type="text" class="STYLE1" style="height:18px; width:120px;" size="30"  <% if  $action   eq 'edit_post' %>  disabled <%/if%>   value='<% $queue.name %>' />
+            (</span><span class="STYLE4">必须是数字的组合</span><span class="STYLE7">)</span></label></td>
+            </tr>
+          
+         
+          <tr>
+            <td height="18" colspan="2" align="right" bgcolor="#FFFFFF"><span class="STYLE1">说明</span></td>
+            <td height="18" colspan="2" bgcolor="#FFFFFF"><span class="STYLE7">
+              <input name="dispname" id="dispname" type="text" class="STYLE1" style="height:18px; width:120px;" size="30"  value='<% $queue.dispname %>' />
+            </span></td>
+          </tr>
+          <tr>
+            <td height="18" colspan="2" align="right" bgcolor="#FFFFFF"><span class="STYLE1">呼叫坐席方式</span></td>
+            <td height="18" colspan="2" bgcolor="#FFFFFF"><select size="1" name="strategy">
+              <option value="rrmemory" <% if $queue.strategy eq 'rrmemory' %>selected<%/if%>>轮流呼叫</option>
+			   <!-- 
+              <option value="leastrecent" <% if $queue.strategy eq 'leastrecent' %>selected<%/if%>>最近接听最少</option>
+              <option value="fewestcalls" <% if $queue.strategy eq 'fewestcalls' %>selected<%/if%>>完成呼叫最少</option>
+            -->
+              <option value="random" <% if $queue.strategy eq 'random' %>selected<%/if%>>随机呼叫</option>
+            </select></td>
+          </tr>
+          <tr>
+            <td height="18" colspan="2" align="right" bgcolor="#FFFFFF"><span   class="STYLE1" >通话录音</span></td>
+            <td height="18" colspan="2" bgcolor="#FFFFFF">
+              <span class="STYLE7">
+                <select name="monitor-type" id="monitor-type"    
+				<% if  $res_acct.accttype eq '2'  and $res_acct.vocrecord_level neq '1'  %> disabled  <% /if %> 
+				
+				   >
+				                  <option  value="Mixmonitor"  <% if $queue.monitor_type neq ''  %> selected <%/if%> > 是  </option>
+                  <option  value="" <% if $queue.monitor_type eq ''  %> selected <%/if%>> 否  </option>
+                </select>
+                  </span><span class="STYLE1">按键确认提示</span><span class="STYLE7">
+<select name="monitor_recvoc" class="STYLE7" id="monitor_recvoc"  >
+  <option  value="1"  <% if $queue.monitor_recvoc eq '1'  %> selected <%/if%> > 是 </option>
+  <option  value="0" <% if $queue.monitor_recvoc eq '0'  %> selected <%/if%>> 否 </option>
+</select>
+                  </span></td>
+            </tr>
+         
+          <tr>
+            <td height="18" colspan="2" align="right" bgcolor="#FFFFFF"><span   class="STYLE1" >接通报工号</span></td>
+            <td height="18" colspan="2" bgcolor="#FFFFFF"><label for="saymember"></label>
+              <span class="STYLE7">
+                <select name="saymember" id="saymember"  >
+                  <option  value="1"  <% if $queue.saymember eq '1'  %> selected <%/if%> > 是  </option>
+                  <option  value="0"  <% if $queue.saymember eq '0'  %> selected <%/if%> > 否  </option>
+              </select>
+              </span></td>
+          </tr>
+          <tr>
+            <td height="18" colspan="2" align="right" bgcolor="#FFFFFF" class="STYLE1">等待音乐</td>
+            <td height="18" colspan="2" bgcolor="#FFFFFF"><span class="STYLE7">
+                <select name="musiconhold" id="musiconhold"  >
+                <option  value="-2" > 默认等待音 </option>
+                <%foreach from=$wav_list item=eachone key=keyname %>
+                <option  value="<% $eachone.id %>" <% if $eachone.name eq $queue.musiconhold %> selected <%/if%> >
+                  <% $eachone.description %>
+                  </option>
+                <%/foreach%>
+              </select>             
+            </span></td>
+          </tr>
+          <tr>
+            <td height="18" colspan="2" align="right" bgcolor="#FFFFFF"><span   class="STYLE1" >等待时长</span></td>
+            <td height="18" colspan="2" bgcolor="#FFFFFF"><label for="timeout"></label>
+              <span class="STYLE7">
+                <input name="timeout" id="timeout" type="text" class="STYLE1" style="height:18px; width:60px;" size="30"  value='<% $queue.timeout %>' />
+                <span class="STYLE1">秒</span></span></td>
+          </tr>
+  
+          <tr>
+            <td id="userTip3" height="18" colspan="4" align="center" bgcolor="#FFFFFF"><span class="STYLE4">坐席队列成员</span></td>
+          </tr>
+          <tr>
+            <td width="35%" height="18" align="center" bgcolor="#FFFFFF" id="userTip2"><div align="right"><span class="STYLE4">
+              <select size='10' name="users[]" multiple id="users" style='width: 185px'>
+                <%foreach from=$user_array item=eachone key=keyname %>
+                <option value="<% $eachone.acctname %>">
+                  <% $eachone.acctname %>
+                  </option>
+                <%/foreach%>
+              </select>
+            </span></div></td>
+            <td width="9%" align="center" bgcolor="#FFFFFF" id="userTip2"><span class="STYLE4"><a href="#" id='add2members'><img src="images/main_17.gif" alt="" border='0'></a></span></td>
+            <td width="9%" height="18" align="center" bgcolor="#FFFFFF" id="userTip2"><span class="STYLE4"><a href="#" id='remove2members'><img src="images/main_15.gif" alt="" border='0'></a></span></td>
+            <td width="47%" align="center" bgcolor="#FFFFFF" id="userTip2"><div align="left"><span class="STYLE4">
+              <select size='10' name="members[]" multiple id="members" style='width: 185px'>
+                <%foreach from=$members item=eachone key=keyname %>
+                <option value="<% $eachone.membername %>">
+                  <% $eachone.membername %>
+                  </option>
+                <%/foreach%>
+              </select>
+            </span></div></td>
+          </tr>
+          <tr>
+            <td id="userTip" height="18" colspan="4" align="center" bgcolor="#FFFFFF"> <div class="STYLE4" ></div></td>
+          </tr>
+          <tr>
+            <td height="18" colspan="4" align="center" bgcolor="#FFFFFF">
+              
+              <input type="submit"  class="STYLE1"   name="submitbtn" id="submitbtn"   onClick="return check()" value=" 确认提交 ">
+              <input type="button"  class="STYLE1"   name="btn2" id="btn2"   onClick=" goback('<% $curpage %>','<% $agent_id %>')" value=" 取消返回 "></td>
+            </tr>
+      </table></td>
+  </tr>
+
+</form>
+
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+       
+        <td width="67%">&nbsp;</td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+
+</body>
+
+
+<script>
+$(function() {
+		
+  //增加成员
+  $("#add2members").click(function(){
+      $("#users option:selected").clone().appendTo("#members");
+      $("#users option:selected").remove();
+  });
+  $("#users").dblclick(function(){
+    $("option:selected",this).clone().appendTo("#members");
+    $("option:selected",this).remove();
+  });
+  //减少成员
+  $("#remove2members").click(function(){
+      $("#members option:selected").clone().appendTo("#users");
+      $("#members option:selected").remove();
+  });
+  $("#members").dblclick(function(){
+    $("option:selected",this).clone().appendTo("#users");
+    $("option:selected",this).remove();
+  });
+  //成员上移
+  $("#membersmoveup").click(function(){
+    var so = $("#members option:selected");
+    if(so.get(0) && so.get(0).index!=0){
+      so.each(function(){
+        $(this).prev().before($(this));
+      });
+    }
+  });
+  //成员下移
+  $("#membersmovedown").click(function(){
+    var so = $("#members option:selected");
+    if(so.get(0) && so.get(0).index!=($("#members option").length-1)){
+      so.each(function(){
+        $(this).next().after($(this));
+      });
+    }
+  });
+  //提交时全选
+  $("#form1").submit(function(){
+    $("#members option").each(function(){
+      $(this).attr('selected',true);
+    });
+    return true;
+  });
+  		
+		 $("input:text,input:password,textarea").focus(function(){
+			 $(this).css("background","#a8c7ce");
+			 }).blur(function(){
+				 $(this).css("background","#FFF");
+			 }); 
+	});
+			 
+</script>      
+
+
+
+</html>

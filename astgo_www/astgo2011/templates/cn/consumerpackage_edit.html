@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="css/mainstyle.css"/>
+<title>编辑套餐</title>
+<script src="./js/jquery-1.6.2.min.js"></script>
+
+<script>
+	//所有input 去空格
+	function trim_all_input()
+	{
+		var inpus = document.getElementsByTagName("INPUT")
+        for(var i=0; i<inpus.length; i++)
+        {
+            if(inpus[i].type=="text")
+            {
+               inpus[i].value =  inpus[i].value.replace(/\s/g,"");
+            }
+        }
+		
+	}
+	
+	// 提交前检测输入是否合法
+	function check()
+	{
+		trim_all_input(); //所有input 去空格
+			
+		if (document.form1.packagename.value==""  )
+		{
+			document.getElementById("userTip").innerHTML="<div align='center'><span class='STYLE4'><font color=red>请输入正确的消费套餐名称</font></span></div>";
+      		document.form1.packagename.focus();
+			return false;
+			
+		}		
+		if (document.form1.balance.value=="" || ( isNaN(document.form1.balance.value) ) )
+		{
+			document.getElementById("userTip").innerHTML="<div align='center'><span class='STYLE4'><font color=red>请输入正确的购买价格</font></span></div>";
+      		document.form1.balance.focus();
+			return false;
+			
+		}		
+		if (document.form1.timelong.value=="" || ( isNaN(document.form1.timelong.value) ) )
+		{
+			document.getElementById("userTip").innerHTML="<div align='center'><span class='STYLE4'><font color=red>请输入正确的拨打分钟数</font></span></div>";
+      		document.form1.timelong.focus();
+			return false;
+			
+		}		
+		
+		if (document.form1.expireddays.value=="" || ( isNaN(document.form1.expireddays.value) ) )
+		{
+			document.getElementById("userTip").innerHTML="<div align='center'><span class='STYLE4'><font color=red>请输入正确的有效期天数</font></span></div>";
+      		document.form1.expireddays.focus();
+			return false;
+			
+		}	
+				
+		return true;
+
+	}
+	
+	function goback(curpage,rategroup_agent_id)
+	{
+	    document.form1.action = '?action=list&curpage='+curpage +'&agent_id=' + rategroup_agent_id;
+		document.form1.submit();
+	}
+    </script>
+
+<body>
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="24" bgcolor="#353c44"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="2%" height="19" valign="bottom"><div align="center"><img src="images/tb.gif" width="14" height="14" /></div></td>
+                <td width="98%" valign="bottom"><span class="table_caption"><% if $action eq 'edit_post' %> 修改用户消费套餐 <% elseif $action eq 'add_post' %> 新增用户消费套餐<%else%>用户消费套餐管理<%/if%></span></td>
+              </tr>
+            </table></td>
+            <td><div align="right"><span class="STYLE1">
+              </span></div></td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+  
+   <form name="form1" method="post" action="?action=<% $action %>&id=<% $consumerpackage.decode_id %>&curpage=<% $curpage %>&agent_id=<% $agent_id %>">
+  <tr>
+    <td>
+    <table width="641" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">
+ <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span class="STYLE1">管理者</span></td>
+            <td width="56%" height="18" bgcolor="#FFFFFF"><span class="STYLE2 STYLE1">
+               <select name="agent_id" class="STYLE1" id="agent_id"  <% if  $action   eq 'edit_post' %>  disabled <%/if%> onchange= "change_acct_id(this.value)"  >
+               <% if  $res_acct.accttype  eq '2' %> 
+                <option  value="<% $res_acct.decode_id%>"  <% if $res_acct.decode_id eq $agent_id %> selected <%/if%>> <% $res_acct.acctname %> </option>
+               <% /if %>   
+                  <%foreach from=$acctchild item=eachone key=keyname %>
+                  <option  value="<% $eachone.decode_id %>" <% if $eachone.decode_id eq $agent_id %> selected="selected" <%/if%> >
+                    <% $eachone.acctname %>
+                  </option>
+                  <%/foreach%>
+                </select>
+            </span></td>
+          </tr>
+          <tr>
+            <td width="44%" height="18" align="right" bgcolor="#FFFFFF"><span   class="STYLE1" >名称</span></td>
+            <td height="18" bgcolor="#FFFFFF"><label for="packagename"></label>
+              <span class="STYLE7">
+                <input name="packagename" type="text" class="STYLE1" style="height:18px; width:225px;" size="30"  value='<% $consumerpackage.packagename %>' />
+              </span></td>
+            </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span class="STYLE1">时段类型</span></td>
+            <td height="18" bgcolor="#FFFFFF"><span class="STYLE2 STYLE1">
+              <select name="timetype"  class="STYLE1" id="timetype" >
+                <option  value="1" <% if $consumerpackage.timetype eq '1' %> selected <%/if%> >  全天  </option>
+                <option  value="2" <% if $consumerpackage.timetype eq '2' %> selected <%/if%> >  闲时  </option>
+             </select>
+            </span></td>
+          </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span class="STYLE1">拨号前缀</span></td>
+            <td height="18" bgcolor="#FFFFFF"><span class="STYLE7">
+              <input name="prefix" type="text" class="STYLE1" style="height:18px; width:80px;" size="30"  value='<% $consumerpackage.prefix %>'>
+            </span></td>
+          </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span class="STYLE1">购买价格</span></td>
+            <td height="18" bgcolor="#FFFFFF"><span class="STYLE2 STYLE1"><span class="STYLE7">
+              <input name="balance" type="text" class="STYLE1" style="height:18px; width:80px;" size="30"  value='<% $consumerpackage.balance|string_format:"%.2f" %>'  />
+            <span class="STYLE1">元</span></span></span></td>
+          </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span class="STYLE1">拨打时长</span></td>
+            <td height="18" bgcolor="#FFFFFF"><span class="STYLE7">
+              <input name="timelong" type="text" class="STYLE1" style="height:18px; width:80px;" size="30"  value='<% $consumerpackage.timelong %>'  />
+            <span class="STYLE1">分钟</span></span></td>
+          </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span class="STYLE1">有效天数</span></td>
+            <td height="18" bgcolor="#FFFFFF"><span class="STYLE7">
+              <input name="expireddays" type="text" class="STYLE1" style="height:18px; width:80px;" size="30"  value='<% $consumerpackage.expireddays %>'  />
+            <span class="STYLE1">天</span></span></td>
+          </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span class="STYLE1">备注</span></td>
+            <td height="18" bgcolor="#FFFFFF"><span class="STYLE7">
+              <input name="description" type="text" class="STYLE1" style="height:18px; width:225px;" size="30"  value='<% $consumerpackage.description %>' />
+            </span></td>
+          </tr>
+          <tr>
+             <td height="18" colspan="4" align="center" bgcolor="#FFFFFF" id="userTip"></td>
+          </tr>
+          <tr>
+            <td height="18" colspan="2" align="right" bgcolor="#FFFFFF"><div align="center">
+              <input type="submit"  class="STYLE1"   name="submitbtn" id="submitbtn"   onClick="return check()" value=" 确认提交 ">
+              <input  type="button"  class="STYLE1"   name="backbutton" id="button"   onClick="goback('<% $curpage %>','<% $agent_id %>')" value=" 取消返回 ">
+            </div></td>
+            </tr>
+        </table>
+    </td>
+  </tr>
+  </form>
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+       
+        <td width="67%"><table width="312" border="0" align="right" cellpadding="0" cellspacing="0">
+          <tr>
+
+            <td width="35">&nbsp;</td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+</body>
+</html>

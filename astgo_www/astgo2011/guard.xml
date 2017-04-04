@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<guardProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" appName="2011" appVersion="4" targetDir="D:\2012\zend" xsi:noNamespaceSchemaLocation="guard.xsd">
+	<globalVariables/>
+	
+	<options>
+		<phpVersion value="5"/>
+
+		<phpFilesExtensions>
+			<extension>php</extension>
+			<extension>inc</extension>
+			<extension>php3</extension>
+			<extension>php4</extension>
+			<extension>ihtml</extension>
+		</phpFilesExtensions>
+
+		<supportShortTags value="true"/>
+		<supportASPTags value="false"/>
+		<workWithEncodedFilesOnly value="false"/>
+		
+		<expiration>
+			<none/>
+		</expiration>
+
+		<licenseType value="none"/>
+		<privateKey>
+			<keyData/>
+		</privateKey>
+
+		<headerInformation>
+			<default/>
+		</headerInformation>
+
+		<optimizationLevel value="full"/> 
+		<ignoreErrors value="true"/>
+		<verbosityLevel value="verbose"/>
+		<allowEncodedFileModification value="true"/>
+		<resolveSymlinks value="true"/>
+		
+		<securityMethodList>
+			<securityMethod name="encodePhpFiles" value="true"/>
+			<securityMethod name="removeLineNumbers" value="false"/>
+			<securityMethod name="removePhpDoc" value="true"/>
+			<securityMethod name="obfuscateVariables" value="false"/>
+			<securityMethod name="obfuscateFunctions" value="false"/>
+			<securityMethod name="obfuscateClasses" value="false"/>
+			<securityMethod name="obfuscatePhpEntities" value="false"/>
+		</securityMethodList>
+
+		<ignorePatterns>
+			<pattern>CVS</pattern>
+			<pattern>.svn</pattern>
+			<pattern>.#*</pattern>
+			<pattern>.cvsignore</pattern>
+			<pattern>__history</pattern>
+			<pattern>gprs</pattern>
+			<pattern>astgo.net</pattern>
+			<pattern>tif</pattern>
+			<pattern>astg2011v5</pattern>
+			<pattern>.settings</pattern>
+			<pattern>user - 副本</pattern>
+			<pattern>astgo</pattern>
+			<pattern>大众通</pattern>
+			<pattern>images</pattern>
+			<pattern>js</pattern>
+			<pattern>phprpc</pattern>
+			<pattern>templates</pattern>
+			<pattern>templates_c</pattern>
+			<pattern>css</pattern>
+			<pattern>rpcl</pattern>
+			<pattern>libs</pattern>
+		</ignorePatterns>
+	</options>
+
+	<!-- Source entries: -->
+	<source path="D:\2012\htdocs\">
+		<options/>
+	</source>
+</guardProject>

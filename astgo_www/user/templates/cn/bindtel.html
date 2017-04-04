@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!-- saved from url=(0039)http://www.AsgoCall.com/u/showUserInfo.do -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><HTML 
+xmlns="http://www.w3.org/1999/xhtml"><HEAD>
+<META content="text/html; charset=utf-8" http-equiv="Content-Type"><TITLE>绑定手机和QQ号码<% $astgoConf.title %></TITLE>
+<META name="keywords" content="网络电话，免费网络电话，免费电话，<% $astgoConf.logname %>，免费打电话">
+<META name="description" content="<% $astgoConf.logname %>是一款用电脑免费打电话的网络电话聊天软件，下载后即可拨打全球任意手机和电话，包月价格更低至0.05元/分钟。全力打造中国网络电话第一品牌，互联网语音通信专家。">
+<LINK rel="stylesheet" type="text/css" href="css/global.css">
+<LINK rel="stylesheet" type="text/css" href="css/account_con.css">
+<SCRIPT type="text/javascript" src="js/base.js"></SCRIPT>
+<SCRIPT type="text/javascript" src="js/form.js"></SCRIPT>
+<% include file="head.html" %>
+<SCRIPT type="text/javascript" src="js/script.js"></SCRIPT>
+<STYLE>
+	#maincon_c_l ul li.account_btn_on16{background:url(images/account/account_con_08.jpg) left no-repeat;}
+	#maincon_c_l ul li.account_btn_on16 a{font-weight:bold;color:#FE4C04;}
+	</STYLE>
+
+    
+<DIV id="maincon">
+<DIV><IMG src="images/account/account_con_03.jpg"></DIV>
+<DIV id="maincon_c">
+<% include file="leftmenu.html" %>
+  
+  
+<SCRIPT type="text/javascript" src="js/script.js"></SCRIPT>
+<SCRIPT type="text/javascript">
+function bindtel_post()
+{
+	
+
+	 if (document.form1.tranfer_callee1.value.length != 11 )	
+	 {
+	   alert('必须是11位手机号码');
+	   return false;
+
+	 }
+	 
+	 if (document.form1.tranfer_callee1.value.substring(0,1) != '1')
+	 {
+	   alert('必须是11位手机号码,从1开头的');
+	   return false;
+
+	}
+
+	
+	document.form1.submit();
+	return true;
+	
+}
+</SCRIPT>
+
+<DIV id="maincon_c_r">
+<DIV id="pwd_protect_title">
+<H3>绑定手机和QQ号码</H3></DIV>
+<P style="display: none;" id="p_step3"></P>
+<DIV id="msg"></DIV>
+<DIV id="step1">
+<DIV class="clear"></DIV>
+<FORM method="post" name="form1" action="?action=bindtel_post">
+<TABLE class="getbind_table" border="0" cellSpacing="0" cellPadding="0">
+  <TBODY>
+   <TR>
+    <TD width="142" style="text-align: right;"><STRONG>绑定的手机号码：</STRONG></TD>
+    <TD width="200"><INPUT id="tranfer_callee1" class="getback" name="tranfer_callee1" maxLength="20" type="text" value="<% $user.tranfer_callee1 %>">     </TD>
+    <TD width="62">&nbsp;</TD>
+   </TR>
+  <!--
+   <TR>
+    <TD style="text-align: right;"><STRONG>绑定的手机号码2：</STRONG></TD>
+    <TD><INPUT id="tranfer_callee2" class="getback" name="tranfer_callee2" maxLength="20" type="text" value="<% $user.tranfer_callee2 %>">     </TD>
+    <TD>&nbsp;</TD>
+   </TR>   
+   <TR>
+    <TD style="text-align: right;"><STRONG>绑定的手机号码3：</STRONG></TD>
+    <TD><INPUT id="tranfer_callee3" class="getback" name="tranfer_callee3" maxLength="20" type="text" value="<% $user.tranfer_callee3 %>">     </TD>
+    <TD>&nbsp;</TD>
+   </TR>    
+   !-->
+   
+   
+      <TR>
+        <TD style="text-align: right;"><STRONG>绑定的QQ号码：</STRONG></TD>
+        <TD ><INPUT id="tranfer_callee6" class="getback" name="tranfer_callee6" maxLength="20" type="text" value="<% $user.tranfer_callee6 %>"></TD>
+        <TD>&nbsp;</TD>
+      </TR>
+      <TR>
+    <TD style="text-align: right;"><STRONG></STRONG></TD>
+    <TD ><STRONG> <%if $res eq '0' %>提交成功<%/if%></STRONG>     </TD>
+    <TD>&nbsp;</TD>
+   </TR>    
+   </TBODY>
+ </TABLE>
+<DIV class="clear"></DIV><BR>
+<DIV id="account_vouch_btnzone">
+
+<INPUT style="border: currentColor; width: 107px; height: 31px;" 
+      name="submit" src="images/account/account_vouch_11.jpg" 
+      type="image" onClick="return bindtel_post()">
+      
+ </DIV></FORM></DIV>
+
+<BR>
+<HR>
+<BR><STRONG>绑定介绍：</STRONG><BR>
+<P>一个大众通帐号只可以绑定一个手机号码和QQ号码，绑定后，您将能使用更多的业务，更便捷地享受
+  <% $astgoConf.logname %>大众通的贴心服务！</P>
+<STRONG>绑定规则：</STRONG><BR>
+• 使用手机号码进行号码绑定，每个手机号码只能绑定一个<% $astgoConf.logname %>
+大众通帐号；<BR>
+• 手机号码前不需要加0<BR>
+• 使用固话号码进行号码绑定，每个固话号码只能绑定一个<% $astgoConf.logname %>
+大众通帐号；<BR>
+<BR></DIV>
+<DIV class="clear"></DIV></DIV>
+<DIV><IMG src="images/account/account_con_15.jpg"></DIV></DIV>
+
+
+
+
+<% include file="footer.html" %>
+
+
+
+
+</html>

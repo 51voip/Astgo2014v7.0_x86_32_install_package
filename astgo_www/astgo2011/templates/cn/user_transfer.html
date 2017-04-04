@@ -1,0 +1,230 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="css/mainstyle.css"/>
+<script src="./js/jquery-1.6.2.min.js"></script>
+<title>批量回收帐号</title>
+<script>
+
+ /*禁止鼠标右键*/			
+  $(document).bind("contextmenu",function(e){
+    return false;
+  });
+		
+		
+//所有input 去空格
+	function trim_all_input()
+	{
+		var inpus = document.getElementsByTagName("INPUT")
+        for(var i=0; i<inpus.length; i++)
+        {
+            if(inpus[i].type=="text")
+            {
+               inpus[i].value =  inpus[i].value.replace(/\s/g,"");
+            }
+        }
+		
+	}
+	
+	// 提交前检测输入是否合法
+	function check()
+	{
+		trim_all_input(); //所有input 去空格
+		
+		if (  $('#tranfer_acctname1').val() == '' && $('#tranfer_acctname2').val() == '' && $('#tranfer_acctname3').val() == '' && $('#tranfer_acctname4').val() == '' && $('#tranfer_acctname5').val() == ''
+		&& $('#tranfer_acctname6').val() == '' && $('#tranfer_acctname7').val() == '' && $('#tranfer_acctname8').val() == '' && $('#tranfer_acctname9').val() == '' && $('#tranfer_acctname10').val() == '')
+		{
+		    alert('至少输入一个用户帐号！');	
+			return false;
+		}
+		
+		//alert(document.form1.action);
+		document.form1.submit();
+	    return true;
+	}
+
+
+	
+function  change_acct_id(acct_id)
+{
+	document.form1.action = '?action=tranfer_acctname';
+	document.form1.submit(); 
+	return true;		 
+	
+}
+    </script>
+
+<body>
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="24" bgcolor="#353c44"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="2%" height="19" valign="bottom"><div align="center"><img src="images/tb.gif" width="14" height="14" /></div></td>
+                <td width="98%" valign="bottom"><span class="table_caption"> 转移帐号</span></td>
+              </tr>
+            </table></td>
+            <td><div align="right"><span class="table_caption">
+              </span></div></td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+  
+  
+
+   
+  
+ <form name="form1" method="post" action="?action=tranfer_acctname_post">
+       <tr>
+             <td><table width="701" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF" class="STYLE1"><span class="STYLE7">
+              被转移帐号
+              <input name="tranfer_acctname1" id="tranfer_acctname1" type="text"  tabindex="1" style="height:15px; width:120px;" size="30"  value="<% $post_data.tranfer_acctname1 %>"   />
+              </span></td>
+            <td width="57%" height="18" align="right" bgcolor="#FFFFFF" class="STYLE1"><div align="left"> &nbsp;被转移帐号<span class="STYLE7">
+            <input name="tranfer_acctname2" id="tranfer_acctname2" type="text"  tabindex="2"  style="height:15px; width:120px;" size="30"  value="<% $post_data.tranfer_acctname2 %>"   />
+            </span></div></td>
+          </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF" class="STYLE1"><span class="STYLE7">
+            被转移帐号
+              <input name="tranfer_acctname3" id="tranfer_acctname3" type="text"    tabindex="3"   style="height:15px; width:120px;" size="30"  value="<% $post_data.tranfer_acctname3 %>"   />
+            </span></td>
+            <td height="18" align="right" bgcolor="#FFFFFF" class="STYLE1"><div align="left">&nbsp;<span class="STYLE7">被转移帐号 </span>
+            <input name="tranfer_acctname4" id="tranfer_acctname4" type="text"   tabindex="4"   style="height:15px; width:120px;" size="30"  value="<% $post_data.tranfer_acctname4 %>"   />
+           </div></td>
+            </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF" class="STYLE1"><span class="STYLE7">
+            被转移帐号
+              <input name="tranfer_acctname5" id="tranfer_acctname5" type="text"   tabindex="5"   style="height:15px; width:120px;" size="30"  value="<% $post_data.tranfer_acctname5 %>"   />
+            </span></td>
+            <td height="18" align="right" bgcolor="#FFFFFF" class="STYLE1"><div align="left">&nbsp;<span class="STYLE7">被转移帐号
+<input name="tranfer_acctname6" id="tranfer_acctname6" type="text"    tabindex="6"  style="height:15px; width:120px;" size="30"  value="<% $post_data.tranfer_acctname6 %>"   />
+            </span></div></td>
+            </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF" class="STYLE1"><span class="STYLE7">
+              被转移帐号
+              <input name="tranfer_acctname7" id="tranfer_acctname7" type="text"    tabindex="7"  style="height:15px; width:120px;" size="30"  value="<% $post_data.tranfer_acctname7 %>"   />
+            </span></td>
+            <td height="18" align="right" bgcolor="#FFFFFF" class="STYLE1"><div align="left">&nbsp;<span class="STYLE7">被转移帐号
+              <input name="tranfer_acctname8" id="tranfer_acctname8" type="text"     tabindex="8"  style="height:15px; width:120px;" size="30"  value="<% $post_data.tranfer_acctname8 %>"   />
+            </span></div></td>
+            </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF" class="STYLE1"><span class="STYLE7">
+            被转移帐号
+              <input name="tranfer_acctname9" id="tranfer_acctname9" type="text"    tabindex="9"  style="height:15px; width:120px;" size="30"  value="<% $post_data.tranfer_acctname9 %>"   />
+            </span></td>
+            <td height="18" align="right" bgcolor="#FFFFFF" class="STYLE1"><div align="left">&nbsp;被转移帐号<span class="STYLE7">
+            <input name="tranfer_acctname10" id="tranfer_acctname10" type="text"    tabindex="10"  style="height:15px; width:120px;" size="30"  value="<% $post_data.tranfer_acctname10 %>"   />
+            </span></div></td>
+            </tr>
+          <tr>
+            <td height="18" colspan="2" align="center" bgcolor="#FFFFFF" class="STYLE1">(数据为空则不修改)</td>
+            </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF" class="STYLE4">转到代理商</td>
+            <td height="18" align="right" bgcolor="#FFFFFF" class="STYLE1"><div align="left">
+              <select name="agent_id"  id="agent_id" onchange= "change_acct_id(this.value)"   tabindex="11" >
+                <%foreach from=$acctchild item=eachone key=keyname %>
+                <option  value="<% $eachone.decode_id %>" <% if $eachone.decode_id eq $agent_id %> selected="selected" <%/if%> >
+                <% $eachone.acctname %>
+                </option>
+                <%/foreach%>
+              </select>
+            </div></td>
+          </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF" class="STYLE1">设置为未激活</td>
+            <td height="18" align="right" bgcolor="#FFFFFF" class="STYLE1"><div align="left">
+              <select name="off_activedate"  id="enable"  >
+                <option value="1"   > 是</option>
+                <option value="0"   > 否</option>
+              </select>
+            </div></td>
+          </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF" class="STYLE1">用户金额</td>
+            <td height="18" align="right" bgcolor="#FFFFFF" class="STYLE1"><div align="left"><span class="STYLE7">
+              <input name="balance"  id = "balance"  type="text"    style="height:15px; width:80px;" size="30"  value="0" />
+            </span>元</div></td>
+          </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF" class="STYLE1">一号通呼转时长</td>
+            <td height="18" align="right" bgcolor="#FFFFFF" class="STYLE1"><div align="left"><span class="STYLE7">
+              <input name="intimelonggift"  id = "intimelonggift"  type="text"   style="height:15px; width:80px;" size="30"  value="0" />
+            </span>分钟</div></td>
+          </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF" class="STYLE1">二次拨号时长</td>
+            <td height="18" align="right" bgcolor="#FFFFFF" class="STYLE1"><div align="left"><span class="STYLE7">
+              <input name="timelonggift"  id = "timelonggift"  type="text"    style="height:15px; width:80px;" size="30"  value="0" />
+            </span>分钟</div></td>
+          </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF" class="STYLE1">回拨费率组</td>
+            <td height="18" align="right" bgcolor="#FFFFFF" class="STYLE1"><div align="left">
+              <select name="rategroupid_acall"  id="rategroupid_acall"  >
+                <%foreach from=$rategroups item=eachone key=keyname %>
+                <option  value="<% $eachone.decode_id %>" <% if $eachone.decode_id eq $post_data.decode_rategroupid_acall %> selected="selected" <%/if%> >
+                  <% $eachone.rategroupname %>
+                  </option>
+                <%/foreach%>
+              </select>
+            </div></td>
+          </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF" class="STYLE1">被叫费率组</td>
+            <td height="18" align="right" bgcolor="#FFFFFF" class="STYLE1"><div align="left">
+              <select name="rategroupid"  id="rategroupid"  >
+                <%foreach from=$rategroups item=eachone key=keyname %>
+                <option  value="<% $eachone.decode_id %>" <% if $eachone.decode_id eq $post_data.decode_rategroupid %> selected="selected" <%/if%> >
+                  <% $eachone.rategroupname %>
+                  </option>
+                <%/foreach%>
+              </select>
+            </div></td>
+          </tr>
+          <tr>
+            <td align="right" bgcolor="#FFFFFF"><span class="STYLE1">套餐</span></td>
+            <td bgcolor="#FFFFFF"><span class="STYLE7">
+              <select style="width:250px" size="6"   multiple="multiple" name="ratepackages[]" >
+                <option value="-1">---------不使用套餐---------</option>
+                <%foreach from=$ratepackages_array item=eachone key=keyname %>
+                <option value="<% $eachone.id %>">   <% $eachone.packagename %>   </option>
+                <%/foreach%>
+              </select>
+            </span></td>
+            </tr>
+          <tr>
+            <td height="18" colspan="2" align="right" bgcolor="#FFFFFF" class="STYLE1"><div align="center">
+              <input type="button"  class="STYLE1"   name="submitbtn" id="submitbtn"   onclick="return  check()" value=" 确认提交 " />
+            </div></td>
+            </tr>
+
+  
+         </table></td>
+  </tr>
+  </form>
+
+</table>
+</body>
+<script>
+		 $("input:text,input:password,textarea").focus(function(){
+	  	 $(this).css("background","#a8c7ce");
+			 }).blur(function(){
+				 $(this).css("background","#FFF");
+			 }); 
+		
+</script>      
+
+</html>

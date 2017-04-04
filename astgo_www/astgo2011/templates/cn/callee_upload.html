@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="css/mainstyle.css"/>
+<title>导入电话本</title>
+<script>
+	//所有input 去空格
+	function trim_all_input()
+	{
+		var inpus = document.getElementsByTagName("INPUT")
+        for(var i=0; i<inpus.length; i++)
+        {
+            if(inpus[i].type=="text")
+            {
+               inpus[i].value =  inpus[i].value.replace(/\s/g,"");
+            }
+        }
+		
+	}
+	
+	// 提交前检测输入是否合法
+	function check()
+	{
+		trim_all_input(); //所有input 去空格
+			
+	
+		return true;
+
+	}
+
+	function goback(curpage,calleegroup_id,old_curpage,agent_id)
+	{
+		var gotourl = '?action=callee_list&curpage='+curpage+'&calleegroup_id='+calleegroup_id+'&old_curpage='+old_curpage+'&agent_id='+agent_id; 
+		//alert(gotourl);
+	    document.form1.action = gotourl;
+		document.form1.submit();
+	}
+
+    </script>
+
+<body>
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="24" bgcolor="#353c44"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="2%" height="19" valign="bottom"><div align="center"><img src="images/tb.gif" width="14" height="14" /></div></td>
+                <td width="98%" valign="bottom"><span class="table_caption"> 上传电话号码</span></td>
+              </tr>
+            </table></td>
+            <td><div align="right"><span class="STYLE1">
+              </span></div></td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+  
+  <tr>
+    <td><table width="605" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">
+      <tr>
+            <td height="18" colspan="2" bgcolor="#FFFFFF">&nbsp;</td>
+          </tr>
+          <tr>
+            <td width="20%" height="18" align="right" bgcolor="#FFFFFF"><span   class="STYLE1" >电话本</span></td>
+            <td width="80%" height="18" bgcolor="#FFFFFF"><label for="prefixname3"></label></td>
+          </tr>
+
+          <form enctype="multipart/form-data" method="post" name="form1" action="?action=callee_loadpost&curpage=<% $curpage %>&old_curpage=<% $old_curpage %>&calleegroup_id=<% $calleegroup_id %>&agent_id=<% $agent_id %>" target="_self">
+            <tr>
+              <td height="18" align="right" bgcolor="#FFFFFF"><span class="STYLE1">文件</span></td>
+              <td height="18" bgcolor="#FFFFFF">&nbsp;
+                <input name="src" type="file" class="STYLE1" />
+                <input  type= "submit"  class="STYLE1"   name="button" id="button2"   value="上传" />
+                <span class="STYLE4">
+                <input  type="button"  class="STYLE1"   name="backbutton" id="button"   onclick="goback('<% $curpage %>','<% $calleegroup_id %>','<% $old_curpage %>','<% $agent_id %>')" value=" 取消返回 " />
+                </span></td>
+              </tr>
+            <tr>
+              <td height="18" align="right" bgcolor="#FFFFFF"><span class="STYLE1">补添区号</span></td>
+              <td height="18" bgcolor="#FFFFFF"><span class="STYLE7">
+                <input name="citycode"  id="citycode" type="text" class="STYLE1" style="height:18px; width:60px;"  value="" size="30" />
+              </span></td>
+            </tr>
+            <tr>
+              <td height="18" align="right" bgcolor="#FFFFFF">&nbsp;</td>
+              <td height="18" bgcolor="#FFFFFF"><span class="STYLE1">文件格式:电话,联系地址,联系人,邮编,备注 <span class="STYLE4">(支持excel2003
+                    格式)</span></span></td>
+              </tr>
+            <tr>
+              <td height="18" align="right" bgcolor="#FFFFFF">&nbsp;</td>
+              <td height="18" bgcolor="#FFFFFF">&nbsp;</td>
+            </tr>
+            <tr>
+              <td height="18" align="right" bgcolor="#FFFFFF">&nbsp;</td>
+              <td height="18" bgcolor="#FFFFFF">&nbsp;</td>
+            </tr>
+            <tr>
+              <td height="18" colspan="2" align="right" bgcolor="#FFFFFF"><div align="center"></div></td>
+              </tr>
+          </form>
+    </table></td>
+  </tr>
+
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+       
+        <td width="67%"><table width="312" border="0" align="right" cellpadding="0" cellspacing="0">
+          <tr>
+
+            <td width="35">&nbsp;</td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+
+</body>
+</html>

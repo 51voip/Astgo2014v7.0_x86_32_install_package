@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!-- saved from url=(0036)http://www.Astgo.com/introduce.html -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><HTML 
+xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<META content="text/html; charset=utf-8" http-equiv="Content-Type">
+<TITLE><% $astgoConf.title %></TITLE>
+<META name="keywords" content="<% $astgoConf.logname %>,网络电话,网络电话软件,免费网络电话软件">
+<META name="description" content="<% $astgoConf.logname %>是一款用电脑免费打电话的聊天软件，拨打全球任意手机、电话最低0.05元/分钟。全力打造中国网络电话第一品牌，互联网语音通信专家。">
+<LINK rel="stylesheet" type="text/css" href="css/global.css">
+<SCRIPT type="text/javascript" src="js/base.js"></SCRIPT>
+
+<STYLE>
+#howuse_li1 { padding:0 35px 0 70px;}
+#howuse_li2 { padding:0 45px 0 60px;}
+#howuse_li4 { padding:0 0 0 60px;}
+</STYLE>
+
+
+<META name="GENERATOR" content="MSHTML 9.00.8112.16437">
+</HEAD>
+
+<DIV style="position: relative; z-index: 1000;" id="header">
+<DIV style="height: 75px; overflow: hidden;" class="nav-top">
+<H1 style="padding-right: 0px; float: left;" id="logo">	<A title="<% $astgoConf.logname %>网络电话" href="index.php"><IMG alt="<% $astgoConf.logname %>网络电话" src="images/logo.jpg"></A></H1>
+<DIV style="width: 500px; padding-left: 0px; float: right;" id="top_r">
+<DIV style="float: right;" id="top_r_t">				       &nbsp;				</DIV>
+<DIV style="width: 500px; float: right;" id="top_r_b">
+<DIV id="account_c"></DIV><SPAN id="account_c_span"><A href="index.php?action=user_main" rel="nofollow">我的帐户</A> </SPAN>
+<DIV id="top_userzone"></DIV></DIV></DIV></DIV></DIV>
+<DIV class="clear"></DIV>
+<DIV id="top_banner">
+<DIV id="top_banner_1"></DIV>
+<DIV id="top_banner_c"></DIV>
+<!--	
+<DIV id="navList">
+<A class="top_banner_on0" href="index.php?action=index">首页</A>
+<A class="top_banner_on1" href="index.php?action=know">了解<% $astgoConf.logname %></A>
+<A class="top_banner_on2" href="index.php?action=download">软件下载</A>
+<A class="top_banner_on3" href="index.php?action=pay">充值中心</A>
+<A class="top_banner_on4" href="index.php?action=fee">费率查询</A>
+</DIV>
+-->
+
+<DIV id="top_banner_r"></DIV><SPAN class="style2">
+<!--	
+	<A href="#" target="_blank">帮助中心</A>
+-->
+</SPAN></DIV>
+<DIV class="clear"></DIV>
+</DIV>
+</DIV>
+
+
+
+<DIV id="index_user">
+<DIV><IMG src="images/index_user_03.jpg"></DIV>
+<DIV id="index_user_con">
+<DIV id="account_c_new"></DIV><SPAN id="new_myaccount"><A href="#" rel="nofollow">我的帐户</A> </SPAN>
+<DIV class="clear"></DIV>
+<UL>
+  <LI><A href="?action=calllist"      rel="nofollow">通话记录</A></LI>
+  <LI><A href="?action=ratepackage"   rel="nofollow">我的套餐</A></LI>
+  <LI><A href="?action=voucherlog"    rel="nofollow">充值记录</A></LI>
+ </UL></DIV>
+<DIV><IMG 
+src="images/index_user_13.jpg"></DIV></DIV>
+<SCRIPT>document.getElementById("account_c").onmouseover=function(){
+		document.getElementById("index_user").style.display="block";
+		}
+		document.getElementById("account_c_span").onmouseover=function(){
+		document.getElementById("index_user").style.display="block";
+		}
+		document.getElementById("index_user").onmouseover=function(){
+		this.style.display="block";
+		}
+		document.getElementById("index_user").onmouseout=function(){
+		this.style.display="none";
+		}
+		</SCRIPT>
+</DIV>
+<DIV class="clear"></DIV>
+<SCRIPT language="javascript">
+function showHeaderUserInfo(){
+	var info = "您好，请 <a href='?action=reg' rel='nofollow'>注册</a> 或 <a href='?action=login' rel='nofollow'>登录</a>";
+	<%  if $user.acctname != '' %>
+        info = "欢迎您:<font style='color:red;font-family:Verdana, Arial, Helvetica, sans-serif;'><% $user.acctname  %>  </font> <a href='?action=logout'>退出</a>";
+	<%/if%>
+	document.getElementById("top_userzone").innerHTML=info;
+}
+
+showHeaderUserInfo();
+</SCRIPT>
+
+

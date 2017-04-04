@@ -1,0 +1,19 @@
+<?php
+if(isset($_SERVER["HTTP_REFERER"]))
+{
+        $serverhost = $_SERVER["SERVER_NAME"];
+        $strurl   = str_replace("http://","",$_SERVER["HTTP_REFERER"]);
+        $strdomain = explode("/",$strurl);
+        $sourcehost    = $strdomain[0];
+        if(strncmp($sourcehost, $serverhost, strlen($serverhost)))
+        {
+                unset($_POST);
+                echo "<script language='javascript'>";
+                echo "alert('----------!');";
+                echo " location='index.php';";
+                echo "</script>";
+        }
+}
+
+
+?>

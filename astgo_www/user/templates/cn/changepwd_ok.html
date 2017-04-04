@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!-- saved from url=(0039)http://www.AsgoCall.com/u/showUserInfo.do -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><HTML 
+xmlns="http://www.w3.org/1999/xhtml"><HEAD>
+<META content="text/html; charset=utf-8" http-equiv="Content-Type"><TITLE>修改帐户密码 -  <% $astgoConf.title %></TITLE>
+<META name="keywords" content="网络电话，免费网络电话，免费电话，<% $astgoConf.logname %>，免费打电话">
+<META name="description" content="<% $astgoConf.logname %>是一款用电脑免费打电话的网络电话聊天软件，下载后即可拨打全球任意手机和电话，包月价格更低至0.05元/分钟。全力打造中国网络电话第一品牌，互联网语音通信专家。">
+<LINK rel="stylesheet" type="text/css" href="css/global.css">
+<LINK rel="stylesheet" type="text/css" href="css/account_con.css">
+<SCRIPT type="text/javascript" src="js/base.js"></SCRIPT>
+<SCRIPT type="text/javascript" src="js/form.js"></SCRIPT>
+<% include file="head.html" %>
+<SCRIPT type="text/javascript" src="js/script.js"></SCRIPT>
+<STYLE>
+	#maincon_c_l ul li.account_btn_on15{background:url(images/account/account_con_08.jpg) left no-repeat;}
+	#maincon_c_l ul li.account_btn_on15 a{font-weight:bold;color:#FE4C04;}
+	</STYLE>
+
+<SCRIPT type="text/javascript">
+function post_list(index,curpage,maxpage)
+{ 
+     if (parseInt(index) <= parseInt(maxpage) && parseInt(index) > 0  && parseInt(curpage)!= parseInt(index) )
+	 {
+        document.form1.action = '?action=calllist&curpage='+index; 
+	    document.form1.submit(); 
+		
+	
+	    return true;
+	 }
+
+	 return false;
+}
+</SCRIPT>
+
+    
+<DIV id="maincon">
+<DIV><IMG src="images/account/account_con_03.jpg"></DIV>
+<DIV id="maincon_c">
+<% include file="leftmenu.html" %>
+  
+  
+  
+<SCRIPT type="text/javascript" src="js/script.js"></SCRIPT>
+<DIV style="font-size: 14px;" id="maincon_c_r">
+<DIV style="text-align: center;"><BR><BR>
+<DIV id="right"><BR>
+<P></P>
+<H1 class="colorText1"><IMG align="absmiddle" 
+src="images/success_03.jpg">密码修改成功！																														
+						</H1>
+<P></P><BR><INPUT style="width: 60px; height: 24px; line-height: 20px;" class="button" onClick="location.href='?action=user_main';" value="返 回" type="button"></DIV></DIV></DIV>
+<DIV class="clear"></DIV></DIV>
+<DIV><IMG src="images/account/account_con_15.jpg"></DIV></DIV>
+
+
+
+<% include file="footer.html" %>
+
+
+
+
+</html>

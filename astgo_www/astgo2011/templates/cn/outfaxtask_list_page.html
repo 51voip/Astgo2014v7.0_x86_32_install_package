@@ -1,0 +1,227 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="css/mainstyle.css"/>
+<link rel="stylesheet" href="./css/themes/base/jquery.ui.all.css">
+<script src="./js/jquery-1.6.2.min.js"></script>
+<link rel="stylesheet" href="./css/demos.css">
+<title>外呼任务</title>
+</head>
+
+<script>
+
+//页码导航 
+function post_list(index,curpage,maxpage)
+{ 
+     if ( parseInt(index) <= parseInt(maxpage) && parseInt(index) > 0  && parseInt(curpage)!=parseInt(index) )
+	 {
+        document.form1.action = '?action=list&curpage='+index+'&agent_id=<% $agent_id %>'; 
+	    document.form1.submit(); 
+	    return true;
+	 }
+	 return false;
+}
+
+	function delete_confirm()
+	{
+		if (confirm("确定要删除这个任务吗?"))  {
+			 return true;	
+		}
+		return false;	
+	}
+	
+function  change_acct_id(acct_id)
+{
+        //document.form1.action = '?action=list&curpage='+goto_index; 
+		
+		//alert(acct_id);
+	    document.form1.submit(); 
+	    return true;		 
+	
+}
+
+     function call_priority(decode_id) {
+        document.form1.action = "?action=priority_post&id="+decode_id+"&curpage=<% $curpage %>&agent_id=<% $agent_id %>"; 
+	    document.form1.submit(); 
+	    return true;		 
+		  
+	 }
+  
+	
+</script>
+<body>
+
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="24" bgcolor="#353c44"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                
+                <td width="97%" valign="bottom"><span class="table_caption">传真任务管理</span></td>
+              </tr>
+            </table></td>
+            <td><div align="right"><span class="table_caption">
+            <img src="images/add.gif" width="10" height="10" /> <a href="?action=add_send&agent_id=<% $agent_id %>&curpage=<% $curpage %>" >添加任务 </a> </span>
+             
+             </div></td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td><table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">
+ <form name="form1" method="post" action="?action=list">
+                           
+  <tr>
+    <td  height="24" colspan="13"   bgcolor="#FFFFFF" class="STYLE1">
+代理商
+ <select name="agent_id" class="STYLE1" id="agent_id" onchange= "change_acct_id(this.value)"  >
+                <option  value="" > --全部-- </option>
+                  <%foreach from=$acctchild item=eachone key=keyname %>
+                  <option  value="<% $eachone.decode_id %>" <% if $eachone.decode_id eq $agent_id %> selected="selected" <%/if%> >
+                    <% $eachone.acctname %>
+                  </option>
+                  <%/foreach%>
+                </select>
+ 任务状态                             
+       <span class="STYLE7">
+       <select name="enable" class="STYLE1" id="enable"  >
+         <option  value="-1"   <% if $post_data.enable eq '-1'  %> selected="selected" <%/if%> > 不限 </option>
+         <option  value="1"  <% if $post_data.enable eq '1'  %> selected="selected" <%/if%> > 开启 </option>
+         <option  value="0"  <% if $post_data.enable eq '0'  %> selected="selected" <%/if%> > 暂停 </option>
+       </select>
+       </span>
+任务名称<span class="STYLE7">
+<input name="task_name" id="task_name" type="text" class="STYLE1" style="height:18px; width:120px;" size="30"    value='<% $post_data.task_name %>' />
+</span>(可模糊查询) 
+<input type="submit"  class="STYLE1"   name="submitbtn" id="submitbtn"   onclick="return check()" value=" 查询 " /></td>
+     </tr>
+     
+    </form>
+
+      
+               
+    
+  <tr>
+  
+            <td width="4%"   height="24"   bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">序号</div></td>
+            <td width="6%"   height="24"   bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">代理商</div></td>
+            <td width="16%"   height="24"   bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">任务名称</div></td>
+			<td width="4%"   height="24"   bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">类型</div></td>
+            <td width="6%"   height="24"   bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">状态</div></td>
+			<td width="6%"   height="24"   bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">优先</div></td>
+            <td width="8%"   height="24"   bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">发送列表</div></td>			
+            <td width="8%"   height="24"   bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">并发-重试</div></td>
+			<td width="6%"   height="24"   bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">接通/未通</div></td>
+			<td width="8%"   height="24"   bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">发送成功</div></td>
+			<td width="6%"   height="24"   bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">消费金额</div></td>
+           
+            <td width="12%"  height="24"   bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">启动时间</div></td>
+            <td width="6%"   height="24"   bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">操作</div></td>
+
+
+        </tr>
+          
+          
+          <% foreach from=$table_array item=eachone key=keyname %>  	
+          <tr>
+          <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"><% $eachone.check_id %></div></td>
+          <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"><% $eachone.acctname %></div></td>
+          <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19" title="<% $eachone.task_name %>"><% $eachone.task_name|smartTruncate:12:"." %></div></td>
+		  <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"><% if $eachone.fax_type eq 1 or $eachone.fax_type eq 0  %>快速<% elseif $eachone.fax_type eq 2  %>中速<%else%>慢速<%/if%>   </div></td>
+
+          <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19" id="enable_<% $eachone.id %>" ><% if $eachone.enable eq '1' %>开启[<a href="#" onClick="call_enable('<% $eachone.id %>','0')" >暂停</a>]<%else%> <font color="#FF0000">暂停</font>[<a href="#" onClick="call_enable('<% $eachone.id %>','1')">开启</a>] <%/if%>
+            </div></td>
+          <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"  ><a href="#" onClick="call_priority('<% $eachone.decode_id %>')" >优先</a>
+            
+            </div></td>
+			
+				
+          <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"><a href="?action=submit_list&task_id=<% $eachone.decode_id %>&old_curpage=<% $curpage %>&agent_id=<% $eachone.decode_agent_id %>" >查看[<% $eachone.total_count %>]</a> 
+                  </div></td>
+
+          <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"><% $eachone.cur_line  %>/<% $eachone.max_line  %>-<% $eachone.trycall_count %></div></td>
+          <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"><% $eachone.total_answer %>/<% $eachone.total_noanswer %></div></td>
+		  <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"><% $eachone.total_sucess %>/<% $eachone.per_sucess|string_format:"%.0f"  %>%</div></td>
+		  <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"><% $eachone.total_costbalance|string_format:"%.2f"  %></div></td>
+		  
+		  <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"> <% if $eachone.begintime eq '0000-00-00 00:00:00' %>即时发送<%else%><% $eachone.begintime|date_format:"%y-%m-%d %T"  %>-<% $eachone.endtime|date_format:"%T" %><%/if%></div></td>
+          
+            <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"><a href="?action=edit_send&id=<% $eachone.decode_id %>&curpage=<% $curpage %>&agent_id=<% $eachone.decode_agent_id %>"  >修改</a>
+            <a href="?action=del_post&id=<% $eachone.decode_id %>&curpage=<% $curpage %>&agent_id=<% $agent_id %>"  onClick="return delete_confirm()" >删除</a>
+                </div>
+            </td>
+                            
+ 
+                          
+          </tr>
+        <% /foreach %>
+    </table></td>
+  </tr>
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="33%"><div align="left"><span class="STYLE21">共
+              <% $record_count %>
+              条记录，当前第
+              <% $curpage %>
+              /
+              <% $maxpage %>
+              页，每页
+              <% $pagelimtcount %>
+          条记录</span></div></td>
+        <td width="67%"><table width="180" border="0" align="right" cellpadding="0" cellspacing="0">
+          <tr>
+            <td width="40"><div align="center"> <a href="#" class="STYLE21" onclick="return post_list('1',<% $curpage %>,<% $maxpage %>)" >首页</a> </div></td>
+            <td width="40"><div align="center"> <a href="#" class="STYLE21" onclick="return post_list('<% $curpage-1 %>',<% $curpage %>,<% $maxpage %>)" >上一页</a></div></td>
+            <td width="40"><div align="center"> <a href="#" class="STYLE21" onclick="return post_list('<% $curpage+1 %>',<% $curpage %>,<% $maxpage %>)" >下一页</a></div></td>
+            <td width="40"><div align="center"> <a href="#" class="STYLE21" onclick="return post_list('<% $maxpage  %>',<% $curpage %>,<% $maxpage %>)" >尾页</a></div></td>
+           
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+
+<script>
+   function call_enable(id,enable) {
+	 $.get("?action=call_enable",{task_id:id,task_enable:enable}, function(data){
+         var res = eval("(" + data + ")"); 
+
+		 if (res.enable == 1)
+		 {
+		    $('#enable_'+res.id).html('<font color="#0000">开启</font>[<a href="#" onclick="call_enable('+res.id + ',0)">暂停</a>]');
+		
+		 }
+		  else
+		  {		
+		     $('#enable_'+res.id).html('<font color="#FF0000">暂停</font>[<a href="#" onclick="call_enable('+res.id + ',1)">开启</a>]');
+		
+		  }
+		 });
+	
+		 
+	 
+  }
+  
+
+  
+  
+
+
+	$(function() {
+		 $("input:text,input:password,textarea").focus(function(){
+			 $(this).css("background","#CBFE9F");
+			 }).blur(function(){
+				 $(this).css("background","#FFF");
+			 }); 
+	});
+	</script>
+</body>
+</html>

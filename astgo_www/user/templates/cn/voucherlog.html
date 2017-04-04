@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!-- saved from url=(0039)http://www.uucall.com/u/showUserInfo.do -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><HTML 
+xmlns="http://www.w3.org/1999/xhtml"><HEAD>
+<META content="text/html; charset=utf-8" http-equiv="Content-Type"><TITLE>充值记录 -  <% $astgoConf.title %>免费网络电话</TITLE>
+<META name="keywords" content="网络电话，免费网络电话，免费电话，<% $astgoConf.logname %>，免费打电话">
+<META name="description" content="<% $astgoConf.logname %>是一款用电脑免费打电话的网络电话聊天软件，下载后即可拨打全球任意手机和电话，包月价格更低至0.05元/分钟。全力打造中国网络电话第一品牌，互联网语音通信专家。">
+<LINK rel="stylesheet" type="text/css" href="css/global.css">
+<LINK rel="stylesheet" type="text/css" href="css/account_con.css">
+<SCRIPT type="text/javascript" src="js/base.js"></SCRIPT>
+<% include file="head.html" %>
+<SCRIPT type="text/javascript" src="js/script.js"></SCRIPT>
+<STYLE>
+	#maincon_c_l ul li.account_btn_on3{background:url(http://image3.uucall.com:8181/account/image/account_con_08.jpg) left no-repeat;}
+	#maincon_c_l ul li.account_btn_on3 a{font-weight:bold;color:#FE4C04;}
+</STYLE>
+
+
+<SCRIPT type="text/javascript">
+function post_list(index,curpage,maxpage)
+{ 
+     if (parseInt(index) <= parseInt(maxpage) && parseInt(index) > 0  && parseInt(curpage)!= parseInt(index) )
+	 {
+        document.form1.action = '?action=voucherlog&curpage='+index; 
+	    document.form1.submit(); 
+		
+	
+	    return true;
+	 }
+
+	 return false;
+}
+</SCRIPT>
+
+    
+<DIV id="maincon">
+<DIV><IMG src="images/account/account_con_03.jpg"></DIV>
+<DIV id="maincon_c">
+<% include file="leftmenu.html" %>
+  
+  
+<SCRIPT type="text/javascript" src="js/script.js"></SCRIPT>
+
+<FORM method="post" name="form1" action="?action=voucherlog">
+<DIV id="maincon_c_r"><BR>
+<DIV id="call_record_title">
+<H3>充值记录</H3><FONT>这里显示的是您的充值记录</FONT><SPAN>选择时间：
+<select style="width: 56px;" id="years"  name="years">
+	<option value="2011" <% if $post_data.years eq 2010 %>selected<%/if%>>2011</option>
+  <option value="2011" <% if $post_data.years eq 2011 %>selected<%/if%>>2011</option>
+  <option value="2012" <% if $post_data.years eq 2012 %>selected<%/if%>>2012</option>
+  <option value="2013" <% if $post_data.years eq 2013 %>selected<%/if%>>2013</option>
+  <option value="2014" <% if $post_data.years eq 2014 %>selected<%/if%>>2014</option>
+  <option value="2015" <% if $post_data.years eq 2015 %>selected<%/if%>>2015</option>
+  <option value="2016" <% if $post_data.years eq 2016 %>selected<%/if%>>2016</option>
+  <option value="2017" <% if $post_data.years eq 2017 %>selected<%/if%>>2017</option>
+  <option value="2018" <% if $post_data.years eq 2018 %>selected<%/if%>>2018</option>
+  <option value="2018" <% if $post_data.years eq 2019 %>selected<%/if%>>2018</option>
+  <option value="2018" <% if $post_data.years eq 2020 %>selected<%/if%>>2018</option>
+</select>
+年
+<select style="width: 40px;" id="month" name="month">
+  <option value="01" <% if $post_data.month eq "01" %>selected<%/if%>>01</option>
+  <option value="02" <% if $post_data.month eq "02" %>selected<%/if%>>02</option>
+  <option value="03" <% if $post_data.month eq "03" %>selected<%/if%>>03</option>
+  <option value="04" <% if $post_data.month eq "04" %>selected<%/if%>>04</option>
+  <option value="05" <% if $post_data.month eq "05" %>selected<%/if%>>05</option>
+  <option value="06" <% if $post_data.month eq "06" %>selected<%/if%>>06</option>
+  <option value="07" <% if $post_data.month eq "07" %>selected<%/if%>>07</option>
+  <option value="08" <% if $post_data.month eq "08" %>selected<%/if%>>08</option>
+  <option value="09" <% if $post_data.month eq "09" %>selected<%/if%>>09</option>
+  <option value="10" <% if $post_data.month eq "10" %>selected<%/if%>>10</option>
+  <option value="11" <% if $post_data.month eq "11" %>selected<%/if%>>11</option>
+  <option value="12" <% if $post_data.month eq "12" %>selected<%/if%>>12</option>
+</select>
+月
+<INPUT value="查看" type="submit"></SPAN></DIV>
+
+<DIV class="clear"></DIV>
+<TABLE border="2" cellSpacing="0" borderColor="#ffffff" cellPadding="0" width="100%">
+  <TBODY>
+  <TR>
+    <TD class="firtr"><STRONG>序号</STRONG></TD>
+
+    <TD class="firtr"><STRONG>充值时间</STRONG></TD>
+		<TD class="firtr"><STRONG>被充值账号</STRONG></TD>
+    <TD class="firtr"><STRONG>充值话费金额</STRONG></TD>
+    <TD class="firtr"><STRONG>操作帐号</STRONG></TD>
+    <TD class="firtr"><STRONG>备注</STRONG></TD>
+   </TR>
+   
+ <% foreach from=$table_array item=eachone key=keyname %>  	
+     
+  <TR>
+    <TD  class="firtr" ><div align="letf" >   <% $eachone.check_id %></div></TD>
+
+    <TD  class="firtr" ><div align="center" > <% $eachone.createtime|date_format:"%Y-%m-%d %T" %></div></TD>
+		<TD  class="firtr" ><div align="center" > <% $eachone.voucher_acctname %></div></TD>
+    <TD  class="firtr" ><div align="center" > <% $eachone.voucher_balance|string_format:"%.2f" %></div></TD>
+    <TD  class="firtr" ><div align="center" > <% $eachone.acctname %></div></TD>
+    <TD  class="firtr" ><div align="center" ><% $eachone.voucher_guid %></div></TD>
+   </TR>
+ <% /foreach %>
+        
+   </TBODY>
+ </TABLE>
+    
+    
+
+
+<TABLE id="paginglist" width="100%" align="center">
+  <TBODY>
+   <TR class="colorLink1 pageNave">
+    <TD style="border-top-color: currentColor; border-top-width: medium; border-top-style: none;" 
+    colSpan="8">
+      <DIV align="right">
+      
+      当前第<% $curpage %>/<% $maxpage %>页，每页<% $pagelimtcount %>条纪录 
+                    
+      <a href="#"  onClick="return post_list('1',<% $curpage %>,'<% $maxpage %>')"  > 首页  </a> 
+      <a href="#"  onClick="return post_list('<% $curpage-1 %>','<% $curpage %>','<% $maxpage %>')"  >上一页 </a> 
+      <a href="#"  onClick="return post_list('<% $curpage+1 %>','<% $curpage %>','<% $maxpage %>')"  >下一页</a>  
+      <a href="#"  onClick="return post_list('<% $maxpage  %>' ,'<% $curpage %>','<% $maxpage %>')"  > 尾页</a> </DIV></TD>
+   </TR>
+  </TBODY>
+</TABLE>
+</DIV>
+</FORM>
+<DIV class="clear"></DIV></DIV>
+<DIV><IMG src="images/account/account_con_15.jpg"></DIV></DIV>
+
+
+<% include file="footer.html" %>
+
+
+
+
+</html>

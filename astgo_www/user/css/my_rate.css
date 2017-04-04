@@ -1,0 +1,27 @@
+.index_my_rate {
+	border: 1px solid rgb(237, 229, 206); width: 460px; height: 169px; margin-bottom: 15px;
+}
+.index_my_rate dl {
+	margin: 0px;
+}
+.index_my_rate dt {
+	margin: 0px; width: 115px; height: 33px; text-align: center; color: rgb(159, 142, 90); line-height: 33px; border-bottom-color: rgb(237, 229, 206); border-bottom-width: 1px; border-bottom-style: solid; float: left;
+}
+.index_my_rate dd {
+	margin: 0px; width: 115px; height: 33px; text-align: center; color: rgb(159, 142, 90); line-height: 33px; border-bottom-color: rgb(237, 229, 206); border-bottom-width: 1px; border-bottom-style: solid; float: left;
+}
+.index_my_rate dt {
+	background-color: rgb(255, 253, 246);
+}
+.index_my_rate .dd_red {
+	color: rgb(253, 74, 7);
+}
+.index_my_rate dt {
+	font-weight: bold;
+}
+.index_my_rate .last_dd_1 {
+	background: url("../images/my_rate1.gif") no-repeat 162px 7px rgb(255, 253, 246); width: 460px; font-weight: 100; border-bottom-color: currentColor; border-bottom-width: 0px; border-bottom-style: none;
+}
+.index_my_rate .last_dd_2 {
+	background: url("../images/my_rate2.gif") no-repeat 50px 7px rgb(255, 253, 246); width: 230px; font-weight: 100; border-bottom-color: currentColor; border-bottom-width: 0px; border-bottom-style: none;
+}

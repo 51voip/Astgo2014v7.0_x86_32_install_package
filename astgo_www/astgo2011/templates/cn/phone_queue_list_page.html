@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="css/mainstyle.css"/>
+	<link rel="stylesheet" href="./css/themes/base/jquery.ui.all.css">
+	<script src="./js/jquery-1.6.2.min.js"></script>
+	<script src="./js/external/jquery.bgiframe-2.1.2.js"></script>
+	<script src="./js/ui/jquery.ui.core.js"></script>
+	<script src="./js/ui/jquery.ui.widget.js"></script>
+	<script src="./js/ui/jquery.ui.mouse.js"></script>
+	<script src="./js/ui/jquery.ui.button.js"></script>
+	<script src="./js/ui/jquery.ui.draggable.js"></script>
+	<script src="./js/ui/jquery.ui.position.js"></script>
+	<script src="./js/ui/jquery.ui.resizable.js"></script>
+	<script src="./js/ui/jquery.ui.dialog.js"></script>
+  <script src="./js/ui/jquery.ui.datepicker.js"></script>    
+    <link rel="stylesheet" href="./css/demos.css">
+    
+<title>手机队列管理</title>
+</head>
+
+<script>
+
+
+	function delete_confirm()
+	{
+		if (confirm("确定要删除这个坐席吗?"))  {
+			 return true;	
+		}
+		return false;	
+	}
+	
+
+	function goback(old_curpage,agent_id)
+	{
+		var gotourl = '?action=list&curpage='+old_curpage+'&agent_id='+agent_id ; 
+		//alert(gotourl);
+	    document.form1.action = gotourl;
+	
+		document.form1.submit();
+	}	
+
+
+
+ 
+
+	
+</script>
+<body>
+
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="24" bgcolor="#353c44"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                
+                <td width="97%" valign="bottom"><span class="table_caption">队列坐席帐号管理 &nbsp; <a href="#"  onclick="goback('<% $old_curpage %>','<% $agent_id %>')">返 回</a></span></td>
+              </tr>
+            </table></td>
+            <td><div align="right"></div></td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td><table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">
+  <form name="form1" method="post" action="?action=queue_members_add_post&id=<% $id %>"> 
+  
+  <tr>
+    <td     height="24" colspan="8"    bgcolor="#FFFFFF" class="STYLE6"><span class="STYLE1">
+     用户帐号列表：
+         <select name="membername" class="STYLE1" id="membername"   >
+                <%foreach from=$user_array item=eachone key=keyname %>
+                <option value="<% $eachone.acctname %>">
+                  <% $eachone.acctname %>
+                  </option>
+                <%/foreach%>
+              </select>
+         <input type="submit"  class="STYLE1"   name="submitbtn" id="submitbtn"   value=" 添加 " />
+    </span></td>
+    </tr>
+      </form>
+  <tr>
+  
+             <td width="2%"     height="24"    bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">序号</div></td>
+            <td width="6%"      height="24"    bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">队列号码</div></td>
+			 <td width="6%"      height="24"    bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">队列名称</div></td>
+            <td width="6%"      height="24"    bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">坐席帐号</div></td>
+            <td width="8%"      height="24"    bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">迁入状态</div></td>
+            <td width="4%"      height="24"    bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">呼叫状态</div></td>
+            <td width="6%"      height="24"    bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">注册状态</div></td>
+            <td width="6%"     height="24"    bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">操作</div></td>
+        </tr>
+          <% foreach from=$table_array item=eachone key=keyname %>  	
+          <tr>
+                   
+            <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"><% $eachone.check_id %></div></td>
+            <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"><% $eachone.queue_name %></div></td>
+			  <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"><% $eachone.dispname %></div></td>
+            <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"><% $eachone.membername %></div></td>
+            <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div id="enable_<% $eachone.id %>"  align="center" class="STYLE19"  ><% if $eachone.paused eq '0' %>迁入[<a href="#" onClick="call_enable('<% $eachone.id %>','1')" >迁出</a>]<%else%> <font color="#FF0000">迁出</font>[<a href="#" onClick="call_enable('<% $eachone.id %>','0')">迁入</a>] <%/if%></div></td>
+            <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19">
+            <% if $eachone.status eq '0' %>空闲<%elseif $eachone.status eq '1'%>空闲<%elseif $eachone.status eq '2'%>启动<%elseif $eachone.status eq '3'%>振铃<%elseif $eachone.status eq '4'%>接通<%else%>--<%/if%> 
+            </div></td>
+            <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19">
+            <% if $eachone.online eq '1' %>已注册<%else%>未注册<%/if%>
+            </div></td>
+               <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"><a href="?action=queue_members_delete_post&member_id=<% $eachone.decode_id %>&curpage=<% $curpage %>&agent_id=<% $agent_id %>&id=<% $id %>"  onClick="return delete_confirm()" >删除</a></div></td>
+                  
+                 
+          </tr>
+        <% /foreach %>
+    </table></td>
+  </tr>
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="33%"><div align="left"></div></td>
+        <td width="67%">&nbsp;</td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+
+
+  function call_enable(id,enable) {
+	 //alert(id);
+     //agent.call('','call_cardenable','callback_cardenable',id,enable);
+	 $.get("?action=queue_members_paused",{member_id:id,paused:enable}, function(data){
+		  
+ 		  if (data == 1)
+		  {
+			   
+		     $('#enable_'+id).html('<font color="#FF0000">迁出</font>[<a href="#" onclick="call_enable('+id + ',0)">迁入</a>]');
+			
+		  }
+		  else if (data == 0)
+		  {		
+		        
+		       $('#enable_'+id).html('<font color="#0000">迁入</font>[<a href="#" onclick="call_enable('+id + ',1)">迁出</a>]');
+			
+		  }
+		  else 
+		  { 
+
+			   alert('更新迁入状态出错了！,返回结果:'+data);
+			   
+		   
+		  }
+		  
+		 });
+	
+		 
+	 
+  }
+ </script>
+
+</body>
+</html>

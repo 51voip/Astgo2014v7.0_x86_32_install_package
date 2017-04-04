@@ -1,0 +1,37 @@
+body {
+	margin-left: 3px;
+	margin-top: 0px;
+	margin-right: 3px;
+	margin-bottom: 0px;
+}
+.STYLE1 {
+	color: #000000;
+	font-size: 12px;
+}
+.table_caption{color: #e1e2e3; font-size: 13px; }
+.table_title{color: #000000; font-size: 12px; }
+.STYLE6 {color: #000000; font-size: 12; }
+.STYLE10 {color: #e1e2e3; font-size: 12px; }
+.STYLE19 {
+	color: #344b50;
+	font-size: 12px;
+}
+.STYLE21 {
+	font-size: 12px;
+	color: #3b6375;
+}
+.STYLE22 {
+	font-size: 12px;
+	color: #295568;
+}
+.STYLE11 {font-size: 12px}
+.STYLE4 {	font-size: 12px;
+	color: #1F4A65;
+	font-weight: bold;
+}
+.table_caption a { text-decoration: underline;color:#FFF;}
+.table_caption a:link { text-decoration: underline;color:#FFF;}
+　　 .table_caption a:active { text-decoration:blink;color:#FFF;}
+　　 .table_caption a:hover { text-decoration:none;color:#FC3;} 
+　　 .table_caption a:visited { text-decoration: underline;color:#FFF;}
+

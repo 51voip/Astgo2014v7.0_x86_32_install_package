@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!-- saved from url=(0039)http://www.AstgoCall.com/u/showUserInfo.do -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><HTML 
+xmlns="http://www.w3.org/1999/xhtml"><HEAD>
+<META content="text/html; charset=utf-8" http-equiv="Content-Type"><TITLE>我的帐户 - <% $astgoConf.title %></TITLE>
+<META name="keywords" content="网络电话，免费网络电话，免费电话，<% $astgoConf.logname %> 免费打电话">
+<META name="description" content="<% $astgoConf.logname %>是一款用电脑免费打电话的网络电话聊天软件，下载后即可拨打全球任意手机和电话，包月价格更低至0.05元/分钟。全力打造中国网络电话第一品牌，互联网语音通信专家。">
+<LINK rel="stylesheet" type="text/css" href="css/global.css">
+<LINK rel="stylesheet" type="text/css" href="css/account_index.css">
+<LINK rel="stylesheet" type="text/css" href="css/account_con.css">
+<LINK rel="stylesheet" type="text/css" href="css/my_rate.css">
+<SCRIPT type="text/javascript" src="js/base.js"></SCRIPT>
+
+<% include file="head.html" %>
+
+
+<DIV><IMG src="images/account/acc_index_new_03.jpg"></DIV>
+<DIV style="margin-bottom: 0px;" id="maincon">
+<DIV id="maincon_l">
+<DIV id="maincon_l_c">
+<% include file="leftmenu.html" %>
+<SCRIPT type="text/javascript" src="js/script.js"></SCRIPT>
+
+<DIV id="maincon_l_c_r">
+<DIV id="maincon_l_c_r_con">
+<DIV id="welcome">
+<DIV style="float: left;">
+<DIV 
+style="padding-right: 8px; float: left;">欢迎您：<SPAN><% $user.acctname %></SPAN></DIV>
+</DIV></DIV>
+
+<DIV class="clear"></DIV>
+<HR>
+						帐户余额：<FONT id="account_money"><% $user.balance|string_format:"%.2f" %></FONT> 元&nbsp;&nbsp;
+                        赠送时长：<FONT id="account_money"><% $user.timelonggift %></FONT> 分钟&nbsp;&nbsp;&nbsp;&nbsp;<A href="?action=voucher">立即充值</A><BR>
+						    																			有效期至于：<% $user.expireddate|date_format:"%Y-%m-%d" %><BR>
+<HR>
+
+<H3>我还没有办理套餐，或套餐已使用完。<A style="font-size: 12px;" href="index.php?action=pay" target="_blank">办理新套餐</A></H3>
+<HR>
+
+<H3>话费费率</H3>
+<DIV class="index_my_rate">
+<DL>
+  <DT>国家或地区</DT>
+  <DT>标准费率</DT>
+  <DT><% $astgoConf.logname %>费率</DT>
+  <DT>打一个小时省多少</DT>
+  <DD>中国大陆</DD>
+  <DD>￥0.40元/分钟</DD>
+  <DD>￥0.10元/分钟</DD>
+  <DD class="dd_red">省￥18元</DD>
+  <DD>美国</DD>
+  <DD>￥2.40元/分钟</DD>
+  <DD>￥0.16元/分钟</DD>
+  <DD class="dd_red">省￥134.40元</DD>
+  <DD>新加坡</DD>
+  <DD>￥3.60元/分钟</DD>
+  <DD>￥0.12元/分钟</DD>
+  <DD class="dd_red">省￥208.80元</DD>
+  <DD class="last_dd_1"><A href="index.php?action=fee"  target="_blank">查询其它地区费率</A></DD></DL></DIV>
+<HR>
+
+<H3>最新动态</H3>
+<UL id="last_news">
+  <LI class="spc_news"><A href="#" target="_blank">关于防止滥用<% $astgoConf.logname %> 网络电话管理办法</A></LI>
+  <LI><A href="index.php?action=pay"   target="_blank">包年大优惠，每分钟最低5分钱！</A></LI>
+  
+ </UL>
+  </DIV></DIV></DIV></DIV>
+<DIV id="maincon_r">
+<DIV id="maincon_r_c">
+<H3>最新促销</H3>
+<UL>
+  <LI class="spc_news"><A href="index.php?action=pay" target="_blank"><FONT 
+  color="red">开学有礼，立减104元！</FONT></A></LI>  
+  <LI><A href="index.php?action=pay" target="_blank"><FONT 
+  color="red">包年大优惠，每分钟最低5分钱！</FONT></A></LI></UL>
+</DIV></DIV>
+<DIV class="clear"></DIV></DIV>
+<DIV style="margin-bottom: 10px;"><IMG src="images/account/acc_index_new_07.jpg"></DIV>
+
+<% include file="footer.html" %>
+
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="css/mainstyle.css"/>
+	<link rel="stylesheet" href="./css/themes/base/jquery.ui.all.css">
+	<script src="./js/jquery-1.6.2.min.js"></script>
+    
+<title>在线充值</title>
+<script>
+
+	//所有input 去空格
+	function trim_all_input()
+	{
+		var inpus = document.getElementsByTagName("INPUT")
+        for(var i=0; i<inpus.length; i++)
+        {
+            if(inpus[i].type=="text")
+            {
+               inpus[i].value =  inpus[i].value.replace(/\s/g,"");
+            }
+        }
+		
+	}
+	
+	function getStrLength(value){
+        return value.replace(/[^\x00-\xFF]/g,'**').length;
+    }
+	
+	// 提交前检测输入是否合法
+	function pay_confirm()
+	{
+
+		trim_all_input(); //所有input 去空格
+
+		if (document.form1.balance.value==""  || isNaN(document.form1.balance.value) || document.form1.balance.value <=0)
+		{
+      		
+			alert('请输入正确充值金额');
+			document.form1.balance.focus();
+			return false;
+		}		
+		
+		var yeepay_szx = document.getElementById("yeepay_szx").checked;
+		if (yeepay_szx == true)
+		{
+		   if (document.form1.shouzhouxingcard.value==""  || getStrLength(document.form1.shouzhouxingcard.value) != 17 || isNaN(document.form1.shouzhouxingcard.value) )
+		   {
+			   alert('请输入正确的神州行卡号'); 
+      		   document.form1.shouzhouxingcard.focus();
+			   return false;
+		   }
+	
+		   if (document.form1.shouzhouxingpass.value=="" || getStrLength(document.form1.shouzhouxingpass.value) != 18  || isNaN(document.form1.shouzhouxingpass.value))
+		   {
+			   alert('请输入正确的神州行密码'); 
+      		   document.form1.shouzhouxingpass.focus();
+			   return false;
+		   }		 
+		   if (document.form1.balance.value!=10  && document.form1.balance.value!=30  && document.form1.balance.value!=50  && document.form1.balance.value!=100  && document.form1.balance.value!=200)
+		   {
+			   alert('请输入正确的面值'); 
+      		   document.form1.balance.focus();
+			   return false;
+		   }		   
+		   
+		     
+		}  
+		
+		
+		document.form1.submit();
+	    return true;
+		//return true;
+
+	}
+	
+	function pay_select(paytype)
+	{
+		if (paytype =='alipay')
+		{
+			   document.getElementById("alipay").checked=true;
+			   $("#dis_shouzhouxingcard").hide();   
+			   $("#dis_shouzhouxingpass").hide();  
+		}
+			  
+		/*
+		if (paytype =='yeepay')
+		{
+			   document.getElementById("yeepay").checked=true;
+			   $("#dis_shouzhouxingcard").hide();   
+			   $("#dis_shouzhouxingpass").hide(); 
+		}*/
+			   
+			   
+		if (paytype =='yeepay_szx') 
+		{
+			  document.getElementById("yeepay_szx").checked=true;
+		      $("#dis_shouzhouxingcard").show();   
+			  $("#dis_shouzhouxingpass").show();  
+			   $("#balance").val('50');  
+			  
+			  
+  
+		}
+
+		//alert(paytype);   
+		
+	}
+
+
+	
+    </script>
+
+<body>
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="24" bgcolor="#353c44"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="2%" height="19" valign="bottom"><div align="center"><img src="images/tb.gif" width="14" height="14" /></div></td>
+                <td width="98%" valign="bottom"><span class="STYLE10"> 在线充值</span></td>
+              </tr>
+            </table></td>
+            <td><div align="right"><span class="STYLE1">
+              </span></div></td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+   <form name="form1" method="post" action="?action=<% $action %>">
+
+  <tr>
+    <td><table width="687" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">
+     
+           <tr>
+            <td height="18" colspan="3" align="right" bgcolor="#FFFFFF"></span></td>
+            </tr>
+          <tr>
+            <td width="48%" height="18" align="right" bgcolor="#FFFFFF"><span class="STYLE1">被充值帐号</span></td>
+            <td width="52%" height="18" colspan="2" bgcolor="#FFFFFF"><span class="STYLE1">
+              <input name="acctname" type="text" disabled class="STYLE1"  id="acctname" style="height:18px; width:80px;"  value='<% $res_acct.acctname %>' size="30" />
+            </span></td>
+          </tr>
+          <tr>
+            <td width="48%" height="18" align="right" bgcolor="#FFFFFF"><span   class="STYLE1" >充值金额</span></td>
+            <td width="52%" height="18" colspan="2" bgcolor="#FFFFFF"><span class="STYLE1">
+              <input name="balance"  id="balance" type="text" class="STYLE1" style="height:18px; width:80px;" size="30"  value="50" />
+              元</span></td>
+          </tr>
+          
+    
+          <tr id="dis_shouzhouxingcard" style="display:none;">   
+            <td width="48%" height="18" align="right" bgcolor="#FFFFFF"><span   class="STYLE1" >神州行卡号码</span></td>
+            <td width="52%" height="18" colspan="2" bgcolor="#FFFFFF"><span class="STYLE1">
+              <input name="shouzhouxingcard" type="text" class="STYLE1"  id="shouzhouxingcard" style="height:18px; width:180px;"  value="" maxlength="17" />
+            </span></td>
+          </tr>
+
+          <tr id="dis_shouzhouxingpass" style="display:none;">
+            <td width="48%" height="18" align="right" bgcolor="#FFFFFF"><span class="STYLE1">神州行卡密码</span></td>
+            <td width="52%" height="18" colspan="2" bgcolor="#FFFFFF"><span class="STYLE1">
+              <input name="shouzhouxingpass" type="text" class="STYLE1"  id="shouzhouxingpass" style="height:18px; width:180px;"  value="" maxlength="18" />
+            </span></td>
+          </tr>
+          
+          <tr>
+            <td id="userTip" height="18" colspan="3" align="right" bgcolor="#FFFFFF"><div align="center">
+              <input type="radio" name="radio" id="alipay" value="alipay" checked  onClick="pay_select(this.value)">
+              <label for="alipay"></label>
+              <img src="images/vouch_24.jpg" width="140" height="35"   style="cursor:pointer"  onClick="pay_select('alipay')"  alt="支付宝" >
+              <input type="radio" name="radio" id="yeepay_szx" value="yeepay_szx" onClick="pay_select(this.value)">
+              <img src="images/szx.gif" width="109" height="70" onClick="pay_select('yeepay_szx')" alt="神州行" ></div></td>
+          </tr>
+          <tr>
+            <td height="18" colspan="3" align="center" bgcolor="#FFFFFF">&nbsp;</td>
+          </tr>
+          <tr>
+            <td height="18" colspan="3" align="center" bgcolor="#FFFFFF"><img src="images/lijigoumai.gif" width="108" height="28" alt="立即订购"  style="cursor:pointer"  onClick="pay_confirm()" ></td>
+          </tr>
+      </table></td>
+  </tr>
+
+</form>
+
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+       
+        <td width="67%">&nbsp;</td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+
+</body>
+<script>
+
+		 $("input:text,input:password,textarea").focus(function(){
+			 if (this.value == '请输入') this.value = '';
+			 $(this).css("background","#a8c7ce");
+			 }).blur(function(){
+			 
+				 $(this).css("background","#FFF");
+				 
+				
+			 }); 
+</script>     
+
+</html>

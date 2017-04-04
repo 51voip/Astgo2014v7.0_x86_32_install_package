@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="css/mainstyle.css"/>
+<title>编辑呼入路由</title>
+<script>
+	function trim_all_input()
+	{
+		var inpus = document.getElementsByTagName("INPUT")
+        for(var i=0; i<inpus.length; i++)
+        {
+            if(inpus[i].type=="text")
+            {
+               inpus[i].value =  inpus[i].value.replace(/\s/g,"");
+            }
+        }
+		
+	}
+	
+	// 提交前检测输入是否合法
+	function check()
+	{
+		trim_all_input(); //所有input 去空格
+			
+		if (document.form1.imei.value==""  )
+		{
+			document.getElementById("userTip").innerHTML="<div align='center'><span class='STYLE4'><font color=red>请输入正确的手机串码</font></span></div>";
+      		document.form1.imei.focus();
+			return false;
+			
+		}		
+		
+		if (document.form1.tel.value==""  )
+		{
+			document.getElementById("userTip").innerHTML="<div align='center'><span class='STYLE4'><font color=red>请输入正确的手机号码</font></span></div>";
+      		document.form1.tel.focus();
+			return false;
+			
+		}				
+		return true;
+
+	}
+
+	function goback(curpage,agent_id)
+	{
+		var gotourl = '?action=list&curpage='+curpage+'&agent_id='+ agent_id;
+        document.form1.action = gotourl;
+		document.form1.submit();
+	}
+	function  change_acct_id(acct_id,curpage)
+    {
+      document.form1.action = '?action=add_send&curpage='+curpage+'&agent_id='+acct_id; 
+	  //alert(document.form1.action);
+	  document.form1.submit(); 
+	  return true;		 
+	
+    }
+    </script>
+<body>
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="24" bgcolor="#353c44"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="2%" height="19" valign="bottom"><div align="center"><img src="images/tb.gif" width="14" height="14" /></div></td>
+                <td width="98%" valign="bottom"><span class="STYLE10"> 添加手机串码密钥 </span></td>
+              </tr>
+            </table></td>
+            <td><div align="right"><span class="STYLE1">
+              </span></div></td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+  
+    
+  <tr>
+    <td><table width="744" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">
+     
+	 <form name="form1" method="post" action="?action=add_post&curpage=<% $curpage %>">
+      <tr>
+            <td height="18" colspan="3" bgcolor="#FFFFFF">&nbsp;            </td>
+            </tr>
+          <tr>
+            <td width="50%" height="18" align="right" bgcolor="#FFFFFF"><span class="STYLE1">适用代理商</span></td>
+            <td width="50%" height="18" colspan="2" bgcolor="#FFFFFF"><span class="STYLE7">
+              <select   class="STYLE1"   name="agent_id" id="agent_id" onChange= "change_acct_id(this.value,'<% $curpage %>')">
+                <%foreach from=$acctchild item=eachone key=keyname %>
+                <option  value="<% $eachone.decode_id %>"  <% if $eachone.decode_id eq $agent_id %> selected="selected" <%/if%> >
+                <% $eachone.acctname %>
+                </option>
+                <%/foreach%>
+              </select>
+            </span></td>
+          </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span class="table_title">手机串码</span></td>
+            <td height="18" colspan="2" bgcolor="#FFFFFF"><span class="STYLE7">
+              <input name="imei" type="text" class="STYLE1" style="height:18px; width:125px;" size="30"  value='' />
+            </span></td>
+          </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span class="table_title">电话号码</span></td>
+            <td height="18" colspan="2" bgcolor="#FFFFFF"><span class="STYLE7">
+              <input name="tel" type="text" class="STYLE1" style="height:18px; width:125px;" size="30"  value='' />
+            </span></td>
+          </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span class="table_title">备注</span></td>
+            <td height="18" colspan="2" bgcolor="#FFFFFF"><input name="remark" type="text" class="STYLE1" id="remark" size="30" maxlength="80" value="" /></td>
+          </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF">&nbsp;</td>
+            <td height="18" colspan="2" bgcolor="#FFFFFF">&nbsp;</td>
+          </tr>
+
+  
+  
+          <tr>
+            <td id="userTip" height="18" colspan="3" align="right" bgcolor="#FFFFFF"><div align="center">
+              <input type="submit"  class="STYLE1"   name="submitbtn" id="submitbtn"   onclick="return check()" value=" 确认提交 " />
+              <input  type="button"  class="STYLE1"   name="backbutton" id="button"   onclick="goback('<% $curpage %>','<% $agent_id %>')" value=" 取消返回 " />
+            </div></td>
+          </tr>
+		   </form>
+
+		  
+          <tr>
+            <td id="userTip" height="18" colspan="3" align="right" bgcolor="#FFFFFF">&nbsp;</td>
+          </tr>
+		     <form enctype="multipart/form-data" method="post" name="uploadfile_post" action="?action=uploadfile_post&curpage=<% $curpage %>&old_curpage=<% $old_curpage %>&agent_id=<% $agent_id %>" target="_self">
+
+		  
+          <tr>
+            <td id="userTip" height="18" colspan="3" align="right" bgcolor="#FFFFFF"><div align="center"><span class="STYLE1"><strong>批量导入手机串码</strong></span></div></td>
+            </tr>
+          <tr>
+            <td height="18" colspan="3" align="center" bgcolor="#FFFFFF"><span class="STYLE1"><span class="table_title">手机串码</span>文件</span>
+              <input name="src" type="file" class="STYLE1" />
+              <input  type= "submit"  class="STYLE1"   name="button" id="button2"   value="上传" /></td>
+          </tr>
+          <tr>
+            <td height="18" colspan="3" align="center" bgcolor="#FFFFFF"><span class="STYLE4">文件格式:手机串码</span></td>
+          </tr>
+          <tr>
+            <td height="18" colspan="3" align="center" bgcolor="#FFFFFF">&nbsp;</td>
+            </tr>
+                 
+    </form>
+    </table></td>
+  </tr>
+ 
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+       
+        <td width="67%"><table width="312" border="0" align="right" cellpadding="0" cellspacing="0">
+          <tr>
+
+            <td width="35">&nbsp;</td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+</body>
+</html>

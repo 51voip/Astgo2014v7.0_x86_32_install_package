@@ -1,0 +1,250 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="css/mainstyle.css"/>
+<script src="./js/jquery-1.6.2.min.js"></script>
+ 
+    
+<title>添加话务对接</title>
+<script>
+
+　  function f_check_IP(ip) 
+　　{ 
+　　var re=/^(\d+)\.(\d+)\.(\d+)\.(\d+)$/; //匹配IP地址的正则表达式 
+　　if(re.test( ip )) 
+　　{ 
+　　if( RegExp.$1 <256 && RegExp.$2<256 && RegExp.$3<256 && RegExp.$4<256) return true; 
+　　} 
+　　return false; 
+　　} 
+
+	//所有input 去空格
+	function trim_all_input()
+	{
+		var inpus = document.getElementsByTagName("INPUT")
+        for(var i=0; i<inpus.length; i++)
+        {
+            if(inpus[i].type=="text")
+            {
+               inpus[i].value =  inpus[i].value.replace(/\s/g,"");
+            }
+        }
+		
+	}
+	
+	// 提交前检测输入是否合法
+	function check()
+	{
+		trim_all_input(); //所有input 去空格
+
+	
+	
+		if (document.form1.agent_id.value==""  || document.form1.agent_id.value=="-1"  )
+		{
+			document.getElementById("userTip").innerHTML="<div align='center'><span class='STYLE4'><font color=red>请输入正确代理商</font></span></div>";
+      		document.form1.agent_id.focus();
+			return false;
+		}		
+				
+		if (document.form1.trunkbill_name.value==""  )
+		{
+			document.getElementById("userTip").innerHTML="<div align='center'><span class='STYLE4'><font color=red>请输入正确对接名称</font></span></div>";
+      		document.form1.trunkbill_name.focus();
+			return false;
+		}		
+		
+		if (f_check_IP(document.form1.host.value) != true  )
+		{
+			document.getElementById("userTip").innerHTML="<div align='center'><span class='STYLE4'><font color=red>请输入正确的IP地址</font></span></div>";
+      		document.form1.host.focus();
+			return false;
+		}		
+	
+	    if (document.form1.allow.value=="" )
+		{
+			document.getElementById("userTip").innerHTML="<div align='center'><span class='STYLE4'><font color=red>请输入正确的语音编码</font></span></div>";
+      		document.form1.allow.focus();
+			return false;
+		}		
+	
+	    return true;
+		//return true;
+
+	}
+
+	function goback(curpage,agent_id)
+	{
+	    document.form1.action = '?action=list&curpage='+curpage +'&agent_id=' + agent_id;
+		document.form1.submit();
+	}
+	
+function  change_acct_id(acct_id,curpage)
+{
+    document.form1.action = '?action=add_send&curpage='+curpage+'&agent_id='+acct_id; 
+	//alert(document.form1.action);
+	document.form1.submit(); 
+	return true;		 
+	
+}
+
+    </script>
+
+<body>
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="24" bgcolor="#353c44"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="2%" height="19" valign="bottom"><div align="center"><img src="images/tb.gif" width="14" height="14" /></div></td>
+                <td width="98%" valign="bottom"><span class="STYLE10"> 添加话务对接</span></td>
+              </tr>
+            </table></td>
+            <td><div align="right"><span class="STYLE1">
+              </span></div></td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+  
+  <form name="form1" method="post" action="?action=<% $action %>&curpage=<% $curpage %>&agent_id=<% $agent_id %>&id=<% $id %>">
+  <tr>
+    <td><table width="768" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">
+     
+       <tr>
+            <td width="33%" height="18" align="right" bgcolor="#FFFFFF"><span   class="STYLE1" >所属代理商</span></td>
+            <td height="18" bgcolor="#FFFFFF">
+              <label for="trunkname"></label>
+              <span class="STYLE7">
+                <select name="agent_id" class="STYLE1" id="agent_id"  >
+                  <%foreach from=$acctchild item=eachone key=keyname %>
+                  <option  value="<% $eachone.decode_id %>" <% if $eachone.decode_id eq $agent_id %> selected <%/if%> >
+                    <% $eachone.acctname %>
+                    </option>
+                  <%/foreach%>
+                  </select>
+              </span></td>
+            </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span   class="STYLE1" >对接名称</span></td>
+            <td height="18" bgcolor="#FFFFFF"><span class="STYLE7">
+              <input name="trunkbill_name" type="text" class="STYLE1" style="height:18px; width:180px;" size="30"  value='<% $trunkbill.trunkbill_name %>' />
+            </span></td>
+            </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span   class="STYLE1" >呼入IP地址</span></td>
+            <td height="18" bgcolor="#FFFFFF"><label for="tech"></label>
+              <label for="insecure"><span class="STYLE7">
+                <input name="host" id="host"  type="text" class="STYLE1" style="height:18px; width:180px;" size="30"  value='<% $trunkbill.host %>' />
+              </span></label></td>
+            </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span   class="STYLE1" >手机前加区号</span></td>
+            <td height="18" bgcolor="#FFFFFF"><select name="addcitycode" class="STYLE1" id="addcitycode"  >
+              <option value="0"   <% if $trunkbill.addcitycode eq 0 %>selected<%/if%> > 关闭</option>
+              <option value="1"   <% if $trunkbill.addcitycode eq 1 %>selected<%/if%> > 开启</option>
+            </select>
+              <span class="STYLE1"> 手机地区<span class="STYLE7">
+              <input name="citycode" type="text" class="STYLE1" style="height:18px; width:180px;" size="30"  value='<% $trunkbill.citycode %>' />
+              <span class="STYLE4">(371,10,20 代表 郑州,北京,广州地区)</span></span></span></td>
+            </tr>
+          <tr>
+            <td height="20" align="right" bgcolor="#FFFFFF"><span   class="STYLE1" >主叫号码替换规则</span></td>
+            <td height="20" bgcolor="#FFFFFF" class="STYLE4"><label for="caller_prexrule"></label>
+              <label for="caller_prexrule"><span class="STYLE7">
+                <input name="caller_prexrule" type="text" class="STYLE1" style="height:18px; width:290px;" size="30"  value='<% $trunkbill.caller_prexrule %>' />
+              例如1替换为01 填写1>01 多个用;分割</span></label></td>
+            </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF">&nbsp;</td>
+            <td height="18" bgcolor="#FFFFFF"><span class="STYLE7"><span class="STYLE4">呼出路由启动主叫号码池时，本设置则失效</span></span></td>
+          </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span   class="STYLE1" >呼出费率组</span></td>
+            <td height="18" bgcolor="#FFFFFF"><label for="trunkname"></label>
+              <span class="STYLE7">
+                <select name="rategroupid" id="rategroupid"  >
+                  <%foreach from=$rategroups item=eachone key=keyname %>
+                  <option  value="<% $eachone.decode_id %>" <% if $eachone.id eq $trunkbill.rategroupid  %> selected <%/if%> ><% $eachone.rategroupname %></option>
+                  <%/foreach%>
+                  </select>
+                </span></td>
+          </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span class="STYLE1">呼出路由组</span></td>
+            <td height="18" bgcolor="#FFFFFF"><span class="STYLE7">
+              <select name="gatewaygroupid" id="gatewaygroupid"   >
+                <%foreach from=$routegroups item=eachone key=keyname %>
+                <option  value="<% $eachone.decode_id %>" <% if $eachone.id eq $trunkbill.gatewaygroupid %> selected <%/if%> >
+                  <% $eachone.gatewaygroupname %>
+                  </option>
+                <%/foreach%>
+              </select>
+            </span></td>
+          </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span class="STYLE1"><span   class="STYLE1" >DTMF格式</span></span></td>
+            <td height="18" bgcolor="#FFFFFF"><label for="dtmfmode">
+              <select name="dtmfmode" class="STYLE1" id="dtmfmode"  >
+                <option value="RFC2833"   <% if $trunkbill.dtmfmode eq 'RFC2833' %>selected<%/if%> > RFC2833</option>
+                <option value="INFO"   <% if $trunkbill.dtmfmode eq 'INFO' %>selected<%/if%> > INFO</option>
+				<option value="auto"   <% if $trunkbill.dtmfmode eq 'auto' %>selected<%/if%> > 自动</option>
+              </select>
+            </label></td>
+          </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span class="STYLE1"><span   class="STYLE1" >媒体走服务</span></span></td>
+            <td height="18" bgcolor="#FFFFFF"><select name="canreinvite" class="STYLE1" id="canreinvite"  >
+              <option value="yes"   <% if $trunkbill.canreinvite eq  'yes' %>selected<%/if%> > 否</option>
+              <option value="no"   <% if $trunkbill.canreinvite eq   'no' %>selected<%/if%> > 是</option>
+            </select></td>
+          </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span class="STYLE1">语音编码</span></td>
+            <td height="18" bgcolor="#FFFFFF"><label for="allow"><span class="STYLE7">
+              <input name="allow" type="text" class="STYLE1" style="height:18px; width:180px;" size="30"  value='<% $trunkbill.allow %>' />
+              <span class="STYLE4">g729,g723,gsm,ulaw,alaw</span></span></label></td>
+            </tr>
+  
+          <tr>
+            <td id="userTip" height="18" colspan="2" align="right" bgcolor="#FFFFFF"><div align="center" id="div_trips"> </div></td>
+          </tr>
+          <tr>
+            <td height="18" colspan="2" align="center" bgcolor="#FFFFFF">
+              
+              <input type="submit"  class="STYLE1"   name="submitbtn" id="submitbtn"   onClick="return check()" value=" 确认提交 ">
+              <input  type="button"  class="STYLE1"   name="backbutton" id="button"   onClick="goback('<% $curpage %>','<% $agent_id %>')" value=" 取消返回 ">
+              </td>
+            </tr>
+    </table></td>
+  </tr>
+  </form>
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+       
+        <td width="67%"><table width="312" border="0" align="right" cellpadding="0" cellspacing="0">
+          <tr>
+
+            <td width="35">&nbsp;</td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+</body>
+<script>
+		 $("input:text,input:password,textarea").focus(function(){
+			 if (this.value == '请输入') this.value = '';
+			 $(this).css("background","#a8c7ce");
+			 }).blur(function(){
+				 $(this).css("background","#FFF");
+			 }); 
+</script>    
+
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!-- saved from url=(0039)http://www.uucall.com/u/showUserInfo.do -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><HTML 
+xmlns="http://www.w3.org/1999/xhtml"><HEAD>
+<META content="text/html; charset=utf-8" http-equiv="Content-Type"><TITLE>快捷拨号 - <% $astgoConf.title %></TITLE>
+<META name="keywords" content="网络电话，免费网络电话，免费电话，<% $astgoConf.logname %>，免费打电话">
+<META name="description" content="<% $astgoConf.logname %>是一款用电脑免费打电话的网络电话聊天软件，下载后即可拨打全球任意手机和电话，包月价格更低至0.05元/分钟。全力打造中国网络电话第一品牌，互联网语音通信专家。">
+<LINK rel="stylesheet" type="text/css" href="css/global.css">
+<LINK rel="stylesheet" type="text/css" href="css/account_con.css">
+<SCRIPT type="text/javascript" src="js/base.js"></SCRIPT>
+<% include file="head.html" %>
+<SCRIPT type="text/javascript" src="js/script.js"></SCRIPT>
+<STYLE>
+	#maincon_c_l ul li.account_btn_on17{background:url(http://image3.uucall.com:8181/account/image/account_con_08.jpg) left no-repeat;}
+	#maincon_c_l ul li.account_btn_on17 a{font-weight:bold;color:#FE4C04;}
+</STYLE>
+
+
+<SCRIPT type="text/javascript">
+
+function Trim(info)
+{
+	return info.replace(/(^\s*)|(\s*$)/g, "");
+}
+
+function post_list(index,curpage,maxpage)
+{ 
+     if (parseInt(index) <= parseInt(maxpage) && parseInt(index) > 0  && parseInt(curpage)!= parseInt(index) )
+	 {
+        document.form1.action = '?action=calllist&curpage='+index; 
+	    document.form1.submit(); 
+		
+	
+	    return true;
+	 }
+
+	 return false;
+}
+
+function delete_confirm(info)
+{
+    if (confirm(" 告警！ 确定要删除快捷号码:"+info+"吗?"))  {
+	   return true;
+	}
+	 return false;
+    
+}
+
+function add_confirm()
+{
+
+	 document.addform.destination_number.value = document.form1.destination_number.value;
+	 document.addform.dest.value = document.form1.dest.value;
+	
+	 
+
+	  destination_number =  Trim(document.addform.destination_number.value);
+	  if ( destination_number == '')  
+	  {
+	      alert("被叫号码不能为空！");
+		  return false;
+	  }
+	  dest =  Trim(document.addform.dest.value);
+	  if (dest == '')  
+	  {
+	      alert("快捷号码不能为空！");
+		  return false;
+	  }	  
+
+	 
+     document.addform.submit(); 
+	 return true;
+	 
+    
+}
+
+
+</SCRIPT>
+
+    
+<DIV id="maincon">
+<DIV><IMG src="images/account/account_con_03.jpg"></DIV>
+<DIV id="maincon_c">
+<% include file="leftmenu.html" %>
+  
+  
+<SCRIPT type="text/javascript" src="js/script.js"></SCRIPT>
+
+<FORM method="post" name="addform" action="?action=speeddial_add">
+  <input name="destination_number" type="hidden"  id="destination_number" value="<% $post_data.destination_number %>" />
+  <input name="dest" type="hidden" id="dest" size="8" maxlength="4" value="<% $post_data.dest %>" />
+</FORM>
+
+<FORM method="post" name="form1" action="?action=speeddial">
+<DIV id="maincon_c_r"><BR>
+<DIV id="call_record_title">
+<H3>快捷拨号</H3>
+</DIV>
+<hr>
+<DIV class="clear"></DIV>
+
+
+<DIV style="height: 24px; text-align: left; color: rgb(102, 102, 102); line-height: 24px;">
+被叫号码<input name="destination_number"  type="text"  id="destination_number"  value="<% $post_data.destination_number %>" />
+快捷拨号<input name="dest" type="text"  id="dest" size="8" maxlength="4" value="<% $post_data.dest %>" />
+ <input type="submit"   name="submitbtn" id="submitbtn" value=" 查询 " />
+ <input type="button"   name="addsubmitbtn" id="addsubmitbtn"   onclick="add_confirm()" value=" 添加 " />
+</DIV>
+
+
+
+<DIV class="clear"></DIV>
+<TABLE border="2" cellSpacing="0" borderColor="#ffffff" cellPadding="0" width="100%">
+  <TBODY>
+  <TR>
+    <TD class="firtr"><STRONG>序号</STRONG></TD>
+    <TD class="firtr"><STRONG>用户帐号</STRONG></TD>
+	<TD class="firtr"><STRONG>被叫号码</STRONG></TD>
+    <TD class="firtr"><STRONG>快捷号码</STRONG></TD>
+    <TD class="firtr"><STRONG>更新时间</STRONG></TD>
+    <TD class="firtr"><STRONG>操作</STRONG></TD>
+   </TR>
+   
+ <% foreach from=$table_array item=eachone key=keyname %>  	
+     
+  <TR>
+    <TD  class="firtr" ><div align="letf" >   <% $eachone.check_id %></div></TD>
+    <TD  class="firtr" ><div align="center" > <% $eachone.accountcode %></div></TD>
+	<TD  class="firtr" ><div align="center" > <% $eachone.destination_number %></div></TD>
+    <TD  class="firtr" ><div align="center" > <%  $eachone.dest %></div></TD>
+    <TD  class="firtr" ><div align="center" > <% $eachone.updatetime %></div></TD>
+     <TD  class="firtr" ><div align="center" >
+	 <a href="?action=speeddial_del&id=<% $eachone.decode_id %>&curpage=<% $curpage %>"  onClick="return delete_confirm('<%  $eachone.dest %>')" >删除</a>
+	  </div></TD>
+   </TR>
+ <% /foreach %>
+        
+   </TBODY>
+ </TABLE>
+    
+    
+
+
+<TABLE id="paginglist" width="100%" align="center">
+  <TBODY>
+   <TR class="colorLink1 pageNave">
+    <TD style="border-top-color: currentColor; border-top-width: medium; border-top-style: none;" 
+    colSpan="8">
+      <DIV align="right">
+      
+      <span style="height: 24px; text-align: left; color: rgb(102, 102, 102); line-height: 24px;">共有
+      <% $recordcount %>
+      条记录。</span>当前第<% $curpage %>/<% $maxpage %>页，每页<% $pagelimtcount %>条纪录 
+                    
+      <a href="#"  onClick="return post_list('1',<% $curpage %>,'<% $maxpage %>')"  > 首页  </a> 
+      <a href="#"  onClick="return post_list('<% $curpage-1 %>','<% $curpage %>','<% $maxpage %>')"  >上一页 </a> 
+      <a href="#"  onClick="return post_list('<% $curpage+1 %>','<% $curpage %>','<% $maxpage %>')"  >下一页</a>  
+      <a href="#"  onClick="return post_list('<% $maxpage  %>' ,'<% $curpage %>','<% $maxpage %>')"  > 尾页</a> </DIV></TD>
+   </TR>
+  </TBODY>
+</TABLE>
+</DIV>
+</FORM>
+<DIV class="clear"></DIV></DIV>
+<DIV><IMG src="images/account/account_con_15.jpg"></DIV></DIV>
+
+
+<% include file="footer.html" %>
+
+
+
+
+</html>

@@ -1,0 +1,260 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="css/mainstyle.css"/>
+	<link rel="stylesheet" href="./css/themes/base/jquery.ui.all.css">
+	<script src="./js/jquery-1.6.2.min.js"></script>
+	<script src="./js/external/jquery.bgiframe-2.1.2.js"></script>
+	<script src="./js/ui/jquery.ui.core.js"></script>
+	<script src="./js/ui/jquery.ui.widget.js"></script>
+	<script src="./js/ui/jquery.ui.mouse.js"></script>
+	<script src="./js/ui/jquery.ui.button.js"></script>
+	<script src="./js/ui/jquery.ui.draggable.js"></script>
+	<script src="./js/ui/jquery.ui.position.js"></script>
+	<script src="./js/ui/jquery.ui.resizable.js"></script>
+	<script src="./js/ui/jquery.ui.dialog.js"></script>
+  <script src="./js/ui/jquery.ui.datepicker.js"></script>
+  <script src="./js/ui/i18n/jquery.ui.datepicker-zh-CN.js"></script>
+  <link rel="stylesheet" href="./css/demos.css">
+    
+    
+<title>新增用户帐号</title>
+<script>
+
+	//所有input 去空格
+	function trim_all_input()
+	{
+		var inpus = document.getElementsByTagName("INPUT")
+        for(var i=0; i<inpus.length; i++)
+        {
+            if(inpus[i].type=="text")
+            {
+               inpus[i].value =  inpus[i].value.replace(/\s/g,"");
+            }
+        }
+		
+	}
+	
+	// 提交前检测输入是否合法
+	function check(discharge_level,balance)
+	{
+		trim_all_input(); //所有input 去空格
+
+	
+	
+		if (document.form1.agent_id.value==""  || document.form1.agent_id.value=="-1"  )
+		{
+			document.getElementById("userTip").innerHTML="<div align='center'><span class='STYLE4'><font color=red>请输入正确用户帐号管理者</font></span></div>";
+      		document.form1.agent_id.focus();
+			return false;
+		}		
+				
+		if (document.form1.cardbegin.value==""  )
+		{
+			document.getElementById("userTip").innerHTML="<div align='center'><span class='STYLE4'><font color=red>请输入正确用户帐号</font></span></div>";
+      		document.form1.cardbegin.focus();
+			return false;
+		}		
+		
+	
+		if (document.form1.expireddays.value=="" || ( isNaN(document.form1.expireddays.value) ) )
+		{
+			document.getElementById("userTip").innerHTML="<div align='center'><span class='STYLE4'><font color=red>请输入正确有效期天数</font></span></div>";
+      		document.form1.expireddays.focus();
+			return false;
+		}		
+				
+		
+		
+        if (document.form1.password.value==""  )
+		{
+			document.getElementById("userTip").innerHTML="<div align='center'><span class='STYLE4'><font color=red>请输入正确的用户帐号密码</font></span></div>";
+      		document.form1.password_len.focus();
+			return false;
+		}				
+		
+	    return true;
+		//return true;
+
+	}
+
+	function goback(curpage,agent_id)
+	{
+	    document.form1.action = '?action=list&curpage='+curpage +'&agent_id=' + agent_id;
+		document.form1.submit();
+	}
+	
+function  change_acct_id(acct_id,curpage)
+{
+    document.form1.action = '?action=add_send&curpage='+curpage+'&agent_id='+acct_id; 
+	//alert(document.form1.action);
+	document.form1.submit(); 
+	return true;		 
+	
+}
+    </script>
+
+<body>
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="24" bgcolor="#353c44"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="2%" height="19" valign="bottom"><div align="center"><img src="images/tb.gif" width="14" height="14" /></div></td>
+                <td width="98%" valign="bottom"><span class="STYLE10"> 添加用户帐号</span></td>
+              </tr>
+            </table></td>
+            <td><div align="right"><span class="STYLE1">
+              </span></div></td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+  
+   <form name="form1" method="post" action="?action=<% $action %>&curpage=<% $curpage %>">
+  <tr>
+    <td><table width="687" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">
+     
+              <tr>
+            <td height="18" colspan="4" bgcolor="#FFFFFF"><div align="center"></div>
+            </td>
+            </tr>
+
+          <tr>
+            <td height="19" colspan="2" align="right" bgcolor="#FFFFFF"><div align="center"><span class="STYLE1">帐号管理者</span><span class="STYLE7">
+            <select name="agent_id" class="STYLE1" id="agent_id" onChange= "change_acct_id(this.value,'<% $curpage %>')" >
+              <%foreach from=$acctchild item=eachone key=keyname %>
+              <option  value="<% $eachone.decode_id %>" <% if $eachone.decode_id eq $agent_id %> selected <%/if%> >
+                <% $eachone.acctname %>
+                </option>
+              <%/foreach%>
+            </select>
+            </span> <span class="STYLE4">计费类型:
+            <% if $to_acct.discharge_level eq '1' %>
+流量
+<%else%>
+面值
+<%/if%>
+&nbsp;&nbsp;余额:
+<% $to_acct.balance|string_format:"%.4f" %>
+            </span></div></td>
+            </tr>
+          <tr>
+            <td width="18%" height="19" align="right" bgcolor="#FFFFFF"><span   class="STYLE1" >用户帐号</span></td>
+            <td width="24%" bgcolor="#FFFFFF"><span class="STYLE7">
+              <input name="acctname"  id="acctname" type="text" class="STYLE1" style="height:18px; width:120px;" size="30"  value='<% $user.acctname %>' />
+            </span></td>
+            </tr>
+          <tr>
+            <td height="19" align="right" bgcolor="#FFFFFF"><span   class="STYLE1" >用户密码</span></td>
+            <td bgcolor="#FFFFFF"><span class="STYLE7">
+              <input name="password" id="password" type="text" class="STYLE1" style="height:18px; width:120px;" size="30"  value='<% $user.password %>' />
+            </span></td>
+            </tr>
+          <tr>
+            <td height="19" align="right" bgcolor="#FFFFFF"><span class="STYLE1">金额</span></td>
+            <td bgcolor="#FFFFFF"><input name="balance"  id="balance"  type="text" class="STYLE1" style="height:18px; width:60px;" size="30"  value='<% $user.balance %>' />
+              <span class="STYLE1">元</span></td>
+            </tr>
+          <tr>
+            <td height="19" align="right" bgcolor="#FFFFFF"><span class="STYLE1">有效天数</span></td>
+            <td bgcolor="#FFFFFF"><input name="expireddays"  id="expireddays"  type="text" class="STYLE1" style="height:18px; width:60px;" size="30"  value='<% $user.expireddays %>' />
+              <span class="STYLE1">天 (激活日期开始计算)</span></td>
+          </tr>
+          <tr>
+            <td height="19" align="right" bgcolor="#FFFFFF"><span class="STYLE1">回拨费率组</span></td>
+            <td bgcolor="#FFFFFF"><span class="STYLE7">
+              <select name="rategroupid_acall" id="rategroupid_acall"  >
+                <%foreach from=$rategroups_acall item=eachone key=keyname %>
+                <option  value="<% $eachone.decode_id %>" <% if $eachone.decode_id eq $user.rategroupid_acall  %> selected <%/if%> >
+                  <% $eachone.rategroupname %>
+                  </option>
+                <%/foreach%>
+                </select>
+            </span></td>
+            </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span class="STYLE1">被叫费率组</span></td>
+            <td bgcolor="#FFFFFF"><span class="STYLE7">
+              <select name="rategroupid" id="rategroupid"  >
+                <%foreach from=$rategroups item=eachone key=keyname %>
+                <option  value="<% $eachone.decode_id %>" <% if $eachone.decode_id eq $user.rategroupid %> selected <%/if%> >
+                  <% $eachone.rategroupname %>
+                  </option>
+                <%/foreach%>
+                </select>
+            </span></td>
+            </tr>
+          <tr>
+            <td  height="18" colspan="4" align="right" bgcolor="#FFFFFF"><div id="div_trips" align="center"></div></td>
+          </tr>
+          <tr>
+            <td height="18" colspan="4" align="center" bgcolor="#FFFFFF">
+              
+              <input type="submit"  class="STYLE1"   name="submitbtn" id="submitbtn"   onClick="return check('<% $to_acct.discharge_level %>','<% $to_acct.balance|string_format:"%.4f" %>')" value=" 确认提交 ">
+              <input  type="button"  class="STYLE1"   name="backbutton" id="button"   onClick="goback('<% $curpage %>','<% $agent_id %>')" value=" 取消返回 ">
+              </td>
+            </tr>
+    </table></td>
+  </tr>
+  </form>
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+       
+        <td width="67%"><table width="312" border="0" align="right" cellpadding="0" cellspacing="0">
+          <tr>
+
+            <td width="35">&nbsp;</td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+</body>
+<script>
+		 $("input:text,input:password,textarea").focus(function(){
+			 if (this.value == '请输入') this.value = '';
+			 $(this).css("background","#a8c7ce");
+			 }).blur(function(){
+				 if (this.id == 'acctname'  )
+				 {
+					 var info = ''; 
+					 var agents_acctname = $.trim(this.value) ;
+					 if (agents_acctname == '')
+					 { 
+					      info ='<font color="#FF0000">请输入完整的用户帐号</font>';
+						  $('#div_trips').html(info);
+						  $(this).focus;
+						  $(this).css("background","#CBFE9F");
+					 }
+					 else
+					 {
+					    $.get("user.php?action=check_acctname_exists",{user_acctname :this.value}, function(data){  
+					    if (data == 1)
+						{
+					       info =  '<font color="#FF0000">'+ $('#acctname').val() + '已经存在!' + '</font>';
+						   $('#acctname').val("");	
+						   $('#acctname').focus;
+						   $('#div_trips').html(info);
+						}
+						else   
+					       info = '';	
+						   $('#div_trips').html(info);
+					    });
+					 }
+				 }
+				 $(this).css("background","#FFF");
+				 
+				
+			 }); 
+</script>      
+
+
+</html>

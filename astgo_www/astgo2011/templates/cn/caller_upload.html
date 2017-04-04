@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="css/mainstyle.css"/>
+<title>导入电话本</title>
+<script>
+	function goback(curpage,callergroup_id,old_curpage)
+	{
+		var gotourl = '?action=caller_list&curpage='+curpage+'&callergroup_id='+callergroup_id+'&old_curpage='+old_curpage; 
+		//alert(gotourl);
+	    document.form1.action = gotourl;
+		document.form1.submit();
+	}
+
+    </script>
+
+<body>
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="24" bgcolor="#353c44"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="2%" height="19" valign="bottom"><div align="center"><img src="images/tb.gif" width="14" height="14" /></div></td>
+                <td width="98%" valign="bottom"><span class="table_caption"> 上传电话号码</span></td>
+              </tr>
+            </table></td>
+            <td><div align="right"><span class="STYLE1">
+              </span></div></td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+  
+   <form enctype="multipart/form-data" method="post" name="form1" action="?action=caller_loadpost&curpage=<% $curpage %>&old_curpage=<% $old_curpage %>&callergroup_id=<% $callergroup_id %>" target="_self">
+  <tr>
+    <td><table width="605" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">
+     
+                   <tr>
+              <td height="18" align="right" bgcolor="#FFFFFF"><span class="STYLE1">文件</span></td>
+              <td width="38%" height="18" bgcolor="#FFFFFF">&nbsp;
+                <input name="src" type="file" class="STYLE1" />
+                <input  type= "submit"  class="STYLE1"   name="button" id="button2"   value="上传">
+                <span class="STYLE4">
+                <input  type="button"  class="STYLE1"   name="backbutton" id="button"   onClick="goback('<% $curpage %>','<% $callergroup_id %>','<% $old_curpage %>')" value=" 取消返回 ">
+                </span></td>
+              <td width="24%" height="18" align="right" bgcolor="#FFFFFF">&nbsp;</td>
+              </tr>
+            <tr>
+              <td height="18" align="right" bgcolor="#FFFFFF">&nbsp;</td>
+              <td height="18" colspan="2" bgcolor="#FFFFFF"><span class="STYLE4">文件格式:电话号码,说明 </span></td>
+              </tr>
+            <tr>
+              <td height="18" align="right" bgcolor="#FFFFFF">&nbsp;</td>
+              <td height="18" colspan="2" bgcolor="#FFFFFF"><span class="STYLE4">13937176320,河南移动</span></td>
+              </tr>
+            <tr>
+              <td height="18" align="right" bgcolor="#FFFFFF">&nbsp;</td>
+              <td height="18" colspan="2" bgcolor="#FFFFFF"><span class="STYLE4">13323825620,河南电信</span></td>
+            </tr>
+            <tr>
+              <td height="18" colspan="3" align="right" bgcolor="#FFFFFF"><div align="center"></div></td>
+              </tr>
+ 
+    </table></td>
+  </tr>
+  </form>
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+       
+        <td width="67%"><table width="312" border="0" align="right" cellpadding="0" cellspacing="0">
+          <tr>
+
+            <td width="35">&nbsp;</td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+<p class="STYLE19">&nbsp;</p>
+</body>
+</html>

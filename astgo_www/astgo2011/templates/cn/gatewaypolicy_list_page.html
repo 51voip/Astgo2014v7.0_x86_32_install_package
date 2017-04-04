@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="css/mainstyle.css"/>
+<title>呼出路由列表</title>
+</head>
+<script src="./js/jquery-1.6.2.min.js"></script>
+
+
+<script>
+
+//页码导航 
+function post_list(index,curpage,maxpage,gatewaygroupid)
+{ 
+     if ( parseInt(index) <= parseInt(maxpage) && parseInt(index) > 0  && parseInt(curpage)!=parseInt(index) )
+	 {
+        document.form1.action = '?action=list&old_curpage=<% $old_curpage %>&curpage='+index+'&gatewaygroupid='+gatewaygroupid; 
+	    document.form1.submit(); 
+	    return true;
+	 }
+	 return false;
+}
+
+
+	function goback(old_curpage)
+	{
+		var gotourl = 'out_routegroup.php?action=list&curpage='+old_curpage ; 
+		//alert(gotourl);
+	    document.form1.action = gotourl;
+	
+		document.form1.submit();
+	}
+	function delete_confirm()
+	{
+		if (confirm("确定要删除这个条呼出路由吗?"))  {
+			 return true;	
+		}
+		return false;	
+	}
+	function batch_detele()
+	{
+		if (confirm(" 警告！ 批量删除后将不能恢复，确定要批量删除?"))  {
+			
+			       document.form1.action = '?action=multidelete_do&curpage=<% $curpage %>&old_curpage=<% $old_curpage %>&gatewaygroupid=<% $gatewaygroupid %>'; 
+			       document.form1.submit(); 
+		    	   return true;	
+			
+		}
+  	    return false;	
+	}	
+	
+	
+</script>
+<body>
+
+
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="24" bgcolor="#353c44"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                
+                <td width="97%" valign="bottom"><span class="table_caption">呼出路由管理&nbsp;&nbsp;
+                <a href="#"  onclick="goback('<% $old_curpage %>')" > 返回 </a>
+                </span></td>
+              </tr>
+            </table></td>
+            <td><div align="right"><span class="table_caption">
+            <img src="images/add.gif" width="10" height="10" /> <a href="?action=add_send&curpage=<% $curpage %>&gatewaygroupid=<% $gatewaygroupid %>">新增呼出路由 </a>
+            &nbsp;
+			 <img src="images/del.gif" width="10" height="10" /> <a href="#" onClick="batch_detele()" >批量删除 </a>
+			&nbsp;</span>
+             </div></td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td><table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">
+	
+	<form enctype="multipart/form-data" method="post" name="uploadfile_post" action="?action=uploadfile_post&curpage=<% $curpage %>&old_curpage=<% $old_curpage %>&gatewaygroupid=<% $gatewaygroupid %>&agent_id=<% $agent_id %>" target="_self">
+   
+    <tr>
+      <td  height="24" colspan="12"    bgcolor="#FFFFFF" class="STYLE6"><span class="table_title">批量导入<span class="STYLE1">
+        <input name="src" type="file" class="STYLE1" />
+          <input name="querybtn2" type="submit" class="STYLE1"   id="querybtn2"  value=" 上传导入 " />
+        </span></span></td>
+   </tr>
+ </form>
+	
+	<form name="form1" method="post" action="?action=list&old_curpage=<% $old_curpage %>&gatewaygroupid=<% $gatewaygroupid %>">
+    <tr>
+      <td  height="24" colspan="12"    bgcolor="#FFFFFF" class="STYLE6"><span class="table_title">拨号前缀<span class="STYLE1">
+      <input name="prefix" type="text" class="STYLE1" id="prefix" size="20" maxlength="30" value='<% $post_data.prefix %>' />
+      <input name="querybtn" type="submit" class="STYLE1"   id="querybtn"  value=" 查询 " />
+      <input name="checkbox_downloadfile" type="checkbox" class="STYLE1" />
+      <label for="downloadfile">导出</label>
+     
+      </span></span></td>
+    </tr>
+	</form>
+	
+
+ <tr>
+
+            <td width="2%"  height="24"    bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">序号</div></td>
+            <td width="6%" height="24"     bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">名称</div></td>
+            <td width="4%" height="24"     bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">状态</div></td>
+            <td width="6%"  height="24"    bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">呼出落地(中继)</div></td>
+            <td width="6%"  height="24"    bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">拨号前缀</div></td>
+            <td width="16%"  height="24"   bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">被叫替换规则</div></td>
+            <td width="3%" height="24"     bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">优先级</div></td>
+            <td width="2%"  height="24"    bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">终止</div></td>
+            <td width="10%" height="24"     bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">主叫号码池</div></td>
+            <td width="4%"  height="24"    bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">开启时段</div></td>  
+            <td width="6%"  height="24"    bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">路由成本</div></td>          
+            <td width="8%"  height="24"    bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">操作</div></td>
+        </tr>     
+
+          
+          
+          <% foreach from=$table_array item=eachone key=keyname %>  	
+                  <tr>
+        
+        
+   
+            <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"><% $eachone.check_id %></div></td>
+            <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"><% $eachone.name %></div></td>
+            <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"><% if $eachone.enable eq '1' %>开启<% else %>禁用<% /if %> </div></td>
+
+            <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"><% $eachone.trunkname %> </div></td>
+            <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"><% $eachone.prefix %></div></td>
+            <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19" title="<% $eachone.callee_prexrule %>"><% $eachone.callee_prexrule|smartTruncate:20:".." %> </div></td>
+            <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"><% $eachone.priority %></div></td>
+            <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"><% if $eachone.routestop eq '1' %><font color="#FF0000">是</font><%else%>否<%/if %></div></td>
+            <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"> <% $eachone.callergroup_name %></div></td>
+            <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"><% $eachone.hour_begin %>点-<% $eachone.hour_end %>点</div></td>
+            <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"><% $eachone.rateprice|string_format:"%.4f"  %>元/<% $eachone.payunitsecond%>秒</div></td>
+            <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center">
+            	<a href="?action=edit_send&id=<% $eachone.decode_id %>&curpage=<% $curpage %>&old_curpage=<% $old_curpage %>&gatewaygroupid=<% $gatewaygroupid %>" class="STYLE19">编辑</a>
+               	<a href="?action=delete_post&id=<% $eachone.decode_id %>&curpage=<% $curpage %>&old_curpage=<% $old_curpage %>&gatewaygroupid=<% $gatewaygroupid %>"  onClick="return delete_confirm()" class="STYLE19" >删除</a></div></td>
+          </tr>
+          
+ 
+        <% /foreach %>
+    </table></td>
+  </tr>
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="33%"><div align="left"><span class="STYLE21">共
+              <% $record_count %>
+              条记录，当前第
+              <% $curpage %>
+              /
+              <% $maxpage %>
+              页，每页
+              <% $pagelimtcount %>
+          条记录</span></div></td>
+        <td width="67%"><table width="180" border="0" align="right" cellpadding="0" cellspacing="0">
+          <tr>
+            <td width="40"><div align="center"> <a href="#" class="STYLE21" onClick="return post_list('1',<% $curpage %>,<% $maxpage %>,'<% $gatewaygroupid %>')"  >首页</a> </div></td>
+            <td width="40"><div align="center"> <a href="#" class="STYLE21" onClick="return post_list('<% $curpage-1 %>',<% $curpage %>,<% $maxpage %>,'<% $gatewaygroupid %>')" >上一页</a></div></td>
+            <td width="40"><div align="center"> <a href="#" class="STYLE21" onClick="return post_list('<% $curpage+1 %>',<% $curpage %>,<% $maxpage %>,'<% $gatewaygroupid %>')" >下一页</a></div></td>
+            <td width="40"><div align="center"> <a href="#" class="STYLE21" onClick="return post_list('<% $maxpage  %>',<% $curpage %>,<% $maxpage %>,'<% $gatewaygroupid %>')" >尾页</a></div></td>
+           
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+
+
+</body>
+</html>

@@ -1,0 +1,372 @@
+.reg-act-cont {
+	background: url("../images/reg/reg_icoc7.jpg") no-repeat bottom; margin: 0px auto 43px; width: 930px; overflow: hidden; padding-bottom: 8px; zoom: 1;
+}
+.reg-act-cont h2 {
+	background: url("../images/reg/reg_icoa1.gif") no-repeat center 0px; margin: 25px 0px 15px; height: 33px; text-indent: -9999px;
+}
+.reg-act-cont ul li {
+	text-align: left; color: rgb(254, 76, 4); line-height: 28px; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 14px; font-weight: bold;
+}
+.reg-act-cont ul li span {
+	width: 448px; text-align: right; color: rgb(153, 153, 153); font-size: 14px; font-weight: normal; float: left;
+}
+.reg-act-cont-1 {
+	margin: 0px auto; width: 930px; overflow: hidden; zoom: 1;
+}
+.reg-act-cont-1 h2 {
+	background: url("../images/reg/reg_icoa_a.jpg") no-repeat 0px; margin: 25px 0px 10px 23px; width: 245px; height: 36px;
+}
+.reg-act-cont-2 {
+	margin: 0px auto 43px; width: 550px; overflow: hidden; padding-bottom: 8px; zoom: 1;
+}
+.reg-act-cont-2 h2 {
+	background: url("../images/reg/reg_icoa_b.jpg") no-repeat 0px; width: 525px; height: 36px; margin-top: 30px; margin-left: 23px;
+}
+.act-xz {
+	margin-bottom: 12px;
+}
+.act-xz h2 {
+	background: url("../images/reg/reg_icoa2.gif") no-repeat left top; height: 22px; text-indent: -9999px; margin-bottom: 15px;
+}
+.act-xz .free-mhbox {
+	margin-top: 70px;
+}
+.act-xz .free-mhbox .moact {
+	margin-top: -35px;
+}
+.act-xz .free-mhbox h2 {
+	background: url("../images/reg/reg_icoa2_2.gif") no-repeat left top; text-align: left; text-indent: 90px; margin-bottom: 48px;
+}
+.act-xz .free-mhbox h2 strong {
+	color: rgb(255, 108, 2);
+}
+.moact {
+	width: 400px; text-align: right; margin-top: -40px; float: right;
+}
+.act-box1 {
+	background: url("../images/reg/reg_icoc5.jpg") repeat-x left top; height: 212px; overflow: hidden;
+}
+.act-b-left {
+	background: url("../images/reg/reg_icoc6.jpg") no-repeat left top; width: 5px; height: 212px; overflow: hidden; float: left; display: block;
+}
+.act-boxcont {
+	width: 920px; float: left;
+}
+.act-b-right {
+	background: url("../images/reg/reg_icoc6.jpg") no-repeat -5px top; width: 5px; height: 212px; overflow: hidden; float: right; display: block;
+}
+.act-boxcont dl {
+	width: 452px; padding-top: 52px; float: left;
+}
+.act-boxcont dl dt {
+	background: url("http://image3.uucall.com:8181/website/image/reg_icoa4.gif") no-repeat; margin: 3px 0px 8px; width: 270px; line-height: 24px; text-indent: -9999px; float: right;
+}
+.act-boxcont dl.movact dt {
+	background-image: url("../images/reg/reg_icoa3.gif");
+}
+.reg-actcont {
+	width: 230px; text-align: left; line-height: 18px; padding-right: 40px; float: right;
+}
+.reg-link {
+	width: 230px; text-align: left; line-height: 18px; padding-right: 40px; float: right;
+}
+.reg-actcont {
+	margin-bottom: 14px;
+}
+.reg-actpic {
+	width: 134px; text-align: right; float: left;
+}
+.act-boxcont dl.movact {
+	background: url("../images/reg/reg_icoc4.jpg") no-repeat right top;
+}
+p.moact strong {
+	color: rgb(255, 109, 0);
+}
+.free-m-l {
+	background: url("../images/reg/free_ico1.gif") repeat-x left -72px; width: 551px; text-align: left; float: left;
+}
+.free-m-l h3 {
+	background: url("../images/reg/free_ico1.gif") no-repeat left 0px; width: 551px; height: 36px; line-height: 36px;
+}
+.free-m-l h3 span {
+	background: url("../images/reg/free_ico1.gif") no-repeat right -36px; width: 100%; text-indent: 18px; display: block;
+}
+.free-m-b {
+	background: url("../images/reg/free_ico2.gif") no-repeat; height: 7px; overflow: hidden; display: block;
+}
+.free-m-box {
+	background: url("../images/reg/free_icoo2.gif") repeat-x left bottom; width: 549px; overflow: hidden; padding-bottom: 10px; border-right-color: rgb(224, 227, 234); border-left-color: rgb(224, 227, 234); border-right-width: 1px; border-left-width: 1px; border-right-style: solid; border-left-style: solid; zoom: 1;
+}
+.freeab {
+	background: url("../images/reg/free_icoa1.jpg") no-repeat center; margin: 0px auto 24px; width: 502px; height: 91px; text-indent: -9999px; border-bottom-color: rgb(194, 194, 194); border-bottom-width: 1px; border-bottom-style: dashed;
+}
+.freecard {
+	background: url("../images/reg/freecard.jpg") no-repeat center; margin: 0px auto 24px; width: 502px; height: 91px; text-indent: -9999px; border-bottom-color: rgb(194, 194, 194); border-bottom-width: 1px; border-bottom-style: dashed;
+}
+.free-m-box ul {
+	margin: 0px auto; width: 502px;
+}
+.free-nots {
+	overflow: hidden;
+}
+.free-nots li {
+	background: url("../images/reg/free_icodi.gif") no-repeat 24px 9px; width: 502px; color: rgb(51, 51, 51); text-indent: 35px; float: left; hieght: 24px;
+}
+ul.free2-n {
+	margin: 64px 0px 10px;
+}
+.free2-n li {
+	background-position: 150px 9px; text-indent: 160px;
+}
+.free-from li {
+	padding: 5px 0px 15px; width: 502px; height: 35px; color: rgb(51, 51, 51); text-indent: 30px; font-size: 14px; float: left;
+}
+.free-from li input.go-up {
+	margin-left: 100px;
+}
+ul.freef-n li {
+	text-indent: 120px;
+}
+.go-up {
+	border: currentColor; width: 127px; height: 41px; text-indent: -9999px; overflow: hidden; margin-left: 40px; float: left; display: inline; cursor: pointer;
+}
+.draw-free {
+	border: currentColor; width: 127px; height: 41px; text-indent: -9999px; overflow: hidden; margin-left: 40px; float: left; display: inline; cursor: pointer;
+}
+.draw-free2 {
+	border: currentColor; width: 127px; height: 41px; text-indent: -9999px; overflow: hidden; margin-left: 40px; float: left; display: inline; cursor: pointer;
+}
+.go-up {
+	background: url("../images/reg/free_ico3.gif") no-repeat;
+}
+.draw-free {
+	background: url("../images/reg/free_ico4.gif") no-repeat;
+}
+.draw-free2 {
+	background: url("../images/reg/free_ico5.gif") no-repeat; margin-left: 200px;
+}
+.free-m-r {
+	width: 313px; text-align: left; float: right;
+}
+.free-m-r li {
+	list-style: decimal;
+}
+.free-m-r h3 {
+	color: rgb(51, 51, 51); padding-bottom: 8px; font-size: 14px; font-weight: bold;
+}
+.free-m-box .free-s {
+	margin: 0px 0px 0px 52px; width: 405px; clear: both; display: inline;
+}
+.free-stop {
+	background-position: 1px -580px; padding: 23px 0px 0px 38px; border: 1px solid rgb(255, 255, 255); width: 400px; height: 60px; line-height: 30px; font-size: 14px; background-color: rgb(255, 255, 255);
+}
+.free-stop1 {
+	background-position: 1px -480px; padding: 23px 0px 0px 38px; border: 1px solid rgb(255, 255, 255); width: 400px; height: 60px; line-height: 30px; font-size: 14px; background-color: rgb(255, 255, 255);
+}
+.free-stop2 {
+	background-position: 1px -680px; padding: 23px 0px 0px 38px; border: 1px solid rgb(255, 255, 255); width: 400px; height: 90px; line-height: 22px; font-size: 14px; margin-top: 20px; background-color: rgb(255, 255, 255);
+}
+.pic-free li {
+	margin-top: 12px; display: block;
+}
+.freeby {
+	height: auto; text-indent: 0em; overflow: hidden; zoom: 1;
+}
+.freeby span {
+	text-align: center; margin-bottom: 20px;
+}
+.freeby strong {
+	color: rgb(255, 109, 0);
+}
+.freeby acronym {
+	color: rgb(153, 153, 153); font-size: 12px;
+}
+.crabs {
+	background-position: 60px -457px;
+}
+.free-p1 {
+	width: 530px; text-align: right; padding-top: 60px; clear: both;
+}
+.fee-box1 {
+	margin: 0px auto; width: 930px; text-align: left;
+}
+.fee-box2 {
+	margin: 0px auto; width: 930px; text-align: left;
+}
+.fee-box1 {
+	background: url("../images/reg/free_icob4.jpg") no-repeat; height: 226px; overflow: hidden; margin-bottom: 36px;
+}
+.fee-lookup {
+	margin: 92px 0px 0px 47px; width: 485px; height: 130px; overflow: hidden;
+}
+.fee-lookup label {
+	font-family: Tahoma,SimSun,Arial; font-weight: bold; margin-right: 10px;
+}
+.fee-lookup label input {
+	vertical-align: middle;
+}
+.fee-pt {
+	line-height: 55px;
+}
+.fee-b-left {
+	width: 655px; float: left;
+}
+.fee-b-right {
+	width: 191px; float: right;
+}
+.fee-list {
+	background: url("../images/reg/free_icob3bg.gif") repeat-x left top; padding: 2px 0px 0px 47px; height: 28px; display: block;
+}
+.fee-list li {
+	width: 88px; height: 28px; text-align: center; color: rgb(0, 112, 222); line-height: 28px; font-weight: bold; margin-right: 15px; float: left; cursor: pointer;
+}
+.fee-list li.feexz {
+	border-width: 1px; border-style: solid; border-color: rgb(92, 188, 249) rgb(92, 188, 249) rgb(255, 255, 255); width: 86px; height: 26px; color: rgb(252, 75, 5); line-height: 26px; background-color: rgb(255, 255, 255);
+}
+.fee-table {
+	width: 649px;
+}
+.fee-table td {
+	background: url("../images/reg/free_icob3bg2.gif") repeat-x left bottom; line-height: 44px;
+}
+.fee-table th {
+	background: url("../images/reg/free_icob3bg2.gif") repeat-x left bottom; line-height: 44px;
+}
+.fee-table th {
+	color: rgb(51, 51, 51); line-height: 56px; padding-top: 5px;
+}
+.fee-cx h3 {
+	background: url("../images/reg/free_icob1.gif") no-repeat left bottom; height: 29px; color: rgb(51, 51, 51); font-size: 14px; font-weight: bold;
+}
+.fee-cx ul li {
+	background: url("../images/reg/free_icob2.gif") no-repeat left 14px; width: 191px; height: 30px; line-height: 30px; overflow: hidden; float: left;
+}
+.fee-cx ul li a {
+	line-height: 30px; padding-left: 10px; font-size: 14px;
+}
+.fee-cx ul {
+	margin: 11px 0px; overflow: hidden; display: block;
+}
+.fee-cx {
+	overflow: hidden; clear: both;
+}
+.sen {
+	background: url("../images/reg/free_icob3.gif") no-repeat 18px 15px; text-align: left; color: rgb(254, 109, 2); text-indent: 3em; font-weight: bold; display: block;
+}
+.navsub {
+	background: url("../images/reg/free_sub.gif") no-repeat 0px 0px; border: currentColor; width: 55px; height: 26px; text-indent: -9999px; margin-left: 28px; display: inline; cursor: pointer;
+}
+.fee-lookup input {
+	vertical-align: top;
+}
+.fee-rf {
+	width: 100%; height: 25px; background-color: rgb(235, 244, 253);
+}
+.fee-rf h3 {
+	line-height: 25px; float: left; display: block;
+}
+.fee-rf span {
+	line-height: 25px; float: left; display: block;
+}
+.fee-rf a {
+	line-height: 25px; float: left; display: block;
+}
+.fee-rf h3 {
+	color: rgb(51, 51, 51); padding-left: 43px; font-size: 12px; font-weight: bold;
+}
+.fee-rf span {
+	padding-left: 28px;
+}
+.fee-rf span strong {
+	color: rgb(255, 107, 2);
+}
+.fee-rf a {
+	color: rgb(0, 111, 221); padding-right: 6px; float: right;
+}
+.result-tab {
+	width: 649px; clear: both;
+}
+.result-tab th {
+	line-height: 28px;
+}
+.result-tab td {
+	line-height: 28px;
+}
+.fee-result {
+	background: url("../images/reg/free_icob3bg2.gif") repeat-x left bottom; overflow: hidden; margin-bottom: 28px; zoom: 1;
+}
+.boxabc {
+	text-align: center; margin-top: 24px;
+}
+#boxfee1 .boxabc a {
+	padding-right: 6px; font-size: 16px; font-weight: bold; text-decoration: underline;
+}
+.wzhl {
+	text-align: center; line-height: 35px;
+}
+#fee-queryresult dd {
+	width: 216px; height: 40px; text-align: center; line-height: 40px; float: left;
+}
+#full-result dd {
+	width: 216px; height: 40px; text-align: center; line-height: 40px; float: left;
+}
+.free-ol li {
+	background: url("../images/reg/flow_steps_bg.png") no-repeat 100% 0px rgb(228, 228, 228); padding: 0px 15px 0px 0px; height: 23px; text-align: center; color: rgb(102, 102, 102); line-height: 23px; overflow: hidden; font-size: 14px; font-weight: bold; float: left;
+}
+.free-ol .num3 li {
+	width: 217px;
+}
+.free-ol li.current {
+	width: 218px; background-color: rgb(228, 228, 228);
+}
+.free-ol li.current .first {
+	background: url("../images/reg/flow_steps_bg.png") no-repeat -12px -69px rgb(228, 228, 228);
+}
+.free-ol li.last {
+	background-position: 100% -138px; width: 218px;
+}
+.free-ol li span {
+	display: block;
+}
+.free-ol li strong {
+	display: block;
+}
+.free-ol li strong {
+	font-weight: normal;
+}
+.free-ol li.current .free-tpy {
+	background-position: -12px -92px; color: rgb(255, 255, 255); font-weight: normal; background-color: rgb(14, 171, 248);
+}
+.free-ol li .free-tpy2 {
+	color: rgb(255, 255, 255); font-weight: normal; background-color: rgb(14, 171, 248);
+}
+.free-m-wrap {
+	margin: 40px auto; width: 930px; overflow: hidden; zoom: 1;
+}
+.news-box {
+	margin: 0px auto 7px; width: 930px; height: 14px; line-height: 14px; overflow: hidden;
+}
+.news-box h3 {
+	height: 14px; line-height: 14px; font-weight: bold; margin-right: 5px; float: left;
+}
+.news-box .news-list-c {
+	width: 830px; height: 14px; line-height: 14px; float: left;
+}
+.news-box .news-list-c ul li {
+	height: 14px; line-height: 14px; margin-right: 46px; float: left; white-space: nowrap;
+}
+#fee-queryresult dd {
+	background: url("../images/reg/free_icob3bg2.gif") repeat-x left bottom;
+}
+#full-result dd {
+	background: url("../images/reg/free_icob3bg2.gif") repeat-x left bottom;
+}
+body #footer {
+	margin-top: 60px;
+}
+#wait {
+	margin-left: 135px;
+}
+#wait img {
+	margin-right: 8px; vertical-align: middle;
+}

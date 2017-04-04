@@ -1,0 +1,518 @@
+#maincon {
+	TEXT-ALIGN: center; MARGIN: 0px auto; WIDTH: 930px
+}
+#maincon_l {
+	PADDING-LEFT: 3px; WIDTH: 202px; FLOAT: left; FONT-SIZE: 14px; MARGIN-RIGHT: 20px
+}
+
+
+#maincon_r {
+	WIDTH: 705px; FLOAT: right
+}
+#maincon_r DL {
+	WIDTH: 350px; FLOAT: left
+}
+#taocan_click_dl DL {
+	CURSOR: pointer
+}
+#maincon_r DT {
+	TEXT-ALIGN: left; WIDTH: 174px; FLOAT: left; PADDING-TOP: 6px
+}
+#maincon_r DD {
+	TEXT-ALIGN: left; WIDTH: 174px; FLOAT: left
+}
+#maincon_r DD.other_style_dd {
+	MARGIN-TOP: 10px; WIDTH: 350px
+}
+#package {
+	BORDER-BOTTOM: #f1f1f1 1px solid
+}
+.discounted_price {
+	FONT-STYLE: italic; FONT-SIZE: 12px; TEXT-DECORATION: line-through
+}
+#maincon_l H3 {
+	TEXT-ALIGN: left; LINE-HEIGHT: 46px; PADDING-LEFT: 20px; HEIGHT: 46px; COLOR: #333; FONT-SIZE: 14px; FONT-WEIGHT: bold
+}
+#recommended_pay UL LI {
+	TEXT-ALIGN: left; LINE-HEIGHT: 32px; PADDING-LEFT: 20px; BACKGROUND: url(../images/pay/topcenter_index_12.jpg) no-repeat 10px 13px; HEIGHT: 32px
+}
+#other_pay UL LI {
+	TEXT-ALIGN: left; LINE-HEIGHT: 32px; PADDING-LEFT: 20px; BACKGROUND: url(../images/pay/topcenter_index_12.jpg) no-repeat 10px 13px; HEIGHT: 32px
+}
+#navList A.top_banner_on3 {
+	BACKGROUND: url(../images/index_top_bg.gif) no-repeat left -50px; COLOR: #008eda
+}
+#navList A.top_banner_on3:hover {
+	BACKGROUND: url(../images/index_top_bg.gif) no-repeat left -50px
+}
+#navList A.top_banner_on3:link {
+	COLOR: #008eda
+}
+#navList A.top_banner_on3:visited {
+	COLOR: #008eda
+}
+#navList A.top_banner_on3:hover {
+	COLOR: #008eda
+}
+#maincon_r H3 {
+	LINE-HEIGHT: 42px; FLOAT: left; HEIGHT: 40px
+}
+#maincon_r H3.little_money {
+	LINE-HEIGHT: 16px; MARGIN-BOTTOM: 16px; FLOAT: left; HEIGHT: 16px
+}
+#maincon_r H3 STRONG {
+	COLOR: #333; FONT-SIZE: 14px
+}
+#maincon_r SPAN {
+	LINE-HEIGHT: 8px; DISPLAY: inline; FLOAT: right; HEIGHT: 8px
+}
+#vouchcard_show {
+	PADDING-BOTTOM: 10px; MARGIN-TOP: 0px; PADDING-LEFT: 10px; WIDTH: 685px; PADDING-RIGHT: 10px; MARGIN-BOTTOM: 2px; BACKGROUND: url(../images/pay/vouch_03.jpg) repeat-y; HEIGHT: 165px; OVERFLOW: hidden; PADDING-TOP: 10px
+}
+#vouchcard_show_span {
+	LINE-HEIGHT: 20px; WIDTH: 675px; PADDING-RIGHT: 10px; HEIGHT: 20px
+}
+#vouchcard_show_span * {
+	FLOAT: right
+}
+#vouchcard_show DL {
+	PADDING-LEFT: 60px; WIDTH: 600px
+}
+#vouchcard_show DT {
+	TEXT-ALIGN: left; PADDING-RIGHT: 15px; FLOAT: left
+}
+#vouchcard_show DD {
+	TEXT-ALIGN: left; LINE-HEIGHT: 30px; WIDTH: 300px; FLOAT: left; HEIGHT: 30px
+}
+#vouchcard_show DD STRONG {
+	COLOR: #333
+}
+#vouchcard_show DD FONT {
+	COLOR: #ff5500; FONT-SIZE: 12px; FONT-WEIGHT: bold
+}
+#vouchcard_show UL {
+	TEXT-ALIGN: left; PADDING-LEFT: 60px
+}
+#ware_show {
+	BORDER-BOTTOM: #ffe2aa 1px solid; BORDER-LEFT: #ffe2aa 1px solid; PADDING-BOTTOM: 24px; BACKGROUND-COLOR: #fdfbef; MARGIN-TOP: 0px; PADDING-LEFT: 10px; WIDTH: 683px; PADDING-RIGHT: 10px; MARGIN-BOTTOM: 2px; OVERFLOW: hidden; BORDER-TOP: #ffe2aa 1px solid; BORDER-RIGHT: #ffe2aa 1px solid; PADDING-TOP: 10px
+}
+#ware_show_span {
+	LINE-HEIGHT: 20px; WIDTH: 675px; PADDING-RIGHT: 10px; HEIGHT: 20px
+}
+#ware_show_span * {
+	FLOAT: right
+}
+#ware_show DL {
+	PADDING-LEFT: 40px; WIDTH: 600px
+}
+#ware_show DT {
+	TEXT-ALIGN: left; PADDING-RIGHT: 5px; FLOAT: left
+}
+#ware_show DD {
+	TEXT-ALIGN: left; LINE-HEIGHT: 27px; MARGIN-TOP: -1px; WIDTH: 400px; FLOAT: left
+}
+#ware_show DD STRONG {
+	COLOR: #333
+}
+#ware_show DD FONT {
+	COLOR: #ff5500; FONT-SIZE: 12px; FONT-WEIGHT: bold
+}
+#ware_show UL {
+	TEXT-ALIGN: left; PADDING-LEFT: 60px
+}
+#choose_pay_style_bar {
+	WIDTH: 705px; MARGIN-BOTTOM: 15px; BACKGROUND: url(../images/pay/vouch_07.jpg) repeat-x; HEIGHT: 30px; COLOR: #006edc
+}
+#choose_pay_style_bar UL {
+	LINE-HEIGHT: 30px; MARGIN-LEFT: 50px
+}
+#choose_pay_style_bar UL LI {
+	WIDTH: 81px; FLOAT: left; HEIGHT: 30px; CURSOR: pointer; FONT-WEIGHT: bold; MARGIN-RIGHT: 10px
+}
+#choose_pay_style_con {
+	TEXT-ALIGN: left; LINE-HEIGHT: 36px
+}
+#vouch_h3 {
+	TEXT-ALIGN: left; LINE-HEIGHT: 48px; HEIGHT: 48px; COLOR: #333; FONT-SIZE: 14px; FONT-WEIGHT: bold; PADDING-TOP: 5px
+}
+#maincon_r HR {
+	BORDER-BOTTOM-STYLE: none; BORDER-LEFT-STYLE: none; HEIGHT: 1px; BORDER-RIGHT-STYLE: none; BORDER-TOP: #ccc 1px dashed
+}
+#choose_pay_style_con STRONG {
+	COLOR: #333
+}
+#choose_pay_style_con LABEL {
+	TEXT-ALIGN: left; LINE-HEIGHT: 48px; WIDTH: 170px; FLOAT: left; HEIGHT: 48px
+}
+#choose_pay_style_con LABEL * {
+	vertical_align: middle
+}
+.pay_style_zone0 {
+	TEXT-ALIGN: center; MARGIN: 0px auto; WIDTH: 640px
+}
+.pay_style_zone1 {
+	TEXT-ALIGN: center; MARGIN: 0px auto; WIDTH: 300px
+}
+.pay_style_zone0 UL {
+	MARGIN-TOP: 10px
+}
+.pay_style_zone1 UL {
+	MARGIN-TOP: 10px
+}
+.pay_style_zone2 UL {
+	MARGIN-TOP: 10px
+}
+#vouch_pay_ul0 {
+	PADDING-LEFT: 100px
+}
+#vouch_pay_ul0 LI {
+	TEXT-ALIGN: left; WIDTH: 90px; DISPLAY: inline; FLOAT: left; MARGIN-LEFT: 10px
+}
+#vouch_pay_ul1 LI {
+	TEXT-ALIGN: left; WIDTH: 120px; DISPLAY: inline; FLOAT: left; MARGIN-LEFT: 10px
+}
+#vouch_other_pay_ul0 LI {
+	TEXT-ALIGN: left; MARGIN-TOP: 10px; DISPLAY: inline; FLOAT: left; MARGIN-RIGHT: 20px
+}
+.pay_style_btn0 {
+	PADDING-LEFT: 20px; BACKGROUND: url(../images/pay/application_add.png) no-repeat left 50%
+}
+#vouch_pay_ul0 LI.pay_style_btn0 {
+	WIDTH: 180px
+}
+.pay_style_btn1 {
+	PADDING-LEFT: 20px; BACKGROUND: url(../images/pay/vouch_58.jpg) no-repeat left 50%
+}
+.pay_style_btn2 {
+	PADDING-LEFT: 20px; BACKGROUND: url(../images/pay/vouch_61.jpg) no-repeat left 50%
+}
+#vouch_pay_ul0 LI.pay_style_btn1 {
+	WIDTH: 125px
+}
+#vouch_pay_ul0 LI.pay_style_btn2 {
+	WIDTH: 105px
+}
+#con1 {
+	LINE-HEIGHT: 24px
+}
+#con1 H3 {
+	TEXT-ALIGN: left; LINE-HEIGHT: 36px; HEIGHT: 36px; COLOR: #333; FONT-SIZE: 14px; FONT-WEIGHT: bold
+}
+#con2 {
+	BACKGROUND: url(../images/pay/mail_03.jpg) no-repeat right top
+}
+.pay_style_bar_out {
+	BACKGROUND: none transparent scroll repeat 0% 0%; COLOR: #006edc
+}
+.pay_style_bar_on {
+	BACKGROUND: url(../images/pay/vouch_09.jpg) no-repeat; COLOR: #ff5500
+}
+.pay_style_uesrname {
+	BORDER-BOTTOM: #afaeb2 1px solid; BORDER-LEFT: #afaeb2 1px solid; LINE-HEIGHT: 22px; WIDTH: 134px; BACKGROUND: url(../images/pay/input_bg_03.jpg) repeat-x; IME-MODE: disabled; HEIGHT: 22px; BORDER-TOP: #afaeb2 1px solid; BORDER-RIGHT: #afaeb2 1px solid
+}
+#con0 FONT {
+	COLOR: #fd4a07; FONT-SIZE: 12px; FONT-WEIGHT: bold
+}
+#con2 FONT {
+	COLOR: #fd4a07; FONT-SIZE: 12px; FONT-WEIGHT: bold
+}
+#con3 FONT {
+	COLOR: #fd4a07; FONT-SIZE: 12px; FONT-WEIGHT: bold
+}
+LABEL * {
+	VERTICAL-ALIGN: middle
+}
+.vouch_center_dd {
+	PADDING-BOTTOM: 30px
+}
+.vouch_center_dd DD {
+	LINE-HEIGHT: 23px; MARGIN-BOTTOM: 0px
+}
+.vouch_center_dd LI {
+	PADDING-RIGHT: 5px; FLOAT: left
+}
+#pay_cash_style {
+	BORDER-BOTTOM: #ffe2aa 1px solid; TEXT-ALIGN: left; BORDER-LEFT: #ffe2aa 1px solid; PADDING-BOTTOM: 10px; MARGIN-TOP: 12px; WIDTH: 703px; BACKGROUND: url(../images/pay/paycash_bg.jpg) repeat-y; OVERFLOW: hidden; BORDER-TOP: #ffe2aa 1px solid; BORDER-RIGHT: #ffe2aa 1px solid
+}
+#pay_cash_style FONT {
+	COLOR: #ff5500; FONT-SIZE: 14px
+}
+#pay_cash_style DL {
+	MARGIN-TOP: 8px; PADDING-LEFT: 5px; WIDTH: 595px; HEIGHT: 24px
+}
+#pay_cash_style DD {
+	PADDING-LEFT: 2px
+}
+#pay_cash_style INPUT {
+	BORDER-BOTTOM: #6e706f 1px solid; BORDER-LEFT: #6e706f 1px solid; LINE-HEIGHT: 29px; WIDTH: 132px; HEIGHT: 29px; FONT-SIZE: 16px; BORDER-TOP: #6e706f 1px solid; BORDER-RIGHT: #6e706f 1px solid
+}
+#other_pay_tips {
+	TEXT-ALIGN: left
+}
+#other_pay_tips FONT {
+	COLOR: #ff5500; FONT-SIZE: 12px
+}
+#other_pay_cash_help {
+	BORDER-BOTTOM: #fdaf91 1px solid; TEXT-ALIGN: left; BORDER-LEFT: #fdaf91 1px solid; PADDING-LEFT: 14px; WIDTH: 684px; BACKGROUND: url(../images/pay/lingdang.jpg) #fffcdb no-repeat 12px 9px; HEIGHT: 31px; BORDER-TOP: #fdaf91 1px solid; BORDER-RIGHT: #fdaf91 1px solid; PADDING-TOP: 4px
+}
+#other_pay_cash_help FONT {
+	PADDING-LEFT: 16px; COLOR: #75210d; FONT-SIZE: 12px
+}
+#other_pay_cash_help SPAN {
+	COLOR: #75210d; FONT-SIZE: 12px
+}
+#other_style_notice {
+	TEXT-ALIGN: left
+}
+#other_style_notice FONT {
+	COLOR: #ff5500; FONT-SIZE: 12px
+}
+#maincon_r H3#vouch_other_h3 {
+	TEXT-ALIGN: left; LINE-HEIGHT: 28px; MARGIN-TOP: 18px; HEIGHT: 28px; COLOR: #333; FONT-SIZE: 12px; FONT-WEIGHT: bold
+}
+.zhichong_show STRONG {
+	COLOR: #333; FONT-SIZE: 14px; FONT-WEIGHT: normal
+}
+.zhichong_show DD {
+	PADDING-LEFT: 20px
+}
+.zhichong_show INPUT {
+	BORDER-BOTTOM: #6e706f 1px solid; BORDER-LEFT: #6e706f 1px solid; LINE-HEIGHT: 29px; WIDTH: 132px; HEIGHT: 29px; FONT-SIZE: 16px; BORDER-TOP: #6e706f 1px solid; BORDER-RIGHT: #6e706f 1px solid
+}
+#vouchcard_show DD FONT.zhichong_show_font {
+	FONT-WEIGHT: normal
+}
+#time_intro {
+	TEXT-ALIGN: center; PADDING-BOTTOM: 0px; LINE-HEIGHT: 28px; MARGIN: 0px auto; PADDING-LEFT: 60px; WIDTH: 585px; PADDING-RIGHT: 60px; BACKGROUND: url(../images/pay/vouch_03.jpg) repeat-y; PADDING-TOP: 0px
+}
+#time_intro DIV {
+	TEXT-ALIGN: left
+}
+#time_intro H3 {
+	LINE-HEIGHT: 28px; HEIGHT: 28px; COLOR: #333; FONT-WEIGHT: bold
+}
+#time_intro H4 {
+	LINE-HEIGHT: 28px; HEIGHT: 28px; COLOR: #333; FONT-SIZE: 14px; FONT-WEIGHT: bold
+}
+#time_intro FONT {
+	COLOR: #fd4a07; FONT-SIZE: 12px; FONT-WEIGHT: bold
+}
+#time_intro INPUT {
+	WIDTH: 147px; HEIGHT: 20px
+}
+#time_intro INPUT.receiveaddress {
+	WIDTH: 300px; HEIGHT: 20px
+}
+#time_intro_other {
+	BORDER-BOTTOM: #ffe2aa 1px solid; TEXT-ALIGN: center; BORDER-LEFT: #ffe2aa 1px solid; PADDING-BOTTOM: 0px; LINE-HEIGHT: 28px; BACKGROUND-COLOR: #fdfbef; MARGIN: -8px auto 0px; PADDING-LEFT: 60px; WIDTH: 583px; PADDING-RIGHT: 60px; BORDER-TOP: #ffe2aa 0px solid; BORDER-RIGHT: #ffe2aa 1px solid; PADDING-TOP: 0px
+}
+#time_intro_other DIV {
+	TEXT-ALIGN: left
+}
+#time_intro_other H3 {
+	LINE-HEIGHT: 28px; HEIGHT: 28px; COLOR: #333; FONT-WEIGHT: bold
+}
+#time_intro_other H4 {
+	LINE-HEIGHT: 28px; HEIGHT: 28px; COLOR: #333; FONT-SIZE: 14px; FONT-WEIGHT: bold
+}
+#time_intro_other FONT {
+	COLOR: #fd4a07; FONT-SIZE: 12px; FONT-WEIGHT: bold
+}
+#time_intro_other INPUT {
+	WIDTH: 147px; HEIGHT: 20px
+}
+#time_intro_other INPUT.receiveaddress {
+	WIDTH: 300px; HEIGHT: 20px
+}
+.top_banner_on3 {
+	BACKGROUND: url(../images/header_02.jpg) no-repeat
+}
+#top_banner_c UL LI.top_banner_on3 A:link {
+	COLOR: #048adf
+}
+#top_banner_c UL LI.top_banner_on3 A:visited {
+	COLOR: #048adf
+}
+#time_intro TABLE TD {
+	TEXT-ALIGN: left; LINE-HEIGHT: 38px; PADDING-LEFT: 20px; HEIGHT: 38px
+}
+#time_intro TABLE TD.firtr {
+	LINE-HEIGHT: 25px; BACKGROUND: #d5ecfe; HEIGHT: 25px
+}
+#time_intro TABLE TD STRONG {
+	COLOR: #333; FONT-WEIGHT: bold
+}
+#time_intro INPUT#selectGift {
+	WIDTH: 25px
+}
+#time_intro INPUT.nextstep {
+	WIDTH: 110px; HEIGHT: 30px
+}
+#pay_300 {
+	FONT-WEIGHT: bold
+}
+#topcenter_help IMG {
+	FILTER: gray; PADDING-LEFT: 10px; PADDING-RIGHT: 10px
+}
+#package_list UL {
+	PADDING-BOTTOM: 1px; _padding-bottom: 4px
+}
+#package_list UL LI {
+	WIDTH: 202px; HEIGHT: 61px; OVERFLOW: hidden
+}
+#package_list A {
+	WIDTH: 202px; DISPLAY: block; HEIGHT: 60px
+}
+#package_list #sale_1_link A {
+	BACKGROUND-IMAGE: url(../images/pay/sale1/sale_logo.jpg)
+}
+#package_list #sale_1_link A:hover {
+	BACKGROUND-IMAGE: url(../images/pay/sale1/sale_logo.jpg); BACKGROUND-POSITION: 100% 0%
+}
+#package_list #sale_2_link A {
+	BACKGROUND-IMAGE: url(../images/pay/sale2/sale_logo.jpg)
+}
+#package_list #sale_2_link A:hover {
+	BACKGROUND-IMAGE: url(../images/pay/sale2/sale_logo.jpg); BACKGROUND-POSITION: 100% 0%
+}
+#package_list #sale_3_link A {
+	BACKGROUND-IMAGE: url(../images/pay/sale3/sale_logo.jpg)
+}
+#package_list #sale_3_link A:hover {
+	BACKGROUND-IMAGE: url(../images/pay/sale3/sale_logo.jpg); BACKGROUND-POSITION: 100% 0%
+}
+#package_list #sale_4_link A {
+	BACKGROUND-IMAGE: url(../images/pay/sale4/sale_logo.jpg)
+}
+#package_list #sale_4_link A:hover {
+	BACKGROUND-IMAGE: url(../images/pay/sale4/sale_logo.jpg); BACKGROUND-POSITION: 100% 0%
+}
+#package_list #sale_5_link A {
+	BACKGROUND-IMAGE: url(../images/pay/sale5/sale_logo.jpg)
+}
+#package_list #sale_5_link A:hover {
+	BACKGROUND-IMAGE: url(../images/pay/sale5/sale_logo.jpg); BACKGROUND-POSITION: 100% 0%
+}
+#package_list #sale_101_link A {
+	BACKGROUND-IMAGE: url(../images/pay/sale101/sale_logo.jpg)
+}
+#package_list #sale_101_link A:hover {
+	BACKGROUND-IMAGE: url(../images/pay/sale101/sale_logo.jpg); BACKGROUND-POSITION: 100% 0%
+}
+#package_list #sale_102_link A {
+	BACKGROUND-IMAGE: url(../images/pay/sale102/sale_logo.jpg)
+}
+#package_list #sale_102_link A:hover {
+	BACKGROUND-IMAGE: url(../images/pay/sale102/sale_logo.jpg); BACKGROUND-POSITION: 100% 0%
+}
+#package_list #sale_103_link A {
+	BACKGROUND-IMAGE: url(../images/pay/sale103/sale_logo.jpg)
+}
+#package_list #sale_103_link A:hover {
+	BACKGROUND-IMAGE: url(../images/pay/sale103/sale_logo.jpg); BACKGROUND-POSITION: 100% 0%
+}
+#pay_new_taocan_dl {
+	MARGIN: 0px
+}
+#pay_new_taocan_dl DT {
+	PADDING-TOP: 5px
+}
+#pay_new_taocan_dl DD {
+	MARGIN: 0px; HEIGHT: 27px
+}
+#pay_new_taocan_dl DD FONT {
+	MARGIN-TOP: -4px; FONT-SIZE: 14px
+}
+#pay_new_taocan_dl SPAN {
+	LINE-HEIGHT: 20px; FLOAT: none; HEIGHT: auto
+}
+#paylistId LI {
+	LIST-STYLE-POSITION: inside; LIST-STYLE-TYPE: decimal; PADDING-LEFT: 5px
+}
+.biz_rule {
+	TEXT-ALIGN: left; PADDING-BOTTOM: 10px; MARGIN-LEFT: 24px
+}
+.biz_rule LI {
+	LIST-STYLE-TYPE: decimal
+}
+#ware_biz_rule {
+	MARGIN-TOP: 10px; PADDING-RIGHT: 30px; MARGIN-BOTTOM: -10px; MARGIN-LEFT: 40px; PADDING-TOP: 7px
+}
+H4 {
+	TEXT-ALIGN: left; LINE-HEIGHT: 28px; HEIGHT: 28px; COLOR: #333; FONT-SIZE: 14px; FONT-WEIGHT: bold
+}
+.other_pay_amount {
+	PADDING-BOTTOM: 20px; WIDTH: 340px !important
+}
+.other_pay_amount STRONG {
+	COLOR: #ff5500; MARGIN-LEFT: 10px; FONT-SIZE: 14px
+}
+#quickpay {
+	BORDER-BOTTOM: #e1f2fc 1px solid; BORDER-LEFT: #e1f2fc 1px solid; PADDING-BOTTOM: 2px; BACKGROUND-COLOR: #fff; PADDING-LEFT: 2px; WIDTH: 707px; PADDING-RIGHT: 2px; BORDER-TOP: #e1f2fc 1px solid; BORDER-RIGHT: #e1f2fc 1px solid; PADDING-TOP: 2px
+}
+.quickpay_form {
+	MARGIN-RIGHT: 0px !important
+}
+#quickpay #inner {
+	BACKGROUND-COLOR: #e1f2fc; HEIGHT: 44px
+}
+#quickpay SELECT {
+	WIDTH: 130px; FONT: 12px/18px "Arial"; HEIGHT: 22px; COLOR: #666
+}
+#quickpay #inner #logo {
+	TEXT-ALIGN: left; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; DISPLAY: inline-block; PADDING-TOP: 0px
+}
+#quickpay #inner #amount {
+	TEXT-ALIGN: left; PADDING-BOTTOM: 0px; PADDING-LEFT: 30px; PADDING-RIGHT: 0px; DISPLAY: inline-block; FLOAT: left; PADDING-TOP: 10px
+}
+#quickpay #inner #type {
+	TEXT-ALIGN: left; PADDING-BOTTOM: 0px; PADDING-LEFT: 30px; PADDING-RIGHT: 0px; DISPLAY: inline-block; FLOAT: left; PADDING-TOP: 10px
+}
+#quickpay #inner #pay {
+	TEXT-ALIGN: left; PADDING-BOTTOM: 0px; PADDING-LEFT: 30px; PADDING-RIGHT: 0px; DISPLAY: inline-block; FLOAT: left; PADDING-TOP: 6px
+}
+#ware_update {
+	BORDER-BOTTOM: #fddcbd 1px solid; BORDER-LEFT: #fddcbd 1px solid; PADDING-BOTTOM: 24px; BACKGROUND-COLOR: #fcfae1; PADDING-LEFT: 40px; WIDTH: 650px; PADDING-RIGHT: 10px; FLOAT: left; OVERFLOW: hidden; BORDER-TOP: #fddcbd 1px solid; BORDER-RIGHT: #fddcbd 1px solid; PADDING-TOP: 10px
+}
+#ware_update .title {
+	COLOR: #323031; FONT-WEIGHT: bold
+}
+#ware_update .content {
+	COLOR: #686367
+}
+#ware_update .top {
+	MARGIN-TOP: 15px
+}
+#ware_update .tip {
+	MARGIN-LEFT: 95px
+}
+#ware_update .cash {
+	COLOR: #ff5301; FONT-SIZE: 18px; FONT-WEIGHT: bold
+}
+#ware_update_suc {
+	BORDER-BOTTOM: #fddcbd 1px solid; BORDER-LEFT: #fddcbd 1px solid; PADDING-BOTTOM: 24px; BACKGROUND-COLOR: #fcfae1; PADDING-LEFT: 40px; WIDTH: 560px; PADDING-RIGHT: 40px; FLOAT: left; OVERFLOW: hidden; BORDER-TOP: #fddcbd 1px solid; BORDER-RIGHT: #fddcbd 1px solid; PADDING-TOP: 10px
+}
+#ware_update_suc .title {
+	TEXT-ALIGN: center; MARGIN-TOP: 20px; COLOR: #fd4b05; FONT-SIZE: 20px; FONT-WEIGHT: bold
+}
+#ware_update_suc .title_font {
+	PADDING-BOTTOM: 0px; PADDING-LEFT: 45px; PADDING-RIGHT: 0px; DISPLAY: inline-block; BACKGROUND: url(../images/msg_bg_2.png) no-repeat 0px 0px; HEIGHT: 31px; PADDING-TOP: 3px
+}
+#ware_update_suc .content {
+	MARGIN-TOP: 30px; COLOR: #353430
+}
+.ckbox {
+	POSITION: absolute; WIDTH: 255px; DISPLAY: none; HEIGHT: 108px; LEFT: 620px
+}
+.ckbox H5 {
+	MARGIN: 0px; BACKGROUND: url(../images/hp_ico_2.gif) repeat-x left bottom; HEIGHT: 15px; OVERFLOW: hidden
+}
+.ckbox H5 SPAN {
+	TEXT-ALIGN: left; MARGIN-TOP: 6px; DISPLAY: block; BACKGROUND: url(../images/hp_ico_1.gif) no-repeat; HEIGHT: 9px; MARGIN-LEFT: 100px; OVERFLOW: hidden
+}
+.box0-cont {
+	BORDER-BOTTOM: #f16f1b 1px solid; TEXT-ALIGN: left; BORDER-LEFT: #f16f1b 1px solid; PADDING-BOTTOM: 9px; LINE-HEIGHT: 20px; BACKGROUND-COLOR: #f8f9c0; PADDING-LEFT: 9px; WIDTH: 235px; PADDING-RIGHT: 9px; OVERFLOW: hidden; BORDER-TOP: #f16f1b 1px; BORDER-RIGHT: #f16f1b 1px solid; PADDING-TOP: 9px
+}
+.box0-cont STRONG {
+	COLOR: #000; FONT-WEIGHT: normal
+}

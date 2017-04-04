@@ -1,0 +1,251 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="css/mainstyle.css"/>
+<title>无标题文档</title>
+<script>
+	//所有input 去空格
+	function trim_all_input()
+	{
+		var inpus = document.getElementsByTagName("INPUT")
+        for(var i=0; i<inpus.length; i++)
+        {
+            if(inpus[i].type=="text")
+            {
+               inpus[i].value =  inpus[i].value.replace(/\s/g,"");
+            }
+        }
+		
+	}
+	
+	// 提交前检测输入是否合法
+	function check()
+	{
+		trim_all_input(); //所有input 去空格
+			
+		if (document.form1.name.value==""  )
+		{
+			document.getElementById("userTip").innerHTML="<div align='center'><span class='STYLE4'><font color=red>请输入正确呼出路由名称</font></span></div>";
+      		document.form1.name.focus();
+			return false;
+			
+		}		
+		if (document.form1.prefix.value==""  )
+		{
+			document.getElementById("userTip").innerHTML="<div align='center'><span class='STYLE4'><font color=red>请输入正确拨号前缀</font></span></div>";
+      		document.form1.prefix.focus();
+			return false;
+			
+		}			
+		
+		if (document.form1.rateprice.value==""  )
+		{
+			document.getElementById("userTip").innerHTML="<div align='center'><span class='STYLE4'><font color=red>请输入正确路由成本价格</font></span></div>";
+      		document.form1.rateprice.focus();
+			return false;
+			
+		}			
+				
+		
+		if (document.form1.payunitsecond.value==""  )
+		{
+			document.getElementById("userTip").innerHTML="<div align='center'><span class='STYLE4'><font color=red>请输入正确路由成本单位</font></span></div>";
+      		document.form1.payunitsecond.focus();
+			return false;
+			
+		}			
+				
+				
+		return true;
+
+	}
+
+	function goback(curpage,gatewaygroupid,old_curpage)
+	{
+		var gotourl = '?action=list&curpage='+curpage+'&gatewaygroupid='+gatewaygroupid+'&old_curpage='+old_curpage; 
+		//alert(gotourl);
+	    document.form2.action = gotourl;
+		document.form2.submit();
+	}
+
+
+    </script>
+
+<body>
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="24" bgcolor="#353c44"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="2%" height="19" valign="bottom"><div align="center"><img src="images/tb.gif" width="14" height="14" /></div></td>
+                <td width="98%" valign="bottom"><span class="table_caption"> <% if $action eq 'edit_post' %> 修改呼出路由 <% elseif $action eq 'add_post' %> 新增呼出路由<%else%>呼出路由管理<%/if%></span></td>
+              </tr>
+            </table></td>
+            <td><div align="right"><span class="STYLE1">
+              </span></div></td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+  <form name="form2" method="post" >
+  </form>
+  
+<form name="form1" method="post" action="?action=<% $action %>&id=<% $gatewaypolicy.decode_id %>&curpage=<% $curpage %>&old_curpage=<% $old_curpage %>&gatewaygroupid=<% $gatewaygroupid %>">
+  <tr>
+    <td><table width="724" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">
+     
+        <tr>
+            <td height="18" colspan="3" bgcolor="#FFFFFF">&nbsp;
+            </td>
+            </tr>
+          <tr>
+            <td width="38%" height="18" align="right" bgcolor="#FFFFFF"><span   class="STYLE1" >路由名称</span></td>
+            <td width="31%" height="18" bgcolor="#FFFFFF">
+    
+              <span class="STYLE7">
+                <input name="name" type="text" class="STYLE1" style="height:18px; width:125px;" size="30"  value='<% $gatewaypolicy.name %>' />
+                </span>
+            </td>
+            <td width="31%" height="18" align="right" bgcolor="#FFFFFF">&nbsp;</td>
+            </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span class="STYLE4">是否启用</span></td>
+            <td height="18" bgcolor="#FFFFFF"><select name="enable" >
+             <option value="1"  <% if $gatewaypolicy.enable eq '1'  %>selected<% /if %> >是</option>
+             <option value="0"  <% if $gatewaypolicy.enable eq '0'  %>selected<% /if %> >否 </option>
+            </select></td>
+            <td height="18" align="right" bgcolor="#FFFFFF">&nbsp;</td>
+          </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span   class="STYLE1" >呼出落地</span></td>
+            <td height="18" bgcolor="#FFFFFF">
+              <select name="gatewayid" class="STYLE7" id="gatewayid" >
+                 <%foreach from=$gateways item=eachone key=keyname %>
+                    <option  value="<% $eachone.id %>" <% if $eachone.id eq $gatewaypolicy.gatewayid %>selected<%/if%> > <% $eachone.trunkname %> [<% $eachone.tech %> - <% $eachone.trunkprototype %>] </option>
+                  <%/foreach%>
+              </select>
+           </td>
+            <td height="18" align="right" bgcolor="#FFFFFF">&nbsp;</td>
+            </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span class="STYLE1">拨号前缀</span></td>
+            <td height="18" bgcolor="#FFFFFF"><label for="trunkname"><span class="STYLE7">
+              <input name="prefix" type="text" class="STYLE1" style="height:18px; width:125px;" size="30"  value='<% $gatewaypolicy.prefix %>' />
+            </span></label></td>
+            <td height="18" align="right" bgcolor="#FFFFFF">&nbsp;</td>
+            </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span class="STYLE1">主叫号码</span></td>
+            <td height="18" bgcolor="#FFFFFF"><select name="callergroup" class="STYLE7" id="callergroup" >
+              <option  value="-1" <% if  $gatewaypolicy.callergroup eq '-1' %>selected<%/if%>> ---不启用--- </option>
+                  <%foreach from=$callergroups item=eachone key=keyname %>
+              <option  value="<% $eachone.id %>" <% if $eachone.id eq $gatewaypolicy.callergroup %>selected<%/if%> >
+                <% $eachone.callergroup_name %>
+                </option>
+              <%/foreach%>
+            </select></td>
+            <td height="18" align="right" bgcolor="#FFFFFF">&nbsp;</td>
+          </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span class="STYLE1">主叫替换规则</span></td>
+            <td height="18" colspan="2" bgcolor="#FFFFFF"><span class="STYLE7">
+              <input name="caller_prexrule" type="text" class="STYLE1" style="height:18px; width:400px;" size="30"  value='<% $gatewaypolicy.caller_prexrule %>' />
+            </span></td>
+            </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span   class="STYLE1" >被叫替换规则</span></td>
+            <td height="18" colspan="2" bgcolor="#FFFFFF">
+              <span class="STYLE7">
+                <input name="callee_prexrule" type="text" class="STYLE1" style="height:18px; width:400px;" size="30"  value='<% $gatewaypolicy.callee_prexrule %>' />
+              </span></td>
+            </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF">&nbsp;</td>
+            <td height="18" colspan="2" bgcolor="#FFFFFF"><span class="STYLE4">例如1替换为01 填写1&gt;01 多个用;分割</span></td>
+          </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span   class="STYLE1" >优先级</span></td>
+            <td height="18" bgcolor="#FFFFFF">
+              <select name="priority" class="STYLE7" id="gatewayid" >
+                 <%foreach from=$prioritys item=eachone key=keyname %>
+                 <option  value="<% $eachone.id %>" <% if $eachone.id eq $gatewaypolicy.priority %> selected <%/if%> ><% $eachone.value %></option>
+                <%/foreach%>
+              </select>
+             </td>
+            <td height="18" align="right" bgcolor="#FFFFFF">&nbsp;</td>
+            </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span   class="STYLE1" >最终路由</span></td>
+            <td height="18" bgcolor="#FFFFFF"><span class="STYLE1">
+              <input name="routestop" type="checkbox" class="STYLE2" <% if $gatewaypolicy.routestop eq '1' %>checked <%/if%> />
+            </span></td>
+            <td height="18" align="right" bgcolor="#FFFFFF">&nbsp;</td>
+            </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span   class="STYLE1" >开启时段</span></td>
+            <td height="18" bgcolor="#FFFFFF">
+              <select name="hour_begin" class="STYLE7" id="hour_begin" >
+                <%foreach from=$hours item=eachone key=keyname %>
+                <option  value="<% $eachone.id %>" <% if $eachone.id eq $gatewaypolicy.hour_begin %>selected<%/if%> >
+                  <% $eachone.value %>
+                  </option>
+                <%/foreach%>
+              </select>
+              <span class="STYLE1">点</span>   <span class="STYLE1">到
+              <select name="hour_end" class="STYLE7" id="hour_end" >
+                <%foreach from=$hours item=eachone key=keyname %>
+                <option  value="<% $eachone.id %>" <% if $eachone.id eq $gatewaypolicy.hour_end %>selected<%/if%> >
+                  <% $eachone.value %>
+                  </option>
+                <%/foreach%>
+              </select>
+              点</span></td>
+            <td height="18" align="right" bgcolor="#FFFFFF">&nbsp;</td>
+            </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span   class="STYLE1" >路由成本</span></td>
+            <td height="18" bgcolor="#FFFFFF">
+              <span class="STYLE7">
+                <input name="rateprice" type="text" class="STYLE1" style="height:18px; width:60px;" size="30" value='<% $gatewaypolicy.rateprice|string_format:"%.4f" %>' />
+                <span class="STYLE1">元/
+                <input name="payunitsecond" type="text" class="STYLE1" style="height:18px; width:60px;" size="30" value='<% $gatewaypolicy.payunitsecond %>' />秒</span></span></td>
+            <td height="18" align="right" bgcolor="#FFFFFF">&nbsp;</td>
+            </tr>
+  
+  
+          <tr>
+            <td id="userTip" height="18" colspan="3" align="right" bgcolor="#FFFFFF"></td>
+            </tr>
+          <tr>
+            <td height="18" colspan="3" align="center" bgcolor="#FFFFFF">
+              
+              <input type="submit"  class="STYLE1"   name="submitbtn" id="submitbtn"   onClick="return check()" value=" 确认提交 ">
+              <input  type="button"  class="STYLE1"   name="backbutton" id="button"   onClick="goback('<% $curpage %>','<% $gatewaygroupid %>','<% $old_curpage %>')" value=" 取消返回 ">
+              </td>
+            </tr>
+ 
+    </table></td>
+  </tr>
+  </form>
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+       
+        <td width="67%"><table width="312" border="0" align="right" cellpadding="0" cellspacing="0">
+          <tr>
+
+            <td width="35">&nbsp;</td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+<p class="STYLE19">&nbsp;</p>
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="css/mainstyle.css"/>
+	<link rel="stylesheet" href="./css/themes/base/jquery.ui.all.css">
+	<script src="./js/jquery-1.6.2.min.js"></script>
+	<script src="./js/external/jquery.bgiframe-2.1.2.js"></script>
+	<script src="./js/ui/jquery.ui.core.js"></script>
+	<script src="./js/ui/jquery.ui.widget.js"></script>
+	<script src="./js/ui/jquery.ui.mouse.js"></script>
+	<script src="./js/ui/jquery.ui.button.js"></script>
+	<script src="./js/ui/jquery.ui.draggable.js"></script>
+	<script src="./js/ui/jquery.ui.position.js"></script>
+	<script src="./js/ui/jquery.ui.resizable.js"></script>
+	<script src="./js/ui/jquery.ui.dialog.js"></script>
+  <script src="./js/ui/jquery.ui.datepicker.js"></script>
+  <script src="./js/ui/i18n/jquery.ui.datepicker-zh-CN.js"></script>
+  <link rel="stylesheet" href="./css/demos.css">
+    
+    
+<title>导入用户帐号</title>
+<script>
+
+	
+	//所有input 去空格
+	function trim_all_input()
+	{
+		var inpus = document.getElementsByTagName("INPUT")
+        for(var i=0; i<inpus.length; i++)
+        {
+            if(inpus[i].type=="text")
+            {
+               inpus[i].value =  inpus[i].value.replace(/\s/g,"");
+            }
+        }
+		
+	}
+	
+	// 提交前检测输入是否合法
+	function check()
+	{
+		trim_all_input(); //所有input 去空格
+
+        if (document.form1.src.value==""  )
+		{
+			document.getElementById("userTip").innerHTML="<div align='center'><span class='STYLE4'><font color=red>请选择上传的文件</font></span></div>";
+      		document.form1.src.focus();
+			return false;
+		}				
+		
+	
+	    return true;
+		//return true;
+
+	}
+
+	function goback(curpage,agent_id)
+	{
+	    document.form1.action = '?action=list&curpage='+curpage +'&agent_id=' + agent_id;
+		document.form1.submit();
+	}
+	
+function  change_acct_id(acct_id,curpage)
+{
+    document.form1.action = '?action=add_send&curpage='+curpage+'&agent_id='+acct_id; 
+	//alert(document.form1.action);
+	document.form1.submit(); 
+	return true;		 
+	
+}
+    </script>
+
+<body>
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="24" bgcolor="#353c44"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="2%" height="19" valign="bottom"><div align="center"><img src="images/tb.gif" width="14" height="14" /></div></td>
+                <td width="98%" valign="bottom"><span class="STYLE10"> 导入用户帐号</span></td>
+              </tr>
+            </table></td>
+            <td><div align="right"><span class="STYLE1">
+              </span></div></td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+  
+  <form enctype="multipart/form-data" method="post" name="form1" action="?action=<% $action %>&curpage=<% $curpage %>" target="_self">
+  <tr>
+    <td><table width="998" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">
+      <tr>
+            <td height="18" colspan="2" bgcolor="#FFFFFF">&nbsp;            </td>
+            </tr>
+          <tr>
+            <td height="19" colspan="2" align="right" bgcolor="#FFFFFF"><div align="center"><span class="STYLE1">帐号管理者</span><span class="STYLE7">
+              <select name="agent_id" class="STYLE1" id="agent_id" onChange= "change_acct_id(this.value,'<% $curpage %>')" >
+                <%foreach from=$acctchild item=eachone key=keyname %>
+                <option  value="<% $eachone.decode_id %>" <% if $eachone.decode_id eq $agent_id %> selected <%/if%> >
+                  <% $eachone.acctname %>
+                  </option>
+                <%/foreach%>
+              </select>
+              </span> <span class="STYLE4">计费类型:
+                <% if $to_acct.discharge_level eq '1' %>
+                流量
+                <%else%>
+                面值
+                <%/if%>
+                &nbsp;&nbsp;余额:
+                <% $to_acct.balance|string_format:"%.4f" %>
+              </span></div></td>
+          </tr>
+          <tr>
+            <td width="26%" height="19" align="right" bgcolor="#FFFFFF"><span class="STYLE1">回拨费率组</span></td>
+            <td width="74%" bgcolor="#FFFFFF"><span class="STYLE7">
+              <select name="rategroupid_acall" id="rategroupid_acall"  >
+                <%foreach from=$rategroups item=eachone key=keyname %>
+                <option  value="<% $eachone.decode_id %>" <% if $eachone.decode_id eq $user.rategroupid_acall  %> selected <%/if%> >
+                  <% $eachone.rategroupname %>
+                  </option>
+                <%/foreach%>
+                </select>
+              </span></td>
+          </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span class="STYLE1">被叫费率组</span></td>
+            <td bgcolor="#FFFFFF"><span class="STYLE7">
+              <select name="rategroupid" id="rategroupid"  >
+                <%foreach from=$rategroups item=eachone key=keyname %>
+                <option  value="<% $eachone.decode_id %>" <% if $eachone.decode_id eq $user.rategroupid %> selected <%/if%> >
+                  <% $eachone.rategroupname %>
+                  </option>
+                <%/foreach%>
+              </select>
+            </span></td>
+          </tr>
+          <tr>
+            <td height="19" align="right" bgcolor="#FFFFFF"><span class="STYLE1">回铃限制</span></td>
+            <td height="19" bgcolor="#FFFFFF"><span class="STYLE1">
+              <input name="limitbalance"  id="limitbalance" type="text" class="STYLE1" style="height:18px; width:60px;"  value="0" size="30" />
+              元</span></td>
+          </tr>
+          
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF" class="STYLE1">套餐</td>
+            <td height="19" bgcolor="#FFFFFF">  
+            <select size="8"  class="STYLE1"  multiple="multiple" id="ratepackages"  name="ratepackages[]" >
+	            <option value="-1">---------不使用套餐---------</option>
+	            <%foreach from=$ratepackages item=eachone key=keyname %>
+	            <option  value="<% $eachone.id %>" >
+	              <% $eachone.packagename %>
+                </option>
+	            <%/foreach%>
+            </select></td>
+          </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span class="STYLE1">文件</span></td>
+            <td height="19" bgcolor="#FFFFFF"><label for="file"><input name="src" type="file" class="STYLE1" />
+            </label></td>
+          </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF">&nbsp;</td>
+            <td height="19" bgcolor="#FFFFFF"><span class="STYLE4">格式:帐号,密码,余额,有效天数</span>,<span class="STYLE1">绑定电话,绑定QQ</span></td>
+          </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF">&nbsp;</td>
+            <td height="19" bgcolor="#FFFFFF">&nbsp;</td>
+          </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF">&nbsp;</td>
+            <td height="19" bgcolor="#FFFFFF">&nbsp;</td>
+          </tr>
+  
+          <tr>
+            <td id="userTip" height="18" colspan="2" align="right" bgcolor="#FFFFFF"></td>
+            </tr>
+          <tr>
+            <td height="18" colspan="2" align="center" bgcolor="#FFFFFF">
+              
+              <input type="submit"  class="STYLE1"   name="submitbtn" id="submitbtn"   onClick="return check()" value=" 确认提交 ">
+              <input  type="button"  class="STYLE1"   name="backbutton" id="button"   onClick="goback('<% $curpage %>','<% $agent_id %>')" value=" 取消返回 ">              </td>
+            </tr>
+    </table></td>
+  </tr>
+  </form>
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+       
+        <td width="67%"><table width="312" border="0" align="right" cellpadding="0" cellspacing="0">
+          <tr>
+
+            <td width="35">&nbsp;</td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+</body>
+
+
+</html>

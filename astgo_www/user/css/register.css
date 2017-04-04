@@ -1,0 +1,111 @@
+body {
+	width: auto;
+}
+.reg_wrap {
+	background: url("../images/reg/reg_01.gif") repeat-x left top; margin: 0px auto 25px; width: 930px; overflow: hidden; position: relative; zoom: 1;
+}
+.reg_login {
+	top: 13px; right: 20px; position: absolute;
+}
+.reg_wrap h2 {
+	background: url("../images/reg/reg_name.gif") no-repeat 29px 22px; width: 930px; height: 20px; text-align: left; color: rgb(254, 76, 4); text-indent: 12em; padding-top: 22px; clear: both;
+}
+.reg-form {
+	margin: 20px auto 0px; width: 710px; text-align: left; clear: both;
+}
+.reg-form ul li.field {
+	padding: 8px 14px 4px; border: 1px solid rgb(255, 255, 255); width: 710px; height: 46px;
+}
+.reg-form ul li.field .input {
+	width: 300px; float: left;
+}
+.reg-form ul li.code-field .input {
+	width: 400px; height: 40px;
+}
+.reg-form ul li.field .msg {
+	width: 344px; float: left;
+}
+.reg-form ul li.code-field .attention {
+	margin: 5px 0px 0px 5px; width: 204px;
+}
+.reg-form ul li.field .input label {
+	width: 85px; height: 26px; text-align: right; line-height: 26px; font-size: 14px; float: left; display: block;
+}
+.reg-form ul li.field .input label font {
+	color: rgb(255, 106, 3); padding-right: 5px; font-size: 12px;
+}
+.reg-form ul li.field input {
+	background: url("../images/reg/input.gif") 0px 0px rgb(255, 255, 255); padding: 4px; border: 1px solid rgb(167, 166, 170); width: 196px; height: 20px; font-size: 14px;
+}
+.input_other {
+	background: url("../images/reg/input.gif") 0px 0px rgb(255, 255, 255); padding: 4px; border: 1px solid rgb(167, 166, 170); width: 196px; height: 20px; color: rgb(136, 136, 136); font-size: 12px;
+}
+.reg-form ul li.code-field input {
+	width: 85px; margin-right: 7px; vertical-align: top;
+}
+.reg-form ul li.code-field img {
+	vertical-align: middle;
+}
+.confer-field input {
+	vertical-align: middle;
+}
+.reg-form ul li.code-field .input img {
+	border: 1px solid rgb(228, 228, 228); width: 100px; height: 36px;
+}
+.reg-form ul li.code-field {
+	font-family: Tahoma,Helvetica,Arial,"ËÎÌו",sans-serif;
+}
+.reg-form ul li.code-field span {
+	margin-left: 10px;
+}
+.confer-field {
+	font-family: Tahoma,Helvetica,Arial,"ËÎÌו",sans-serif; margin-bottom: 20px;
+}
+.confer-field input {
+	margin-left: 99px;
+}
+.submit-field .input {
+	margin-left: 99px;
+}
+.submit-field button {
+	background: url("../images/reg/reg_sub.gif") no-repeat 0px 0px; border: currentColor; width: 121px; height: 34px;
+}
+.reg-form ul li.hover {
+	border: 1px solid rgb(212, 232, 252); background-color: rgb(244, 252, 254);
+}
+.reg-form li.field .msg p {
+	display: none;
+}
+.reg-form li.field .msg .attention {
+	background: url("../images/reg/msg_bg.png") no-repeat 0px 0px; padding: 2px 10px 2px 23px; border: 1px solid rgb(221, 221, 221); color: rgb(64, 64, 64); line-height: 18px; float: left;
+}
+.reg-form li.field .msg .error {
+	background: url("../images/reg/msg_bg.png") no-repeat 0px 0px; padding: 2px 10px 2px 23px; border: 1px solid rgb(221, 221, 221); color: rgb(64, 64, 64); line-height: 18px; float: left;
+}
+.reg-form li.field .msg p.ok {
+	background: url("../images/reg/msg_bg.png") no-repeat 0px 0px; padding: 2px 10px 2px 23px; border: 1px solid rgb(221, 221, 221); color: rgb(64, 64, 64); line-height: 18px; float: left;
+}
+.reg-form li.field .msg .attention {
+	background-position: 3px -147px; border-color: rgb(64, 179, 255); background-color: rgb(229, 245, 255);
+}
+.reg-form li.field .msg .error {
+	background-position: 3px 3px; border-color: rgb(255, 128, 128); background-color: rgb(255, 242, 242);
+}
+.reg-form li.field input.error {
+	border-color: rgb(255, 128, 128);
+}
+.reg-form li.field .msg p.ok {
+	background-position: 3px -247px; border: currentColor; background-color: transparent;
+}
+.tools {
+	margin-left: 90px; display: block;
+}
+.status-bar {
+	width: 101px; height: 7px; overflow: hidden; margin-right: 5px; display: inline-block; background-color: rgb(182, 192, 194);
+}
+#schedule {
+	width: 33px; height: 7px; overflow: hidden; display: inline-block; background-color: rgb(255, 109, 0);
+}
+#U_CheckCode {
+	border: currentColor;
+}

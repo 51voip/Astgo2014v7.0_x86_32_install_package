@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!-- saved from url=(0039)http://www.AsgoCall.com/u/showUserInfo.do -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><HTML 
+xmlns="http://www.w3.org/1999/xhtml"><HEAD>
+<META content="text/html; charset=utf-8" http-equiv="Content-Type"><TITLE>充值卡充值 - <% $astgoConf.title %></TITLE>
+<META name="keywords" content="网络电话，免费网络电话，免费电话，<% $astgoConf.logname %>，免费打电话">
+<META name="description" content="<% $astgoConf.logname %>是一款用电脑免费打电话的网络电话聊天软件，下载后即可拨打全球任意手机和电话，包月价格更低至0.05元/分钟。全力打造中国网络电话第一品牌，互联网语音通信专家。">
+<LINK rel="stylesheet" type="text/css" href="css/global.css">
+<LINK rel="stylesheet" type="text/css" href="css/account_con.css">
+<SCRIPT type="text/javascript" src="js/base.js"></SCRIPT>
+<SCRIPT type="text/javascript" src="js/form.js"></SCRIPT>
+<% include file="head.html" %>
+<SCRIPT type="text/javascript" src="js/script.js"></SCRIPT>
+<STYLE>
+	#maincon_c_l ul li.account_btn_on7{background:url(images/account/account_con_08.jpg) left no-repeat;}
+	#maincon_c_l ul li.account_btn_on7 a{font-weight:bold;color:#FE4C04;}
+	</STYLE>
+
+    
+<DIV id="maincon">
+<DIV><IMG src="images/account/account_con_03.jpg"></DIV>
+<DIV id="maincon_c">
+<% include file="leftmenu.html" %>
+  
+  
+<SCRIPT type="text/javascript" src="js/script.js"></SCRIPT>
+<SCRIPT type="text/javascript">
+function bindtel_post()
+{
+	//alert(document.form1.action);
+	document.form1.submit();
+	return true;
+	
+}
+</SCRIPT>
+
+<DIV id="maincon_c_r">
+<DIV id="pwd_protect_title">
+<H3>支付宝充值</H3></DIV>
+<P style="display: none;" id="p_step3"></P>
+<DIV id="msg"></DIV>
+<DIV id="step1">
+<DIV class="clear"></DIV>
+<FORM method="post" name="form1" action="?action=alipay_post">
+<TABLE class="getbind_table" border="0" cellSpacing="0" cellPadding="0">
+  <TBODY>
+   <TR>
+    <TD width="105" style="text-align: right;"><STRONG>充值金额：</STRONG></TD>
+    <TD width="220"><INPUT id="balance" class="getback" name="balance" maxLength="10"  type="text" value="">元
+     </TD>
+    <TD width="72">&nbsp;</TD>
+   </TR>
+   <TR>
+    <TD style="text-align: right;"><STRONG>备注：</STRONG></TD>
+    <TD><INPUT id="body" class="getback" name="body" maxLength="20" type="text" value="">
+     </TD>
+    <TD>&nbsp;</TD>
+   </TR>    
+   
+      <TR>
+        <TD style="text-align: right;"><STRONG></STRONG></TD>
+        <TD ><STRONG> <%if $res eq '0' %>充值成功:本次充值:<% $balance|string_format:"%.2f"  %>元<%/if%></STRONG>
+          </TD>
+        <TD>&nbsp;</TD>
+      </TR>    
+     
+   </TBODY>
+ </TABLE>
+<DIV class="clear"></DIV><BR>
+<DIV id="account_vouch_btnzone">
+
+<INPUT style="border: currentColor; width: 107px; height: 31px;" 
+      name="submit" src="images/account/account_vouch_11.jpg" 
+      type="image" onClick="bindtel_post()">
+      
+ </DIV></FORM></DIV>
+
+<BR>
+<HR>
+<BR>
+<STRONG>充值介绍：</STRONG><BR>
+<P>支付宝充值，在线即时付款完成充值。您也可以用我们自己发行的充值卡充值。</P>
+<BR>
+<BR></DIV>
+<DIV class="clear"></DIV></DIV>
+<DIV><IMG src="images/account/account_con_15.jpg"></DIV></DIV>
+
+
+
+
+<% include file="footer.html" %>
+
+
+
+
+</html>

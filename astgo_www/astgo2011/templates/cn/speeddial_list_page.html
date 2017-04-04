@@ -1,0 +1,334 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=5; IE=7" />
+<link rel="stylesheet" type="text/css" href="css/mainstyle.css"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="./css/themes/base/jquery.ui.all.css">
+<script src="./js/jquery-1.6.2.min.js"></script>
+<script src="./js/external/jquery.bgiframe-2.1.2.js"></script>
+<script src="./js/ui/jquery.ui.core.js"></script>
+<script src="./js/ui/jquery.ui.widget.js"></script>
+<script src="./js/ui/jquery.ui.mouse.js"></script>
+<script src="./js/ui/jquery.ui.button.js"></script>
+<script src="./js/ui/jquery.ui.draggable.js"></script>
+<script src="./js/ui/jquery.ui.position.js"></script>
+<script src="./js/ui/jquery.ui.resizable.js"></script>
+<script src="./js/ui/jquery.ui.dialog.js"></script>
+<script src="./js/ui/jquery.ui.datepicker.js"></script>
+<script src="./js/ui/i18n/jquery.ui.datepicker-zh-CN.js"></script>
+<link rel="stylesheet" href="./css/demos.css">
+<title>快捷拨号</title>
+</head>
+<script type='text/javascript'>
+	function delete_confirm()
+	{
+		//if (confirm("确定要删除这个号码吗?"))  {
+			 return true;	
+		//}
+		return false;	
+	}
+    //页码导航 
+function post_list(index,curpage,maxpage,agent_id)
+{ 
+     if ( parseInt(index) <= parseInt(maxpage) && parseInt(index) > 0  && parseInt(curpage)!=parseInt(index) )
+	 {
+        document.form1.action = '?action=list&accountcode=<% $accountcode %>&old_curpage=<% $old_curpage %>&old_agent_id=<% $old_agent_id %>&curpage='+index+'&agent_id='+agent_id; 
+	    document.form1.submit(); 
+	    return true;
+	 }
+	 return false;
+}
+
+
+	function goback(old_curpage,agent_id)
+	{
+		var gotourl = 'user.php?action=list&curpage='+old_curpage+'&agent_id='+agent_id ; 
+		//alert(gotourl);
+	    document.form1.action = gotourl;
+	
+		document.form1.submit();
+	}	
+	
+	
+    
+ </script>
+<div class="main">
+<body>
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td height="24" bgcolor="#353c44"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <td width="97%" valign="bottom"><span  align="left" class="table_caption">快捷号管理
+                        &nbsp; &nbsp; <a href="#"  onClick="goback('<% $old_curpage %>','<% $agent_id %>')">返 回</a> </span></td>
+                    </tr>
+                  </table></td>
+                <td><div align="right"><span class="table_caption"><a href="#"  onClick="call_add()">添加快捷拨号 </a></span> </div></td>
+              </tr>
+            </table></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr>
+    <td><table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">
+        <form name="form1" method="post" action="?action=list">
+          <tr>
+            <td  height="26" colspan="7"   bgcolor="#FFFFFF"><label for="destination_number2"><span class="STYLE1">被叫号码</span></label>
+              <span class="STYLE1">
+              <input name="destination_number" type="text" class="STYLE1" id="destination_number2" size="6" maxlength="30" value='<% $post_data.destination_number %>' />
+              快捷拨号
+              <input name="dest" type="text" class="STYLE1" id="dest" size="8" maxlength="30" value='<% $post_data.dest %>' />
+              <input type="submit"  class="STYLE1"   name="submitbtn" id="submitbtn"   onclick="return check()" value=" 查询 " />
+              &nbsp;</span></td>
+          </tr>
+        </form>
+        <tr>
+          <td width="2%"  height="26"   bgcolor="d3eaef"><div align="center" class="table_title">序号</div></td>
+          <td width="8%" height="26"    bgcolor="d3eaef"><div align="center" class="table_title">代理商</div></td>
+          <td width="8%"  height="26"   bgcolor="d3eaef"><div align="center" class="table_title">用户帐号</div></td>
+          <td width="8%"  height="26"   bgcolor="d3eaef"><div align="center" class="table_title">被叫号码</div></td>
+          <td width="6%"  height="26"   bgcolor="d3eaef"><div align="center" class="table_title">快捷号码</div></td>
+          <td width="8%"  height="26"   bgcolor="d3eaef"><div align="center" class="table_title">更新时间</div></td>
+          <td width="6%"  height="26"   bgcolor="d3eaef"><div align="center" class="table_title">操作</div></td>
+        </tr>
+        <% foreach from=$table_array item=eachone key=keyname %>
+        <tr>
+          <td height="18" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="SSTYLE19">
+              <% $eachone.check_id %>
+            </div></td>
+          <td height="18" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19">
+              <% $eachone.agent_acctname %>
+            </div></td>
+          <td height="18" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19">
+              <% $eachone.accountcode %>
+            </div></td>
+          <td height="18" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19">
+              <% $eachone.destination_number  %>
+            </div></td>
+          <td height="18" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19">
+              <% $eachone.dest  %>
+            </div></td>
+          <td height="18" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19">
+              <% $eachone.updatetime %>
+            </div></td>
+          <td height="18" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"> <a href="#" onClick="call_edit('<% $eachone.id %>','<% $eachone.destination_number  %>','<% $eachone.dest  %>')" >修改</a> <a href="?action=delete_post&id=<% $eachone.decode_id %>&curpage=<% $curpage %>&agent_id=<% $agent_id %>&old_curpage=<% $old_curpage %>&old_agent_id=<% $old_agent_id %>"  onClick="return delete_confirm()" >删除</a> </div></td>
+        </tr>
+        <% /foreach %>
+      </table></td>
+  </tr>
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="33%"><div align="left"><span class="STYLE21">共
+              <% $record_count %>
+              条记录，当前第
+              <% $curpage %>
+              /
+              <% $maxpage %>
+              页，每页
+              <% $pagelimtcount %>
+              条记录</span></div></td>
+          <td width="67%"><table width="180" border="0" align="right" cellpadding="0" cellspacing="0">
+              <tr>
+                <td width="40"><div align="center"> <a href="#" class="STYLE21" onClick="return post_list('1',<% $curpage %>,<% $maxpage %>,'<% $agent_id %>')"  >首页</a> </div></td>
+                <td width="40"><div align="center"> <a href="#" class="STYLE21" onClick="return post_list('<% $curpage-1 %>',<% $curpage %>,<% $maxpage %>,'<% $agent_id %>')" >上一页</a></div></td>
+                <td width="40"><div align="center"> <a href="#" class="STYLE21" onClick="return post_list('<% $curpage+1 %>',<% $curpage %>,<% $maxpage %>,'<% $agent_id %>')" >下一页</a></div></td>
+                <td width="40"><div align="center"> <a href="#" class="STYLE21" onClick="return post_list('<% $maxpage  %>',<% $curpage %>,<% $maxpage %>,'<% $agent_id %>')" >尾页</a></div></td>
+              </tr>
+            </table></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+</body>
+</div>
+<div class="demo" style="display:none" >
+  <div id="dialog-form" title="添加快捷拨号">
+    <table width="80%" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#c0de98" ">
+      <tr>
+        <td height="18" colspan="2" bgcolor="#FFFFFF">&nbsp;</td>
+      </tr>
+      <tr>
+        <td height="18" colspan="2" align="right" bgcolor="#FFFFFF"><div align="center"><span class="STYLE1">批量添加</span></div></td>
+      </tr>
+      <form enctype="multipart/form-data" method="post" name="form2" action="?action=upload_post&curpage=<% $curpage %>&old_curpage=<% $old_curpage %>&accountcode=<% $accountcode %>&agent_id=<% $agent_id %>" target="_self">
+        <tr>
+          <td height="18" colspan="2" align="right" bgcolor="#FFFFFF"><div align="center">
+              <input name="src" type="file" class="STYLE1" />
+              <span class="STYLE2 STYLE1">
+              <input type= "submit"  class="STYLE1"   name="submitbtn3" id="submitbtn3"   value=" 提交 ">
+              </span></div></td>
+        </tr>
+      </form>
+      <tr>
+        <td height="18" colspan="2" align="right" bgcolor="#FFFFFF">&nbsp;</td>
+      </tr>
+      <tr>
+        <td height="18" colspan="2" align="right" bgcolor="#FFFFFF"><div align="center"><span class="STYLE1">单个添加</span></div></td>
+      </tr>
+      <tr>
+        <td height="18" align="right" bgcolor="#FFFFFF"><span   class="STYLE1" >被叫号码</span></td>
+        <td height="18" bgcolor="#FFFFFF"><label for="destination_number"></label>
+          <span class="STYLE7">
+          <input name="add_destination_number"   id="add_destination_number"  type="text" class="STYLE1" style="height:18px; width:120px;" size="30"  value="" />
+          </span></td>
+      </tr>
+      <tr>
+        <td height="20" align="right" bgcolor="#FFFFFF"><span   class="STYLE1" >快捷号码</span></td>
+        <td height="20" bgcolor="#FFFFFF"><label for="dest"></label>
+          <input name="add_dest"  id="add_dest"  type="text" class="STYLE1" style="height:18px; width:120px;" size="30"  value="" />
+          <label for="dest"></label></td>
+      </tr>
+      <tr>
+        <td height="18" align="right" bgcolor="#FFFFFF">&nbsp;</td>
+        <td height="18" bgcolor="#FFFFFF"><span class="STYLE2 STYLE1">
+          <input type="button"  class="STYLE1"   name="submitbtn2" id="submitbtn2"   onClick="add_speeddial()" value="  添 加  ">
+          </span></td>
+      </tr>
+      <tr>
+        <td width="43%" height="18" align="right" bgcolor="#FFFFFF">&nbsp;</td>
+        <td width="57%" height="18" bgcolor="#FFFFFF"></label>
+          </span></td>
+      </tr>
+    </table>
+  </div>
+</div>
+<!-- End demo -->
+<div class="demo"  style="display:none">
+  <div id="edit-form" title="修改快捷拨号">
+    <table width="400" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#c0de98">
+      <tr>
+        <td height="18" colspan="2" bgcolor="#FFFFFF">&nbsp;</td>
+      </tr>
+      <tr>
+        <td height="18" colspan="2" bgcolor="#FFFFFF"><span class="STYLE1">
+          <input name="edit_id" type="hidden" class="STYLE1" id="edit_id" style="height:18px; width:60px;"  value="0" size="10" />
+          </span></td>
+      </tr>
+      <tr>
+        <td width="41%" height="18" align="right" bgcolor="#FFFFFF"><span class="STYLE1">被叫号码</span></td>
+        <td width="59%" height="18" bgcolor="#FFFFFF"><span class="STYLE7">
+          <input name="edit_destination_number"   id="edit_destination_number"  type="text" class="STYLE1" style="height:18px; width:120px;" size="30"  value="" />
+          </span></td>
+      </tr>
+      <tr>
+        <td height="18" align="right" bgcolor="#FFFFFF"><span class="STYLE1">快捷号码</span></td>
+        <td height="18" bgcolor="#FFFFFF"><input name="edit_dest"  id="edit_dest"  type="text" class="STYLE1" style="height:18px; width:120px;" size="30"  value="" /></td>
+      </tr>
+      <tr>
+        <td height="18" colspan="2" align="right" bgcolor="#FFFFFF"><div align="center"><span class="STYLE2 STYLE1">
+            <input type="button"  class="STYLE1"   name="submitbtn4" id="submitbtn4"   onClick="edit_speeddial()" value="  修 改  ">
+            </span></div></td>
+      </tr>
+      <tr>
+        <td height="18" colspan="2" align="right" bgcolor="#FFFFFF">&nbsp;</td>
+      </tr>
+      <tr>
+        <td height="18" colspan="2" align="right" bgcolor="#FFFFFF">&nbsp;</td>
+      </tr>
+    </table>
+  </div>
+</div>
+<script>
+ 
+ function call_add()
+ {
+   var destination_number = $( "#add_destination_number" ),
+	   dest = $( "#add_dest" );
+		
+    destination_number.val('');    
+	dest.val('');
+    $( "#dialog-form" ).dialog( "open" );
+		 	 
+ }
+  
+function call_edit(id,destination_number,dest)
+{
+	var edit_destination_number = $( "#edit_destination_number" );
+    var edit_dest = $( "#edit_dest" );
+    var edit_id = $( "#edit_id" );
+
+    edit_destination_number.val(destination_number);
+    edit_dest.val(dest);
+    edit_id.val(id);
+    $('#tip_add_balance').html('');   
+	$( "#edit-form" ).dialog( "open" );
+}
+
+
+function add_speeddial()
+{
+	var destination_number = $( "#add_destination_number" );
+    var dest = $( "#add_dest" );
+	var var_accountcode = '<% $accountcode %>';
+	var url = '?action=list&accountcode=<% $accountcode %>';
+
+
+        $.get("?action=add_post",{accountcode:var_accountcode,destination_number:destination_number.val(),dest:dest.val()}, function(data){
+           $( "#dialog-form" ).dialog( "close" );
+		   window.location.href=url;
+        });
+				
+
+}
+
+
+function edit_speeddial()
+{
+	var destination_number = $( "#edit_destination_number" );
+    var dest = $( "#edit_dest" );
+    var id = $( "#edit_id" );
+	var var_accountcode = '<% $accountcode %>';
+	var url = '?action=list&accountcode=<% $accountcode %>';
+        $.get("?action=edit_post",{id:id.val(),destination_number:destination_number.val(),dest:dest.val()}, function(data){
+           $( "#edit-form" ).dialog( "close" );
+		   window.location.href=url;
+        });
+
+}
+	
+	$(function() {
+		$( "#dialog:ui-dialog" ).dialog( "destroy" );
+		var destination_number = $( "#destination_number" ),
+			dest = $( "#dest" ),
+            speeddial_id = $( "#speeddial_id" ),
+			allFields = $( [] ).add( destination_number ).add( dest ).add( speeddial_id ) ;
+	
+		$( "#dialog-form" ).dialog({
+			autoOpen: false,
+			height: 300,
+			width: 450,
+			modal: true,
+			close: function() {
+				allFields.val( "" ).removeClass( "ui-state-error" );
+			}
+        });
+        
+
+		$( "#edit-form" ).dialog({
+			autoOpen: false,
+			height: 200,
+			width: 450,
+			modal: true,
+			close: function() {
+                $('#tip_add_balance').html('');   
+				allFields.val( "" ).removeClass( "ui-state-error" );
+			}
+		});
+      
+         
+
+		/*编辑框选择后显示获取焦点，批量修改窗体提示不修改*/
+		 $("input:text,input:password,textarea").focus(function(){
+			 $(this).css("background","#CBFE9F");
+			 }).blur(function(){
+				 $(this).css("background","#FFF");
+			 }); 
+	});
+	</script>
+</html>

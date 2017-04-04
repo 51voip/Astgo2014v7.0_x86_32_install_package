@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="css/mainstyle.css"/>
+<script src="./js/jquery-1.6.2.min.js"></script>
+ 
+ <script src="./js/calendar/WdatePicker.js"></script>
+ <title>传真套餐设置</title>
+<script>
+
+
+	
+
+	//所有input 去空格
+	function trim_all_input()
+	{
+		var inpus = document.getElementsByTagName("INPUT")
+        for(var i=0; i<inpus.length; i++)
+        {
+            if(inpus[i].type=="text")
+            {
+               inpus[i].value =  inpus[i].value.replace(/\s/g,"");
+            }
+        }
+		
+	}
+	
+
+
+	// 提交前检测输入是否合法
+	function check()
+	{
+		trim_all_input(); //所有input 去空格
+			
+
+		
+				
+		if (document.form1.maxline.value=="" || ( isNaN(document.form1.payunitsecond.value) ) )
+		{
+			document.getElementById("userTip").innerHTML="<div align='center'><span class='STYLE4'><font color=red>请输入正确的并发线路数</font></span></div>";
+      		document.form1.maxline.focus();
+			return false;
+		}
+	
+		return true;
+
+	}
+
+	function goback(curpage)
+	{
+	    document.form1.action = '?action=list&curpage='+curpage;
+		document.form1.submit();
+	}
+
+    </script>
+
+<body>
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="24" bgcolor="#353c44"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="2%" height="19" valign="bottom"><div align="center"><img src="images/tb.gif" width="14" height="14" /></div></td>
+                <td width="98%" valign="bottom"><span class="STYLE10">  <% if $action eq 'edit_post' %>
+                   修改 
+                   <% elseif $action eq 'add_post' %>
+                    新增
+                    <%else%>
+                    管理
+                    <%/if%></span></td>
+              </tr>
+            </table></td>
+            <td><div align="right"></div></td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+  
+<form name="form1" method="post" action="?action=<% $action %>&id=<% $fax_ratepackage.decode_id %>&curpage=<% $curpage %>">
+  <tr>
+    <td><table width="676" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">
+     
+    <tr>
+            <td height="18" colspan="4" bgcolor="#FFFFFF">            
+			<div align="center"></div></td>
+     </tr>
+		 
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF" class="STYLE1">套餐名称</td>
+            <td height="18" colspan="3" bgcolor="#FFFFFF" class="STYLE1">   <input name="name" type="text" style="height:18px; width:200px;" size="10" value='<% $fax_ratepackage.name %>' /></td>
+          </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF" class="STYLE1">快速传真</td>
+            <td height="18" colspan="3" bgcolor="#FFFFFF" class="STYLE1"><input name="fee1" type="text" style="height:18px; width:40px;" size="10" value='<% $fax_ratepackage.fee1 %>' />
+            (元/6秒)</td>
+          </tr>
+		
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF" class="STYLE1">中速传真</td>
+            <td height="18" colspan="3" bgcolor="#FFFFFF" class="STYLE1"><input name="fee2" type="text" style="height:18px; width:40px;" size="10" value='<% $fax_ratepackage.fee2 %>' />
+            (元/6秒)</td>
+          </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF" class="STYLE1">慢速传真</td>
+            <td height="18" colspan="3" bgcolor="#FFFFFF" class="STYLE1"><input name="fee3" type="text" style="height:18px; width:40px;" size="10" value='<% $fax_ratepackage.fee3 %>' />
+            (元/6秒)</td>
+          </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF" class="STYLE1">6秒数</td>
+            <td height="18" colspan="3" bgcolor="#FFFFFF"><span class="STYLE1">
+              <input name="timelong6" type="text" style="height:18px; width:40px;" size="10" value='<% $fax_ratepackage.timelong6 %>' />
+            秒当作6秒</span></td>
+          </tr>
+          <tr>
+            <td width="336" height="18" align="right" bgcolor="#FFFFFF" class="STYLE1">&nbsp;</td>
+            <td width="337" height="18" colspan="3" bgcolor="#FFFFFF">&nbsp;</td>
+            </tr>
+  
+          <tr>
+            <td height="18" colspan="4" align="center" bgcolor="#FFFFFF"><div class="STYLE4" id="div_trips" ></div></td>
+          </tr>
+          <tr>
+            <td height="18" colspan="4" align="center" bgcolor="#FFFFFF">
+              
+              <input type="submit"  class="STYLE1"   name="submitbtn" id="submitbtn"   onClick="return check()" value=" 确认">
+              <input  type="button"  class="STYLE1"   name="backbutton" id="button"   onClick="goback('<% $curpage %>')" value="返回 ">              </td>
+            </tr>
+     
+    </table></td>
+  </tr>
+  </form>
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+       
+        <td width="67%"><table width="312" border="0" align="right" cellpadding="0" cellspacing="0">
+          <tr>
+
+            <td width="35">&nbsp;</td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+</body>
+<script>
+		 $("input:text,input:password,textarea").focus(function(){
+			 if (this.value == '请输入') this.value = '';
+			 $(this).css("background","#a8c7ce");
+			 }).blur(function(){
+				 $(this).css("background","#FFF");
+			 }); 
+</script>    
+
+</html>

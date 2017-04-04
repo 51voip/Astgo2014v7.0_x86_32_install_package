@@ -1,0 +1,187 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="css/mainstyle.css"/>
+	<script src="./js/jquery-1.6.2.min.js"></script>
+<title>传真任务列表</title>
+</head>
+
+<script>
+
+	function trim_all_input()
+	{
+		var inpus = document.getElementsByTagName("INPUT")
+        for(var i=0; i<inpus.length; i++)
+        {
+            if(inpus[i].type=="text")
+            {
+               inpus[i].value =  inpus[i].value.replace(/\s/g,"");
+            }
+        }
+		
+	}
+	
+	
+//页码导航 
+function post_list(index,curpage,maxpage)
+{ 
+     if ( parseInt(index) <= parseInt(maxpage) && parseInt(index) > 0  && parseInt(curpage)!= parseInt(index) )
+	 {
+        document.form1.action = '?action=submit_list&old_curpage=<% $old_curpage %>&curpage='+index+'&agent_id=<% $agent_id %>&task_id=<% $task_id %>';  
+		//alert(document.form1.action);
+	    document.form1.submit(); 
+	    return true;
+	 }
+	 return false;
+}
+	function goback(old_curpage,agent_id)
+	{
+		var gotourl = 'outfaxtask.php?action=list&curpage='+old_curpage+'&agent_id='+agent_id ;
+		
+	    document.form1.action = gotourl;
+	
+		document.form1.submit();
+		
+		
+		 return true;	
+	}	
+	
+	
+    function delete_confirm()
+	{
+		if (confirm("确定要删除这个呼叫列表吗?"))  {
+			 return true;	
+		}
+		return false;	
+	}
+	
+
+function  change_state()
+{
+        //document.form1.action = '?action=list&curpage='+goto_index; 
+		
+		//alert(acct_id);
+	    document.form1.submit(); 
+	    return true;		 
+	
+}	
+		
+</script>
+<body>
+
+
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="24" bgcolor="#353c44"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                
+                <td width="97%" valign="bottom"><span class="table_caption">传真任务列表&nbsp;&nbsp;
+             <a  href="#"  onClick="goback('<% $old_curpage %>','<% $agent_id %>')" > 返回 </a></span></td>
+              </tr>
+            </table></td>
+            <td><div align="right"><span class="STYLE1">
+           
+             </span>
+             
+             
+             
+             </div></td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td><table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">
+    <form name="form1" method="post" action="?action=submit_list&curpage=<% $curpage %>&old_curpage=<% $old_curpage %>&agent_id=<% $agent_id %>&task_id=<% $task_id %>">
+ <tr>
+   <td   height="24" colspan="10"   bgcolor="#FFFFFF" class="STYLE6">
+     <span class="STYLE1">呼叫结果&nbsp;
+              <select  id="state"   name="state" onChange="change_state()">
+                <option value="-1" <%if $post_data.state eq '' or $post_data.state eq '-1'  %>selected<%/if%> >--不限制--</option>
+                <option value="0"  <%if $post_data.state eq '0' %>selected<%/if%> > 未呼叫 </option>
+                <option value="1"  <%if $post_data.state eq '1' %>selected<%/if%> > 开始呼叫 </option>
+                <option value="2"  <%if $post_data.state eq '2' %>selected<%/if%> > 呼叫接通 </option>
+				<option value="3"  <%if $post_data.state eq '3' %>selected<%/if%> > 呼叫失败 </option>
+                <option value="4"  <%if $post_data.state eq '4' %>selected<%/if%> > 发送成功 </option>
+                <option value="5"  <%if $post_data.state eq '5' %>selected<%/if%> > 发送失败 </option>
+
+              </select>
+              &nbsp;&nbsp;
+<input id="btn1"  value="查 询" type="submit" name="submit1"  />
+<input name="checkbox_downloadfile" type="checkbox" class="STYLE1" />导出&nbsp;&nbsp;
+<a href="#" onClick="recall_confirm()"></a></span></td>
+   </tr>
+   </form>
+ <tr>
+            <td width="2%"   height="24"   bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">序号</div></td>
+            <td width="6%"  height="24"   bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">传真任务名称</div></td>
+            <td width="4%"   height="24"   bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">传真号码</div></td>
+            <td width="4%"   height="24"   bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">叫叫次数</div></td>
+            <td width="8%"   height="24"   bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">开始</div></td>
+            <td width="4%"  height="24"   bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">接通</div></td>
+            <td width="4%"   height="24"   bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">挂机</div></td>
+            <td width="4%"  height="24"   bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">呼叫结果</div></td>
+			<td width="4%"  height="24"   bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">发送结果</div></td>
+
+
+          
+
+        </tr>     
+
+          
+          
+          <% foreach from=$table_array item=eachone key=keyname %>  	
+                  <tr>
+        
+       <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"><% $eachone.check_id %></div></td>
+       <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"><% $eachone.task_name %></div></td>
+       <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"><% $eachone.callee %> <% if $eachone.callee_ext eq '' %>-<% $eachone.callee_ext %><%/if%> </div></td>
+       <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"><% $eachone.call_count  %></div></td>
+       <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"><% $eachone.start_stamp %></div></td>
+       <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"> <% if $eachone.answer_stamp eq '0000-00-00 00:00:00' %>-<%else%> <% $eachone.answer_stamp|date_format:"%T" %><%/if%></div></td>
+       <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"> <% if $eachone.end_stamp eq '0000-00-00 00:00:00' %>-<%else%><% $eachone.end_stamp|date_format:"%T" %><%/if%></div></td>
+       <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"><%  $eachone.call_state  %></div></td>
+       <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"><%  $eachone.fax_state  %></div></td>
+	  
+                            
+                
+   
+  </tr>
+          
+ 
+        <% /foreach %>
+    </table></td>
+  </tr>
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="50%"><div align="left"><span class="STYLE21">共
+              <% $record_count %>
+              条记录，当前第
+              <% $curpage %>
+              /
+              <% $maxpage %>
+              页，每页
+              <% $pagelimtcount %>
+          条记录</span></div></td>
+        <td width="50%"><table width="180" border="0" align="right" cellpadding="0" cellspacing="0">
+          <tr>
+            <td width="40"><div align="center"> <a href="#" class="STYLE21" onClick="return post_list('1','<% $curpage %>', '<% $maxpage %>')"  >首页</a> </div></td>
+            <td width="40"><div align="center"> <a href="#" class="STYLE21" onClick="return post_list('<% $curpage-1 %>',   '<% $curpage %>' , '<% $maxpage %>')" >上一页</a></div></td>
+            <td width="40"><div align="center"> <a href="#" class="STYLE21" onClick="return post_list('<% $curpage+1 %>',   '<% $curpage %>' , '<% $maxpage %>')" >下一页</a></div></td>
+            <td width="40"><div align="center"> <a href="#" class="STYLE21" onClick="return post_list('<% $maxpage  %>',    '<% $curpage %>' , '<% $maxpage %>')" >尾页</a></div></td>
+           
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+
+</body>
+</html>

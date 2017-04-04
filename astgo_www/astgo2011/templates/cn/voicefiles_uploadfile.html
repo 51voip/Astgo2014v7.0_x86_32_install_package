@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="css/mainstyle.css"/>
+<title>上传文件</title>
+<script>
+	//所有input 去空格
+	function trim_all_input()
+	{
+		var inpus = document.getElementsByTagName("INPUT")
+        for(var i=0; i<inpus.length; i++)
+        {
+            if(inpus[i].type=="text")
+            {
+               inpus[i].value =  inpus[i].value.replace(/\s/g,"");
+            }
+        }
+		
+	}
+	
+	// 提交前检测输入是否合法
+	function check()
+	{
+		trim_all_input(); //所有input 去空格
+			
+		if (document.form1.description.value==""  )
+		{
+			document.getElementById("userTip").innerHTML="<div align='center'><span class='STYLE4'><font color=red>请输入正确的文件名称</font></span></div>";
+      		document.form1.description.focus();
+			return false;
+			
+		}		
+
+		
+		return true;
+
+	}
+	
+	function goback(curpage,agent_id)
+	{
+	    document.form1.action = '?action=list&curpage='+curpage +'&agent_id=' + agent_id;
+		document.form1.submit();
+	}
+
+    </script>
+
+<body>
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="24" bgcolor="#353c44"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="2%" height="19" valign="bottom"><div align="center"><img src="images/tb.gif" width="14" height="14" /></div></td>
+                <td width="98%" valign="bottom"><span class="table_caption"> 上传文件</span></td>
+              </tr>
+            </table></td>
+            <td><div align="right"><span class="STYLE1">
+              </span></div></td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+  
+    <td><table width="605" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">
+      <form enctype="multipart/form-data" method="post" name="form1"  action="?action=<% $action %>&curpage=<% $curpage %>&id=<% $id %>&agent_id=<% $agent_id %>" target="_self">
+  
+                  <tr>
+            <td height="18" colspan="3" bgcolor="#FFFFFF">&nbsp;
+            </td>
+            </tr>
+
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span class="STYLE1">代理商</span></td>
+            <td height="18" colspan="2" bgcolor="#FFFFFF"><span class="STYLE2 STYLE1">
+           <select name="agent_id" class="STYLE1" id="agent_id"  <% if  $action   eq 'edit_post' %>  disabled <%/if%> onchange= "change_acct_id(this.value)"  >
+                <option  value="<% $res_acct.decode_id%>"  <% if $res_acct.decode_id eq $agent_id %> selected <%/if%>> <% $res_acct.acctname %> </option>
+                  <%foreach from=$acctchild item=eachone key=keyname %>
+                  <option  value="<% $eachone.decode_id %>" <% if $eachone.decode_id eq $agent_id %> selected="selected" <%/if%> >
+                    <% $eachone.acctname %>
+                  </option>
+                  <%/foreach%>
+                </select>
+            </span></td>
+          </tr>
+    
+
+            
+        <tr>
+	      <td width="43%" height="18" align="right" bgcolor="#FFFFFF"><span   class="STYLE1" >文件名称</span></td>
+	      <td width="57%" height="18" bgcolor="#FFFFFF"><label for="destination_number"></label>
+	        <span class="STYLE7">
+	          <input name="description"   id="description"  type="text" class="STYLE1" style="height:18px; width:120px;" size="30"  value='<% $post_data.description%>' />
+	        </span></td>
+        </tr>
+	    <tr>
+	      <td height="20" align="right" bgcolor="#FFFFFF"><span   class="STYLE1" >文件</span></td>
+	      <td height="20" bgcolor="#FFFFFF"><label for="src"></label>
+	        <input type="file"  name="src" />
+           <label for="src"></label></td>
+        </tr>
+                
+          <tr>
+            <td height="18" colspan="3" align="right" bgcolor="#FFFFFF"><div align="center" class="STYLE4">选择上传的文件请提前关闭，而且文件不能加密</div></td>
+            </tr>
+  
+          <tr>
+            <td id="userTip2" height="18" colspan="3" align="right" bgcolor="#FFFFFF"><div align="center" class="STYLE1"><strong>语音文件：</strong>WAV格式：8000赫兹- 128 比特率- 单声道</div></td>
+          </tr>
+          <tr>
+            <td id="userTip3" height="18" colspan="3" align="right" bgcolor="#FFFFFF"><div align="center" class="STYLE1"><strong>脚本文件：</strong>php 按编写规则的IVR脚本文件</div></td>
+          </tr>
+          <tr>
+            <td id="userTip" height="18" colspan="3" align="right" bgcolor="#FFFFFF"><div align="center" class="STYLE1"><strong>传真文件：文</strong>件类型:TXT、Word、Excel、PDF、TIF</div></td>
+          </tr>
+          
+          <tr>
+            <td height="18" colspan="3" align="center" bgcolor="#FFFFFF">
+              
+              <input type="submit"  class="STYLE1"   name="submitbtn" id="submitbtn"   onClick="return check()" value=" 确认提交 ">
+              <input  type="button"  class="STYLE1"   name="backbutton" id="button"   onClick="goback('<% $curpage %>','<% $agent_id %>')" value=" 取消返回 ">
+              </td>
+            </tr>
+            </form>
+    </table></td>
+  </tr>
+  
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+       
+        <td width="67%"><table width="312" border="0" align="right" cellpadding="0" cellspacing="0">
+          <tr>
+
+            <td width="35">&nbsp;</td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+<p class="STYLE19">&nbsp;</p>
+</body>
+</html>

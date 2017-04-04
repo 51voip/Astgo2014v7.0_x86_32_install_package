@@ -1,0 +1,616 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="css/mainstyle.css"/>
+	<link rel="stylesheet" href="./css/themes/base/jquery.ui.all.css">
+	<script src="./js/jquery-1.6.2.min.js"></script>
+    <script src="./js/calendar/WdatePicker.js"></script>
+  <link rel="stylesheet" href="./css/demos.css">
+    
+    
+<title>添加外呼任务</title>
+<script>
+//所有input 去空格
+	function trim_all_input()
+	{
+		var inpus = document.getElementsByTagName("INPUT")
+        for(var i=0; i<inpus.length; i++)
+        {
+            if(inpus[i].type=="text")
+            {
+               inpus[i].value =  inpus[i].value.replace(/(^\s*)(\s*$)/g,"");
+
+
+
+            }
+        }
+		
+	}
+	
+    function check()
+	{
+		 trim_all_input(); //所有input 去空格
+
+        if ($('#task_name').val() == '')
+		{
+			alert('请输入完整的外呼任务名称!'); 
+		    return false;
+		  
+		}
+
+		return true;
+	}
+
+	function goback(curpage)
+	{
+	    document.form2.action = '?action=list&curpage='+curpage;
+		document.form2.submit();
+	}
+	
+function  change_acct_id(curpage)
+{
+	
+	
+	    document.form1.action = '?action=add_send&curpage='+curpage;
+	    document.form1.submit(); 
+	    return true;		 
+	
+}
+
+
+    </script>
+
+<style type="text/css">
+.redastgo1 {
+	color: #F00;
+}
+</style>
+
+<body>
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="24" bgcolor="#353c44"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="2%" height="19" valign="bottom"><div align="center"><img src="images/tb.gif" width="14" height="14" /></div></td>
+                <td width="98%" valign="bottom"><span class="STYLE10"> 添加、编辑外呼任务</span></td>
+              </tr>
+            </table></td>
+            <td><div align="right"><span class="STYLE1">
+              </span></div></td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+  
+  <form name="form2"  id="form2"  method="post" action="?action=<% $action %>&curpage=<% $curpage %>&id=<% $outcalltask.decode_id %>">
+  </form>
+  
+ <form name="form1"  id="form1"  method="post" action="?action=<% $action %>&curpage=<% $curpage %>&id=<% $outcalltask.decode_id %>">
+  <tr>
+    <td><table width="763" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">
+     
+    <tr>
+            <td width="33%" height="18" align="right" bgcolor="#FFFFFF"><span   class="STYLE1" >代理名称</span></td>
+            <td width="67%" height="18" bgcolor="#FFFFFF"><span class="STYLE2 STYLE1">
+              <select name="agent_id" class="STYLE1" id="agent_id"  <% if  $action   eq 'edit_post' %>  disabled <%/if%> onchange= "change_acct_id(this.value)"  >
+                <option  value="<% $res_acct.decode_id%>"  <% if $res_acct.decode_id eq $agent_id %> selected <%/if%>> <% $res_acct.acctname %> </option>
+                <%foreach from=$acctchild item=eachone key=keyname %>
+                <option  value="<% $eachone.decode_id %>" <% if $eachone.decode_id eq $agent_id %> selected="selected" <%/if%> >
+                  <% $eachone.acctname %>
+                </option>
+                <%/foreach%>
+              </select>
+            </span></td>
+          </tr>
+       
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span   class="STYLE1" >任务名称</span></td>
+            <td height="18" bgcolor="#FFFFFF"><span class="STYLE7">
+              <input name="task_name" id="task_name" type="text" class="STYLE1" style="height:18px; width:120px;" size="30"  <% if  $action   eq 'edit_post' %>  disabled <%/if%>   value='<% $outcalltask.task_name %>' />
+            <span class="STYLE1">状态</span>            <span class="STYLE1">
+            <select name="enable" id="enable"  >
+              <option  value="1"  <% if $outcalltask.enable eq '1'  %> selected <%/if%> > 开启 </option>
+              <option  value="0"  <% if $outcalltask.enable eq '0'  %> selected <%/if%> > 暂停 </option>
+            </select>
+            </span></span></td>
+          </tr>
+          <tr>
+            <td height="18" colspan="2" align="right" bgcolor="#FFFFFF"><div align="center"><span class="STYLE4"><span class="STYLE4">IVR流程设置</span></span>(<span class="STYLE1">流程从1、2、3自动向下执行</span>)</div></td>
+          </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF">&nbsp;</td>
+            <td height="18" bgcolor="#FFFFFF" class="STYLE4"><span class="STYLE1">
+              <input name="out_answer_sms"   type="checkbox" class="STYLE1" id="out_answer_sms"   <% if $outcalltask.out_answer_sms  eq '1' %>  checked="checked" <%/if%>>
+接通短信 
+<input name="ttsaddress"   type="checkbox" class="STYLE1" id="ttsaddress"   <% if $outcalltask.ttsaddress  eq '1' %>  checked="checked" <%/if%> />
+接通TTS播放联系地址文本</span></td>
+          </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span class="STYLE4">1.主菜单语音</span></td>
+            <td height="18" bgcolor="#FFFFFF" class="STYLE4"><span class="STYLE7">
+              <select size="1" name="wav_file_id" >
+                <option value="-1"  >-----不执行-----</option>
+				<option value="-1"  >-----直接呼叫坐席队列-----</option>
+                <% foreach from=$wav_list item=eachone key=keyname %>
+                <option value="<% $eachone.id %>" <%if $eachone.id eq $outcalltask.wav_file_id   %>selected<%/if%>  >
+                  <% $eachone.description %>
+                </option>
+                <%/foreach%>
+              </select>
+              超时<span class="STYLE1">
+            <select  name="timeout_action" id="timeout_action" >
+              <option value="back"         <% if $outcalltask.timeout_action  eq 'back' %> selected="selected" <%/if%> >返回放音</option>
+              <option value="queue"        <% if $outcalltask.timeout_action  eq 'queue' %> selected="selected" <%/if%> >跳转到呼叫坐席</option>
+              <option value="fax"          <% if $outcalltask.timeout_action  eq 'fax' %> selected="selected" <%/if%> >跳转到发送传真</option>
+              <option value="next"         <% if $outcalltask.timeout_action  eq 'next' %> selected="selected" <%/if%> >继续流程</option>
+               <option value="hangup"      <% if $outcalltask.timeout_action  eq 'hangup' %> selected="selected" <%/if%> >超时挂机</option>
+            </select>
+              </span></span></td>
+          </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF" class="STYLE10"><span class="STYLE1">按键</span></td>
+            <td height="18" bgcolor="#FFFFFF" class="STYLE4"><table width="100%" border="0" cellpadding="0">
+                <tr>
+                  <th width="25%" scope="row">动作</th>
+                  <td width="28%">IVR语音</td>
+                  <td width="24%">坐席队列</td>
+                  <td width="23%">&nbsp;</td>
+                </tr>
+            </table></td>
+          </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span class="STYLE4"><span class="STYLE1">
+              <select  name="dtmf_1" id="dtmf_1" >
+                <option value="0"   <% if $outcalltask.dtmf_1  eq '0' %> selected="selected" <%/if%> >0</option>
+                <option value="1"   <% if $outcalltask.dtmf_1  eq '1' %> selected="selected" <%/if%> >1</option>
+                <option value="2"   <% if $outcalltask.dtmf_1  eq '2' %> selected="selected" <%/if%> >2</option>
+                <option value="3"   <% if $outcalltask.dtmf_1  eq '3' %> selected="selected" <%/if%> >3</option>
+                <option value="4"   <% if $outcalltask.dtmf_1  eq '4' %> selected="selected" <%/if%> >4</option>
+                <option value="5"   <% if $outcalltask.dtmf_1  eq '5' %> selected="selected" <%/if%> >5</option>
+                <option value="6"   <% if $outcalltask.dtmf_1  eq '6' %> selected="selected" <%/if%> >6</option>
+                <option value="7"   <% if $outcalltask.dtmf_1  eq '7' %> selected="selected" <%/if%> >7</option>
+                <option value="8"   <% if $outcalltask.dtmf_1  eq '8' %> selected="selected" <%/if%> >8</option>
+                <option value="9"   <% if $outcalltask.dtmf_1  eq '9' %> selected="selected" <%/if%> >9</option>
+                <option value="*"   <% if $outcalltask.dtmf_1  eq '*' %> selected="selected" <%/if%> >*</option>
+                <option value="#"   <% if $outcalltask.dtmf_1  eq '#' %> selected="selected" <%/if%> >#</option>
+                <option value="-1"    <% if $outcalltask.dtmf_1  eq '-1' %> selected="selected" <%/if%> >不处理</option>
+              </select>
+            </span></span></td>
+            <td height="18" bgcolor="#FFFFFF" class="STYLE4"><span class="STYLE1">
+              <select  name="dtmf_1_action" id="dtmf_1_action" >
+                <option value="none"         <% if $outcalltask.dtmf_1_action  eq 'none' %> selected="selected" <%/if%> >-不处理-</option>
+                <option value="wav"          <% if $outcalltask.dtmf_1_action  eq 'wav' %> selected="selected" <%/if%>>播放IVR语音</option>
+                <option value="queue"        <% if $outcalltask.dtmf_1_action  eq 'queue' %> selected="selected" <%/if%> >呼叫坐席队列</option>
+                <option value="fax"          <% if $outcalltask.dtmf_1_action  eq 'fax' %> selected="selected" <%/if%> >跳转到发送传真</option>
+                <option value="back"         <% if $outcalltask.dtmf_1_action  eq 'back' %> selected="selected" <%/if%> >返回放音</option>
+                <option value="next"         <% if $outcalltask.dtmf_1_action  eq 'next' %> selected="selected" <%/if%> >跳转到呼叫坐席</option>
+              </select>
+              <span class="STYLE7">
+              <select size="1" name="wav_file_id1" id="wav_file_id1" >
+                <option value="-1"  >-----不执行-----</option>
+                <% foreach from=$wav_list item=eachone key=keyname %>
+                <option value="<% $eachone.id %>" <%if $eachone.id eq $outcalltask.wav_file_id1   %>selected<%/if%>  >
+                  <% $eachone.description %>
+                </option>
+                <%/foreach%>
+              </select>
+              <select  name="queuename1" id="queuename1" >
+                <option value="-1"  >-----不执行-----</option>
+                <% foreach from=$queue_list item=eachone key=keyname %>
+                <option value="<% $eachone.name %>" <%if $eachone.name eq $outcalltask.queuename1  %>selected<%/if%>  >
+                  <% $eachone.name %>
+                  [
+                  <% if $eachone.dispname  eq '' %>
+                  未说明
+                  <%else%>
+                  <% $eachone.dispname %>
+                  <%/if%>
+                  ] </option>
+                <%/foreach%>
+              </select>
+              <input name="dtmf_1_sms"   type="checkbox" class="STYLE1" id="dtmf_1_sms"  <% if $outcalltask.dtmf_1_sms  eq '1' %>  checked="checked" <%/if%>  />
+短信</span></span></td>
+          </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span class="STYLE4"><span class="STYLE1">
+              <select  name="dtmf_2" id="dtmf_2" >
+                <option value="0"   <% if $outcalltask.dtmf_2  eq '0' %> selected="selected" <%/if%> >0</option>
+                <option value="1"   <% if $outcalltask.dtmf_2  eq '1' %> selected="selected" <%/if%> >1</option>
+                <option value="2"   <% if $outcalltask.dtmf_2  eq '2' %> selected="selected" <%/if%> >2</option>
+                <option value="3"   <% if $outcalltask.dtmf_2  eq '3' %> selected="selected" <%/if%> >3</option>
+                <option value="4"   <% if $outcalltask.dtmf_2  eq '4' %> selected="selected" <%/if%> >4</option>
+                <option value="5"   <% if $outcalltask.dtmf_2  eq '5' %> selected="selected" <%/if%> >5</option>
+                <option value="6"   <% if $outcalltask.dtmf_2  eq '6' %> selected="selected" <%/if%> >6</option>
+                <option value="7"   <% if $outcalltask.dtmf_2  eq '7' %> selected="selected" <%/if%> >7</option>
+                <option value="8"   <% if $outcalltask.dtmf_2  eq '8' %> selected="selected" <%/if%> >8</option>
+                <option value="9"   <% if $outcalltask.dtmf_2  eq '9' %> selected="selected" <%/if%> >9</option>
+                <option value="*"   <% if $outcalltask.dtmf_2  eq '*' %> selected="selected" <%/if%> >*</option>
+                <option value="#"   <% if $outcalltask.dtmf_2  eq '#' %> selected="selected" <%/if%> >#</option>
+                <option value="-1"  <% if $outcalltask.dtmf_2  eq '-1' %> selected="selected" <%/if%> >不处理</option>
+              </select>
+            </span></span></td>
+            <td height="18" bgcolor="#FFFFFF" class="STYLE4"><span class="STYLE1">
+              <select  name="dtmf_2_action" id="dtmf_2_action"  >
+                <option value="none"         <% if $outcalltask.dtmf_2_action  eq 'none' %> selected="selected" <%/if%> >-不处理-</option>
+                <option value="wav"          <% if $outcalltask.dtmf_2_action  eq 'wav' %> selected="selected" <%/if%>>播放IVR语音</option>
+                <option value="queue"        <% if $outcalltask.dtmf_2_action  eq 'queue' %> selected="selected" <%/if%> >呼叫坐席队列</option>
+                <option value="fax"          <% if $outcalltask.dtmf_2_action  eq 'fax' %> selected="selected" <%/if%> >跳转到发送传真</option>
+                <option value="back"         <% if $outcalltask.dtmf_2_action  eq 'back' %> selected="selected" <%/if%> >返回放音</option>
+                <option value="next"         <% if $outcalltask.dtmf_2_action  eq 'next' %> selected="selected" <%/if%> >跳转到呼叫坐席</option>
+              </select>
+              <span class="STYLE7">
+              <select size="1" name="wav_file_id2" id="wav_file_id2" >
+                <option value="-1"  >-----不执行-----</option>
+                <% foreach from=$wav_list item=eachone key=keyname %>
+                <option value="<% $eachone.id %>" <%if $eachone.id eq $outcalltask.wav_file_id2   %>selected<%/if%>  >
+                  <% $eachone.description %>
+                </option>
+                <%/foreach%>
+              </select>
+              <select  name="queuename2" id="queuename2" >
+                <option value="-1"  >-----不执行-----</option>
+                <% foreach from=$queue_list item=eachone key=keyname %>
+                <option value="<% $eachone.name %>" <%if $eachone.name eq $outcalltask.queuename2  %>selected<%/if%>  >
+                  <% $eachone.name %>
+                  [
+                  <% if $eachone.dispname  eq '' %>
+                  未说明
+                  <%else%>
+                  <% $eachone.dispname %>
+                  <%/if%>
+                  ] </option>
+                <%/foreach%>
+              </select>
+              <input name="dtmf_2_sms"   type="checkbox" class="STYLE1" id="dtmf_2_sms"  <% if $outcalltask.dtmf_2_sms  eq '1' %>  checked="checked"<%/if%>  />
+短信</span></span></td>
+          </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span class="STYLE4"><span class="STYLE1">
+              <select  name="dtmf_3" id="dtmf_3" >
+                <option value="0"   <% if $outcalltask.dtmf_3  eq '0' %> selected="selected" <%/if%> >0</option>
+                <option value="1"   <% if $outcalltask.dtmf_3  eq '1' %> selected="selected" <%/if%> >1</option>
+                <option value="2"   <% if $outcalltask.dtmf_3  eq '2' %> selected="selected" <%/if%> >2</option>
+                <option value="3"   <% if $outcalltask.dtmf_3  eq '3' %> selected="selected" <%/if%> >3</option>
+                <option value="4"   <% if $outcalltask.dtmf_3  eq '4' %> selected="selected" <%/if%> >4</option>
+                <option value="5"   <% if $outcalltask.dtmf_3  eq '5' %> selected="selected" <%/if%> >5</option>
+                <option value="6"   <% if $outcalltask.dtmf_3  eq '6' %> selected="selected" <%/if%> >6</option>
+                <option value="7"   <% if $outcalltask.dtmf_3  eq '7' %> selected="selected" <%/if%> >7</option>
+                <option value="8"   <% if $outcalltask.dtmf_3  eq '8' %> selected="selected" <%/if%> >8</option>
+                <option value="9"   <% if $outcalltask.dtmf_3  eq '9' %> selected="selected" <%/if%> >9</option>
+                <option value="*"   <% if $outcalltask.dtmf_3  eq '*' %> selected="selected" <%/if%> >*</option>
+                <option value="#"   <% if $outcalltask.dtmf_3  eq '#' %> selected="selected" <%/if%> >#</option>
+                <option value="-1"  <% if $outcalltask.dtmf_3  eq '-1' %> selected="selected" <%/if%> >不处理</option>
+              </select>
+            </span></span></td>
+            <td height="18" bgcolor="#FFFFFF" class="STYLE4"><span class="STYLE1">
+              <select  name="dtmf_3_action" id="dtmf_3_action"  >
+                <option value="none"         <% if $outcalltask.dtmf_3_action  eq 'none' %> selected="selected" <%/if%> >-不处理-</option>
+                <option value="wav"          <% if $outcalltask.dtmf_3_action  eq 'wav' %> selected="selected" <%/if%>>播放IVR语音</option>
+                <option value="queue"        <% if $outcalltask.dtmf_3_action  eq 'queue' %> selected="selected" <%/if%> >呼叫坐席队列</option>
+                <option value="fax"          <% if $outcalltask.dtmf_3_action  eq 'fax' %> selected="selected" <%/if%> >跳转到发送传真</option>
+                <option value="back"         <% if $outcalltask.dtmf_3_action  eq 'back' %> selected="selected" <%/if%> >返回放音</option>
+                <option value="next"         <% if $outcalltask.dtmf_3_action  eq 'next' %> selected="selected" <%/if%> >跳转到呼叫坐席</option>
+              </select>
+              <span class="STYLE7">
+              <select size="1" name="wav_file_id3" id="wav_file_id3" >
+                <option value="-1"  >-----不执行-----</option>
+                <% foreach from=$wav_list item=eachone key=keyname %>
+                <option value="<% $eachone.id %>" <%if $eachone.id eq $outcalltask.wav_file_id3   %>selected<%/if%>  >
+                  <% $eachone.description %>
+                </option>
+                <%/foreach%>
+              </select>
+              </span>              <span class="STYLE7">
+              <select  name="queuename3" id="queuename3" >
+                <option value="-1"  >-----不执行-----</option>
+                <% foreach from=$queue_list item=eachone key=keyname %>
+                <option value="<% $eachone.name %>" <%if $eachone.name eq $outcalltask.queuename3  %>selected<%/if%>  >
+                  <% $eachone.name %>
+                  [
+                  <% if $eachone.dispname  eq '' %>
+                  未说明
+                  <%else%>
+                  <% $eachone.dispname %>
+                  <%/if%>
+                  ] </option>
+                <%/foreach%>
+              </select>
+              <input name="dtmf_3_sms"   type="checkbox" class="STYLE1" id="dtmf_3_sms"  <% if $outcalltask.dtmf_3_sms  eq '1' %> checked="checked" <%/if%>  />
+短信</span></span></td>
+          </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span class="STYLE4"><span class="STYLE1">
+              <select  name="dtmf_4" id="dtmf_4" >
+                <option value="0"   <% if $outcalltask.dtmf_4  eq '0' %> selected="selected" <%/if%> >0</option>
+                <option value="1"   <% if $outcalltask.dtmf_4  eq '1' %> selected="selected" <%/if%> >1</option>
+                <option value="2"   <% if $outcalltask.dtmf_4  eq '2' %> selected="selected" <%/if%> >2</option>
+                <option value="3"   <% if $outcalltask.dtmf_4  eq '3' %> selected="selected" <%/if%> >3</option>
+                <option value="4"   <% if $outcalltask.dtmf_4  eq '4' %> selected="selected" <%/if%> >4</option>
+                <option value="5"   <% if $outcalltask.dtmf_4  eq '5' %> selected="selected" <%/if%> >5</option>
+                <option value="6"   <% if $outcalltask.dtmf_4  eq '6' %> selected="selected" <%/if%> >6</option>
+                <option value="7"   <% if $outcalltask.dtmf_4  eq '7' %> selected="selected" <%/if%> >7</option>
+                <option value="8"   <% if $outcalltask.dtmf_4  eq '8' %> selected="selected" <%/if%> >8</option>
+                <option value="9"   <% if $outcalltask.dtmf_4  eq '9' %> selected="selected" <%/if%> >9</option>
+                <option value="*"   <% if $outcalltask.dtmf_4  eq '*' %> selected="selected" <%/if%> >*</option>
+                <option value="#"   <% if $outcalltask.dtmf_4  eq '#' %> selected="selected" <%/if%> >#</option>
+                <option value="-1"  <% if $outcalltask.dtmf_4  eq '-1' %> selected="selected" <%/if%> >不处理</option>
+              </select>
+            </span></span></td>
+            <td height="18" bgcolor="#FFFFFF" class="STYLE4"><span class="STYLE1">
+              <select  name="dtmf_4_action" id="dtmf_4_action"  >
+                <option value="none"         <% if $outcalltask.dtmf_4_action  eq 'none' %> selected="selected" <%/if%> >-不处理-</option>
+                <option value="wav"          <% if $outcalltask.dtmf_4_action  eq 'wav' %> selected="selected" <%/if%>>播放IVR语音</option>
+                <option value="queue"        <% if $outcalltask.dtmf_4_action  eq 'queue' %> selected="selected" <%/if%> >呼叫坐席队列</option>
+                <option value="fax"          <% if $outcalltask.dtmf_4_action  eq 'fax' %> selected="selected" <%/if%> >跳转到发送传真</option>
+                <option value="back"         <% if $outcalltask.dtmf_4_action  eq 'back' %> selected="selected" <%/if%> >返回放音</option>
+                <option value="next"         <% if $outcalltask.dtmf_4_action  eq 'next' %> selected="selected" <%/if%> >跳转到呼叫坐席</option>
+              </select>
+              <span class="STYLE7">
+              <select size="1" name="wav_file_id4" id="wav_file_id4" >
+                <option value="-1"  >-----不执行-----</option>
+                <% foreach from=$wav_list item=eachone key=keyname %>
+                <option value="<% $eachone.id %>" <%if $eachone.id eq $outcalltask.wav_file_id4   %>selected<%/if%>  >
+                  <% $eachone.description %>
+                </option>
+                <%/foreach%>
+              </select>
+              <select  name="queuename4" id="queuename4" >
+                <option value="-1"  >-----不执行-----</option>
+                <% foreach from=$queue_list item=eachone key=keyname %>
+                <option value="<% $eachone.name %>" <%if $eachone.name eq $outcalltask.queuename4  %>selected<%/if%>  >
+                  <% $eachone.name %>
+                  [
+                  <% if $eachone.dispname  eq '' %>
+                  未说明
+                  <%else%>
+                  <% $eachone.dispname %>
+                  <%/if%>
+                  ] </option>
+                <%/foreach%>
+              </select>
+              <input name="dtmf_4_sms"   type="checkbox" class="STYLE1" id="dtmf_4_sms"  <% if $outcalltask.dtmf_4_sms  eq '1' %>  checked="checked"<%/if%>  />
+短信</span></span></td>
+          </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span class="STYLE4"><span class="STYLE1">
+              <select  name="dtmf_5" id="dtmf_5" >
+                <option value="0"   <% if $outcalltask.dtmf_5  eq '0' %> selected="selected" <%/if%> >0</option>
+                <option value="1"   <% if $outcalltask.dtmf_5  eq '1' %> selected="selected" <%/if%> >1</option>
+                <option value="2"   <% if $outcalltask.dtmf_5  eq '2' %> selected="selected" <%/if%> >2</option>
+                <option value="3"   <% if $outcalltask.dtmf_5  eq '3' %> selected="selected" <%/if%> >3</option>
+                <option value="4"   <% if $outcalltask.dtmf_5  eq '4' %> selected="selected" <%/if%> >4</option>
+                <option value="5"   <% if $outcalltask.dtmf_5  eq '5' %> selected="selected" <%/if%> >5</option>
+                <option value="6"   <% if $outcalltask.dtmf_5  eq '6' %> selected="selected" <%/if%> >6</option>
+                <option value="7"   <% if $outcalltask.dtmf_5  eq '7' %> selected="selected" <%/if%> >7</option>
+                <option value="8"   <% if $outcalltask.dtmf_5  eq '8' %> selected="selected" <%/if%> >8</option>
+                <option value="9"   <% if $outcalltask.dtmf_5  eq '9' %> selected="selected" <%/if%> >9</option>
+                <option value="*"   <% if $outcalltask.dtmf_5  eq '*' %> selected="selected" <%/if%> >*</option>
+                <option value="#"   <% if $outcalltask.dtmf_5  eq '#' %> selected="selected" <%/if%> >#</option>
+                <option value="-1"  <% if $outcalltask.dtmf_5  eq '-1' %> selected="selected" <%/if%> >不处理</option>
+              </select>
+            </span></span></td>
+            <td height="18" bgcolor="#FFFFFF" class="STYLE4"><span class="STYLE1">
+              <select  name="dtmf_5_action" id="dtmf_5_action" >
+                <option value="none"         <% if $outcalltask.dtmf_5_action  eq 'none' %> selected="selected" <%/if%> >-不处理-</option>
+                <option value="wav"          <% if $outcalltask.dtmf_5_action  eq 'wav' %> selected="selected" <%/if%>>播放IVR语音</option>
+                <option value="queue"        <% if $outcalltask.dtmf_5_action  eq 'queue' %> selected="selected" <%/if%> >呼叫坐席队列</option>
+                <option value="fax"          <% if $outcalltask.dtmf_5_action  eq 'fax' %> selected="selected" <%/if%> >跳转到发送传真</option>
+                <option value="back"         <% if $outcalltask.dtmf_5_action  eq 'back' %> selected="selected" <%/if%> >返回放音</option>
+                <option value="next"         <% if $outcalltask.dtmf_5_action  eq 'next' %> selected="selected" <%/if%> >跳转到呼叫坐席</option>
+              </select>
+              <span class="STYLE7">
+              <select size="1" name="wav_file_id5" id="wav_file_id5" >
+                <option value="-1"  >-----不执行-----</option>
+                <% foreach from=$wav_list item=eachone key=keyname %>
+                <option value="<% $eachone.id %>" <%if $eachone.id eq $outcalltask.wav_file_id5   %>selected<%/if%>  >
+                  <% $eachone.description %>
+                </option>
+                <%/foreach%>
+              </select>
+              <select  name="queuename5" id="queuename5" >
+                <option value="-1"  >-----不执行-----</option>
+                <% foreach from=$queue_list item=eachone key=keyname %>
+                <option value="<% $eachone.name %>" <%if $eachone.name eq $outcalltask.queuename5  %>selected<%/if%>  >
+                  <% $eachone.name %>
+                  [
+                  <% if $eachone.dispname  eq '' %>
+                  未说明
+                  <%else%>
+                  <% $eachone.dispname %>
+                  <%/if%>
+                  ] </option>
+                <%/foreach%>
+              </select>
+              </span>              <span class="STYLE7">
+              <input name="dtmf_5_sms"   type="checkbox" class="STYLE1" id="dtmf_5_sms"  <% if $outcalltask.dtmf_5_sms  eq '1' %>  checked="checked"<%/if%>  />
+短信</span></span></td>
+          </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span class="STYLE1">按键错误</span></td>
+            <td height="18" bgcolor="#FFFFFF" class="STYLE4"><span class="STYLE1">
+              <select  name="dtmf_6_action" id="dtmf_6_action" >
+                <option value="none"         <% if $outcalltask.dtmf_6_action  eq 'none' %> selected="selected" <%/if%> >-不处理-</option>
+                <option value="wav"          <% if $outcalltask.dtmf_6_action  eq 'wav' %> selected="selected" <%/if%>>播放IVR语音</option>
+                <option value="queue"        <% if $outcalltask.dtmf_6_action  eq 'queue' %> selected="selected" <%/if%> >呼叫坐席队列</option>
+                <option value="fax"          <% if $outcalltask.dtmf_6_action  eq 'fax' %> selected="selected" <%/if%> >跳转到发送传真</option>
+                <option value="back"         <% if $outcalltask.dtmf_6_action  eq 'back' %> selected="selected" <%/if%> >返回放音</option>
+                <option value="next"         <% if $outcalltask.dtmf_6_action  eq 'next' %> selected="selected" <%/if%> >跳转到呼叫坐席</option>
+                <option value="hangup"         <% if $outcalltask.dtmf_6_action  eq 'hangup' %> selected="selected" <%/if%> >自动挂机</option>
+              </select>
+              <span class="STYLE7">
+              <select size="1" name="wav_file_id6" id="wav_file_id6" >
+                <option value="-1"  >-----不执行-----</option>
+                <% foreach from=$wav_list item=eachone key=keyname %>
+                <option value="<% $eachone.id %>" <%if $eachone.id eq $outcalltask.wav_file_id6   %>selected<%/if%>  >
+                  <% $eachone.description %>
+                </option>
+                <%/foreach%>
+              </select>
+              <select  name="queuename6" id="queuename6" >
+                <option value="-1"  >-----不执行-----</option>
+                <% foreach from=$queue_list item=eachone key=keyname %>
+                <option value="<% $eachone.name %>" <%if $eachone.name eq $outcalltask.queuename6  %>selected<%/if%>  >
+                  <% $eachone.name %>
+                  [
+  <% if $eachone.dispname  eq '' %>
+                  未说明
+  <%else%>
+  <% $eachone.dispname %>
+  <%/if%>
+                  ] </option>
+                <%/foreach%>
+              </select>
+              <input name="dtmf_6_sms"   type="checkbox" class="STYLE1" id="dtmf_6_sms"  <% if $outcalltask.dtmf_6_sms  eq '1' %>  checked="checked"<%/if%>  />
+短信</span></span></td>
+          </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span class="STYLE4">2.呼叫坐席</span></td>
+            <td height="18" bgcolor="#FFFFFF" class="STYLE4"><span class="STYLE7">
+              <select  name="queuename" id="queuename" >
+                <option value="-1"  >-----不执行-----</option>
+                <% foreach from=$queue_list item=eachone key=keyname %>
+                <option value="<% $eachone.name %>" <%if $eachone.name eq $outcalltask.queuename  %>selected<%/if%>  >
+                  <% $eachone.name %>
+                  [
+  <% if $eachone.dispname  eq '' %>
+                  未说明
+  <%else%>
+  <% $eachone.dispname %>
+  <%/if%>
+                  ] </option>
+                <%/foreach%>
+              </select>
+            </span></td>
+          </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span class="STYLE4">3.自定义脚本</span></td>
+            <td height="18" bgcolor="#FFFFFF" class="STYLE4">
+              <select  name="php_file_id"  id = "php_file_id" style="width:250px">
+                <option value="-1"  >-----不执行-----</option>
+                <% foreach from=$php_list item=eachone key=keyname %>
+                <option value="<% $eachone.id %>"  <%if $eachone.id eq $outcalltask.php_file_id  %>selected<%/if%>  >
+                  <% $eachone.description %>
+                </option>
+                <%/foreach%>
+              </select>
+              (<span class="redastgo1">实现高级多层操作的IVR业务</span>)</td>
+          </tr>
+          <tr>
+            <td height="18" colspan="2" align="right" bgcolor="#FFFFFF"><div align="center"><span class="STYLE4">设置参数</span></div></td>
+          </tr>
+          <% if  $action   neq 'edit_post' %>
+          <%/if%>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span class="STYLE1"><span class="STYLE4">群呼电话本</span></span></td>
+            <td height="18" bgcolor="#FFFFFF">
+              
+              <select name="calleegroup_id"  id = "calleegroup_id" style="width:200px"  <% if  $action   eq 'edit_post' %>  disabled <%/if%> >
+                <% foreach from=$calleegroup_list item=eachone key=keyname %>
+                <option value="<% $eachone.id %>"   <% if $eachone.id eq $outcalltask.calleegroup_id %> selected <%/if%>  >   <% $eachone.calleegroup_name %>    </option>
+                <%/foreach%>
+            </select></td>
+          </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span class="STYLE1">呼出路由组</span></td>
+            <td height="18" bgcolor="#FFFFFF"><span class="STYLE7">
+              <select name="gatewaygroupid" id="gatewaygroupid"   style="width:200px" >
+                <%foreach from=$routegroups item=eachone key=keyname %>
+                <option  value="<% $eachone.id %>" <% if $eachone.id eq $outcalltask.gatewaygroupid %> selected <%/if%> >
+                  <% $eachone.gatewaygroupname %> 
+                  </option>
+                <%/foreach%>
+              </select>
+            </span></td>
+          </tr>
+          <tr>
+            <td height="18" colspan="2" align="right" bgcolor="#FFFFFF"><div align="center"><span class="STYLE1">并发设置
+              <select size="1" name="call_maxline" >
+                  <% foreach from=$call_maxlines item=eachone key=keyname %>
+                  <option value="<% $eachone.value %>" <%if $eachone.value eq $outcalltask.call_maxline  %>selected<%/if%> >
+                    <% if $eachone.value < 0 %>
+                    按坐席空闲 1:
+                    <% $eachone.name %>
+                    <%else%>
+                    <% $eachone.value %>
+                    线
+                    <%/if%>
+                    </option>
+                  <%/foreach%>
+                  </select>
+            </span><span style="STYLE7">
+                <select size="1" name="trycall_count" >
+                  <option value="0" <%if $outcalltask.trycall_count eq '0' %>selected<%/if%> >不重试</option>
+                  <option value="1" <%if $outcalltask.trycall_count eq '1' %>selected<%/if%> >重试1次</option>
+                  <option value="2" <%if $outcalltask.trycall_count eq '2' %>selected<%/if%> >重试2次</option>
+                  <option value="3" <%if $outcalltask.trycall_count eq '3' %>selected<%/if%> >重试3次</option>
+                </select>
+                <span class="STYLE1">主叫号码<span class="STYLE7">
+                <input name="caller" id="caller" type="text" class="STYLE1" style="height:18px; width:120px;" size="30"    value='<% $outcalltask.caller %>' />
+              </span></span></span></div></td>
+          </tr>
+          <tr>
+            <td height="18" colspan="2" align="right" bgcolor="#FFFFFF"><div align="center"><span class="STYLE4">发送方式</span></div></td>
+          </tr>
+          <tr>
+            <td height="18" colspan="2" align="right" bgcolor="#FFFFFF"><div align="center">
+              <select size="1" name="senddatetime" >
+                
+                <option value="1" <%if $outcalltask.begintime  neq '0000-00-00 00:00:00' %> selected <%/if%> >定时发送</option>
+                <option value="0" <%if $outcalltask.begintime   eq '0000-00-00 00:00:00' %> selected <%/if%>  >立即发送</option>
+              </select>
+              <span class="STYLE1">开始</span>
+              <input type="text" name="begintime" id="begintime" class="Wdate"  readonly="readonly"  style="height:18px; width:160px;"  onfocus="WdatePicker({skin:'whyGreen',dateFmt:'yyyy-MM-dd HH:mm:ss'})" value='<% $outcalltask.begintime %>'/>
+              <span class="redastgo1">终止</span>
+              <input name="endtime_flag" type="checkbox" class="STYLE1" id="endtime_flag"  <% if $outcalltask.endtime_flag  eq '1' %> checked="checked"<%/if%> />
+              <input type="text" name="endtime" id="endtime" class="Wdate"  readonly="readonly"  style="height:18px; width:160px;"  onfocus="WdatePicker({skin:'whyGreen',dateFmt:'yyyy-MM-dd HH:mm:ss'})" value='<% $outcalltask.endtime %>'/>
+            </div></td>
+          </tr>
+          <tr>
+            <td height="18" colspan="3" align="center" bgcolor="#FFFFFF">&nbsp;</td>
+          </tr>
+          
+          <tr>
+            <td height="18" colspan="3" align="center" bgcolor="#FFFFFF"><span class="STYLE1">短信内容<span class="STYLE7">
+              <input name="smsmsg" type="text" class="STYLE1" id="smsmsg" style="height:18px; width:500px;"  value='<% $outcalltask.smsmsg %>' size="30" maxlength="140" />
+            </span></span></td>
+          </tr>
+          <tr>
+            <td height="18" colspan="3" align="center" bgcolor="#FFFFFF">
+              
+              <input type="submit"  class="STYLE1"   name="submitbtn" id="submitbtn"   onClick="return check()" value=" 确认提交 ">
+              <input type="button"  class="STYLE1"   name="btn2" id="btn2"   onClick=" goback('<% $curpage %>','<% $agent_id %>')" value=" 取消返回 "></td>
+          </tr>
+     
+        </table>
+  </form>
+        </td>
+
+      </tr>
+    </table></td>
+  </tr>
+
+  <tr>
+    <td height="30">&nbsp;</td>
+</tr>
+</table>
+</body>
+
+
+
+<script>
+ 
+		 $("input:text,input:password,textarea").focus(function(){
+			 if (this.value == '请输入') this.value = '';
+			 $(this).css("background","#a8c7ce");
+			 }).blur(function(){
+				 $(this).css("background","#FFF");
+			 }); 
+</script>    
+
+</html>

@@ -1,0 +1,297 @@
+#con_banner {
+	width: 930px; height: 255px; overflow: hidden; position: relative;
+}
+#con_upon {
+	background: url("../images/index_banner_right.jpg") no-repeat right top; left: 620px; top: 0px; width: 310px; height: 255px; color: rgb(4, 64, 90); font-weight: bold; position: absolute; z-index: 1;
+}
+#con_upon_con {
+	border: currentColor; width: 300px; height: 129px; padding-top: 126px; padding-left: 10px;
+}
+#con_upon_con {
+	text-align: left; font-weight: normal;
+}
+#con_upon_con span#downnum {
+	font-weight: bold;
+}
+#con_upon ul {
+	margin-top: 15px; margin-left: 0px;
+}
+#con_upon ul li {
+	background: url("../images/upton_10.jpg") no-repeat left 10px; margin: 0px; padding-right: 20px; padding-left: 6px; font-weight: normal; float: left;
+}
+#con_upon ul li a:link {
+	color: white; text-decoration: none;
+}
+#con_upon ul li a:visited {
+	color: white; text-decoration: none;
+}
+#con_upon ul li a:hover {
+	color: white; text-decoration: underline;
+}
+#con_t_l {
+	width: 630px; text-align: left; overflow: hidden; margin-right: 65px; margin-left: 3px; float: left; display: inline;
+}
+#con_t_l h3 {
+	height: 50px; line-height: 50px; float: left;
+}
+#con_t_r h3 {
+	height: 50px; line-height: 50px; float: left;
+}
+#con_t_l table a {
+	background: url("../images/index_body_24.jpg") no-repeat left 9px; text-align: left; padding-left: 10px; margin-left: 25px; display: block;
+}
+#con_t_l .taocan_li a:hover img {
+	border: 3px solid rgb(193, 231, 250);
+}
+#con_t_l .taocan_li a img {
+	border: 3px solid rgb(255, 255, 255); width: 200px; height: 96px; overflow: hidden; margin-right: 1px; margin-left: 1px; float: left; display: inline;
+}
+#con_t_l table font {
+	color: red; font-size: 12px;
+}
+#con_t_r span {
+	height: 48px; line-height: 56px; float: right; display: inline;
+}
+#con_t_l h3 strong {
+	color: rgb(51, 51, 51); font-size: 14px;
+}
+#con_t_r h3 strong {
+	color: rgb(51, 51, 51); font-size: 14px;
+}
+#con_t_r {
+	width: 232px; text-align: left; float: left;
+}
+#con_t_r ul {
+	padding-bottom: 0px;
+}
+#con_t_r ul li {
+	background: url("../images/index_body_18.jpg") no-repeat left 8px; height: 24px; line-height: 18px; padding-bottom: 0px; padding-left: 15px;
+}
+#con_t_r ul li.spc_news {
+	background: url("../images/index_body_15.jpg") no-repeat left 8px; padding-left: 15px;
+}
+#con_t_r ul li.spc_news a:link {
+	color: rgb(230, 0, 0);
+}
+#con_t_r ul li.spc_news a:visited {
+	color: rgb(230, 0, 0);
+}
+#con_t_r ul li.spc_news a:hover {
+	color: rgb(254, 76, 4);
+}
+#hotline {
+	padding-bottom: 0px; margin-top: 10px; border-top-color: rgb(211, 211, 211); border-top-width: 1px; border-top-style: dashed;
+}
+#hotline img {
+	margin-top: 10px;
+}
+#con_ad0 {
+	margin: 18px auto 0px; width: 924px; text-align: center;
+}
+#con_fun {
+	width: 924px; height: 150px; text-align: left; margin-top: 18px;
+}
+#con_fun_con {
+	background: url("../images/fun_bg.jpg") repeat-x; padding: 16px 20px 24px; width: 882px; height: 80px; overflow: hidden; border-right-color: rgb(238, 236, 237); border-left-color: rgb(238, 236, 237); border-right-width: 1px; border-left-width: 1px; border-right-style: solid; border-left-style: solid;
+}
+#con_fun_con ul {
+	margin-left: 20px;
+}
+#con_fun_con ul li {
+	width: 172px; text-align: left; float: left;
+}
+#con_fun_con h3 {
+	text-indent: -5000px;
+}
+#con_fun_h1 {
+	background: url("../images/index_body_42.jpg") no-repeat;
+}
+#con_fun_h2 {
+	background: url("../images/index_body_44.jpg") no-repeat;
+}
+#con_fun_h3 {
+	background: url("../images/index_body_47.jpg") no-repeat;
+}
+#con_fun_h4 {
+	background: url("../images/index_body_49.jpg") no-repeat;
+}
+#con_fun_h5 {
+	background: url("../images/index_body_51.jpg") no-repeat;
+}
+#partner {
+	width: 924px; height: 34px; text-align: left;
+}
+#partner h3 {
+	background: url("../images/index_body_72.jpg") no-repeat left 10px; width: 80px; height: 34px; text-indent: -3000px; float: left;
+}
+#partner a {
+	padding-right: 20px;
+}
+#flash_show_out {
+	float: left;
+}
+.li_dot {
+	color: rgb(237, 18, 100); font-family: Webdings; font-size: 12px;
+}
+#flash_show_out {
+	width: 620px; height: 255px; overflow: hidden;
+}
+#flash_show {
+	width: 620px; height: 255px; text-align: center; position: relative;
+}
+#flash_img {
+	overflow: hidden; filter: progid:DXImageTransform.Microsoft.Fade(Overlap=1.00);
+}
+#flash_btn {
+	left: 478px; top: 226px; position: absolute;
+}
+#flash_btn li {
+	background: url("../images/ok1.gif") no-repeat; width: 17px; height: 17px; color: rgb(127, 157, 183); line-height: 17px; overflow: hidden; font-family: Arial; font-size: 14px; margin-right: 5px; float: left; cursor: pointer;
+}
+#flash_btn li a {
+	width: 23px; height: 23px; line-height: 23px; font-size: 14px; display: block; cursor: pointer;
+}
+#flash_btn li a:link {
+	color: gray; text-decoration: none;
+}
+#flash_btn li a:visited {
+	color: gray; text-decoration: none;
+}
+#flash_btn li a:hover {
+	color: green; text-decoration: none;
+}
+#navList a.top_banner_on0 {
+	background: url("../images/index_top_bg.gif") no-repeat left -100px; color: rgb(0, 142, 218);
+}
+#navList a.top_banner_on0:hover {
+	background: url("../images/index_top_bg.gif") no-repeat left -100px;
+}
+#navList a.top_banner_on0:link {
+	color: rgb(0, 142, 218);
+}
+#navList a.top_banner_on0:visited {
+	color: rgb(0, 142, 218);
+}
+#navList a.top_banner_on0:hover {
+	color: rgb(0, 142, 218);
+}
+.con_ado_img1 img {
+	margin-right: 30px; float: left; display: inline;
+}
+.con_ado_img2 img {
+	float: left;
+}
+.con_ado_img3 img {
+	margin-right: 19px; float: right; display: inline;
+}
+#con_t_l ul li {
+	margin: 0px; float: left;
+}
+#con_t_l ul li.taocan_li {
+	
+}
+body {
+	width: auto;
+}
+#flash_btn li.figlist {
+	background: url("../images/ok2.gif") no-repeat; color: rgb(255, 255, 255); font-weight: bold;
+}
+#maincon {
+	margin: 0px auto; width: 930px;
+}
+.content {
+	margin: 0px auto; width: 930px;
+}
+#partner {
+	margin: 0px auto; width: 930px;
+}
+#header {
+	margin: 0px auto; width: 930px;
+}
+#footer {
+	margin: 0px auto; width: 930px;
+}
+#header {
+	margin-bottom: 10px;
+}
+#marquee ul li {
+	height: 24px; line-height: 24px; margin-right: 15px; float: left; white-space: nowrap;
+}
+#marquee a {
+	color: rgb(154, 154, 154); line-height: 24px; float: left; display: block;
+}
+#marquee a:hover {
+	color: rgb(254, 76, 4);
+}
+#marquee td {
+	margin: 0px; padding: 0px;
+}
+#partner_con {
+	float: left;
+}
+#partner_con img {
+	vertical-align: middle;
+}
+.ser-pic {
+	height: 20px; line-height: normal; padding-top: 4px; font-family: Tahoma,SimSun,Arial;
+}
+.ser-pic img {
+	margin: 0px 24px; vertical-align: middle;
+}
+#inbuild_tab {
+	padding: 30px 0px 8px; width: 630px; height: 30px; overflow: hidden;
+}
+#inbuild_tab img {
+	margin-right: 30px;
+}
+#inbuild_tab ul {
+	list-style-type: none;
+}
+#inbuild_tab ul li {
+	display: inline; list-style-type: none;
+}
+#inbuild_tab a {
+	width: 113px; height: 35px; text-align: center; color: rgb(255, 255, 255); line-height: 27px; font-size: 14px; margin-right: 16px; float: left; display: inline-block;
+}
+#inbuild_tab .image_qt_1 {
+	width: 113px; margin-right: 0px;
+}
+#inbuild_tab .image_qt_2 {
+	width: 113px; margin-right: 0px;
+}
+.image_tf_1 {
+	background-position: 0% 100%; background-image: url("../images/index_inbuild.gif");
+}
+.image_tf_2 {
+	background-image: url("../images/index_inbuild.gif");
+}
+.image_ta_1 {
+	background-position: 400% 100%; background-image: url("../images/index_inbuild.gif");
+}
+.image_ta_2 {
+	background-position: 400% 0%; background-image: url("../images/index_inbuild.gif");
+}
+.image_r_1 {
+	background-position: 300% 100%; background-image: url("../images/index_inbuild.gif");
+}
+.image_r_2 {
+	background-position: 300% 0%; background-image: url("../images/index_inbuild.gif");
+}
+.image_cz_1 {
+	background-position: 100% 100%; background-image: url("../images/index_inbuild.gif");
+}
+.image_cz_2 {
+	background-position: 100% 0%; background-image: url("../images/index_inbuild.gif");
+}
+.image_qt_1 {
+	background-position: 200% 100%; background-image: url("../images/index_inbuild.gif");
+}
+.image_qt_2 {
+	background-position: 200% 0%; background-image: url("../images/index_inbuild.gif");
+}
+.inbuild_table {
+	height: 230px;
+}
+.inbuild_table span {
+	background: url("../images/index_body_24.jpg") no-repeat left 26px; height: 56px; line-height: 58px; padding-left: 10px; margin-left: 50px; float: left; display: inline;
+}

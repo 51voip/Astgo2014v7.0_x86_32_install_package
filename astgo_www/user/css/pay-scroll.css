@@ -1,0 +1,24 @@
+.pb {
+	POSITION: relative; WIDTH: 705px; HEIGHT: 180px
+}
+.pb .banners {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+.pb .banners LI {
+	DISPLAY: none; OVERFLOW: hidden
+}
+.pb .banners LI.current {
+	LIST-STYLE-TYPE: none; DISPLAY: block
+}
+.pb .switcher {
+	POSITION: absolute; WIDTH: 100px; RIGHT: 0px; TOP: 150px
+}
+.pb .points {
+	WIDTH: 105px; FONT-SIZE: 12px
+}
+.pb .points LI {
+	BORDER-BOTTOM: #74a8ed 1px solid; TEXT-ALIGN: center; BORDER-LEFT: #74a8ed 1px solid; LINE-HEIGHT: 18px; MARGIN: 0px 3px; WIDTH: 18px; DISPLAY: inline; FONT-FAMILY: Arial; BACKGROUND: white; FLOAT: left; HEIGHT: 18px; COLOR: #74a8ed; OVERFLOW: hidden; BORDER-TOP: #74a8ed 1px solid; CURSOR: pointer; FONT-WEIGHT: bold; BORDER-RIGHT: #74a8ed 1px solid
+}
+.pb .points LI.current {
+	BORDER-BOTTOM: #ccdef7 1px solid; TEXT-ALIGN: center; BORDER-LEFT: #ccdef7 1px solid; MARGIN: 0px 3px; DISPLAY: inline; BACKGROUND: #74a8ed; COLOR: white; OVERFLOW: hidden; BORDER-TOP: #ccdef7 1px solid; FONT-WEIGHT: bold; BORDER-RIGHT: #ccdef7 1px solid
+}

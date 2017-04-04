@@ -1,0 +1,411 @@
+#maincon {
+	color: rgb(51, 51, 51); margin-bottom: 10px;
+}
+#maincon_c {
+	background: url("../images/account/account_con_05.jpg"); width: 930px; height: auto !important; min-height: 600px;
+}
+#maincon_c_l {
+	margin: 0px 1px; width: 163px; float: left;
+}
+#maincon_c_l h1 {
+	background: url("../images/account/account_index_13.jpg") no-repeat 20px 14px; height: 30px; line-height: 44px; font-weight: bold;
+}
+#maincon_c_l_h1 a:link {
+	color: rgb(254, 76, 4);
+}
+#maincon_c_l_h1 a:visited {
+	color: rgb(254, 76, 4);
+}
+#maincon_c_l_h1 a:hover {
+	color: rgb(254, 76, 4);
+}
+#maincon_c_l h2 {
+	background: rgb(203, 231, 255); width: 163px; height: 27px; color: rgb(51, 51, 51); line-height: 27px; font-weight: bold;
+}
+#maincon_c_l h2 span {
+	width: 118px; text-align: left; display: block;
+}
+#maincon_c_l h2 span#left_title1 {
+	background: url("../images/account/account_index_24.jpg") no-repeat 20px; padding-left: 45px;
+}
+#maincon_c_l h2 span#left_title2 {
+	background: url("../images/account/account_index_35.jpg") no-repeat 20px; padding-left: 45px;
+}
+#maincon_c_l ul {
+	margin: 10px 0px; padding-left: 35px;
+}
+#maincon_c_l ul li {
+	background: url("../images/account/index_body_24.jpg") no-repeat left; height: 30px; text-align: left; line-height: 30px; padding-left: 10px;
+}
+#maincon_c_l ul li.account_btn_on {
+	background: url("../images/account/account_con_08.jpg") no-repeat left;
+}
+#maincon_c_l ul li.account_btn_on a {
+	color: rgb(254, 76, 4); font-weight: bold;
+}
+#maincon_c_r {
+	width: 670px; text-align: left; margin-left: 50px; float: left; display: inline;
+}
+#maincon_c_r table {
+	color: rgb(102, 102, 102);
+}
+#maincon_c_r h3 {
+	height: 48px; color: rgb(253, 76, 6); line-height: 48px; font-size: 14px; font-weight: bold;
+}
+#maincon_c_r table td {
+	height: 36px; text-align: left; line-height: 36px; padding-left: 0px;
+}
+#maincon_c_r table td.firtr {
+	background: rgb(213, 236, 254); height: 25px; text-align: center; line-height: 25px;
+}
+#maincon_c_r table td.firtro {
+	background: rgb(213, 236, 254); height: 25px; text-align: center; line-height: 25px;
+}
+#maincon_c_r table td.firtrtw {
+	background: rgb(250, 136, 63); height: 25px; text-align: center; line-height: 25px;
+}
+#maincon_c_r table td.firtrth {
+	background: rgb(124, 180, 254); height: 25px; text-align: center; line-height: 25px;
+}
+#maincon_c_r table td.firtrfo {
+	background: rgb(153, 195, 131); height: 25px; text-align: center; line-height: 25px;
+}
+#maincon_c_r table td.firtrtc {
+	text-align: center;
+}
+#maincon_c_r table td.firtrtcb {
+	text-align: center; line-height: 20px; padding-top: 5px; padding-bottom: 5px;
+}
+#maincon_c_r table td.firtrtn {
+	background: url("../images/account/account_con_12.jpg") no-repeat left; text-align: center; color: rgb(0, 109, 220);
+}
+#maincon_c_r table td strong {
+	color: rgb(51, 51, 51); font-weight: bold;
+}
+.never_read_td {
+	background: url("../images/account/account_con_12.jpg") no-repeat left;
+}
+.never_read a {
+	color: rgb(0, 109, 220);
+}
+.already_read a {
+	color: rgb(153, 153, 153);
+}
+.never_read td {
+	border-bottom-color: rgb(224, 224, 224); border-bottom-width: 1px; border-bottom-style: dashed;
+}
+.already_read td {
+	border-bottom-color: rgb(224, 224, 224); border-bottom-width: 1px; border-bottom-style: dashed;
+}
+.account_call_record_tr td {
+	height: 44px; line-height: 44px; border-bottom-color: rgb(224, 224, 224); border-bottom-width: 1px; border-bottom-style: dashed;
+}
+#email_show_title {
+	height: 48px; line-height: 48px; border-bottom-color: rgb(224, 224, 224); border-bottom-width: 1px; border-bottom-style: dashed;
+}
+#email_show_title h3 {
+	height: 48px; line-height: 48px; margin-right: 20px; float: left;
+}
+#email_show_title font {
+	font-size: 12px; float: left; display: block;
+}
+#email_show_title span {
+	float: right; display: block;
+}
+#maincon_c_r p {
+	text-indent: 2em;
+}
+#maincon_c_r span#email_sender {
+	float: right;
+}
+hr {
+	border-width: medium medium 1px; border-style: none none dashed; border-color: currentColor currentColor rgb(224, 224, 224); height: 1px; overflow: hidden;
+}
+#account_trans_con {
+	width: 630px; margin-left: 15px; float: left; display: inline;
+}
+#account_trans1_btnzone {
+	margin: 0px auto; width: 450px; text-align: center;
+}
+#account_trans2_btnzone {
+	margin: 0px auto; width: 450px; text-align: center;
+}
+#account_vouch_btnzone {
+	margin: 0px auto; width: 450px; text-align: center;
+}
+#account_trans1_btnzone ul li {
+	margin-top: 10px; margin-left: 34px; float: left; display: inline;
+}
+.pay_style_btn0 {
+	background: url("../images/account/bank_transfer_11.jpg") no-repeat left; padding-left: 20px;
+}
+.pay_style_btn1 {
+	background: url("../images/account/vouch_58.jpg") no-repeat left; padding-left: 20px;
+}
+.pay_style_btn2 {
+	background: url("../images/account/vouch_61.jpg") no-repeat left; padding-left: 20px;
+}
+#trans_receiver {
+	width: 500px; overflow: hidden;
+}
+#account_trans_con h4 {
+	height: 36px; color: rgb(51, 51, 51); line-height: 36px; font-weight: bold;
+}
+#account_trans_con font {
+	color: rgb(255, 66, 11); font-size: 12px;
+}
+span#trans_success {
+	color: rgb(253, 75, 5);
+}
+#account_vouch_top {
+	background: rgb(243, 250, 255); padding: 10px 20px; height: 160px;
+}
+#account_vouch_top span {
+	height: 36px; color: rgb(253, 75, 5); line-height: 36px;
+}
+table#account_vouch_table {
+	float: left;
+}
+#account_vouch_table td {
+	text-align: left;
+}
+.getbind_table td {
+	text-align: left;
+}
+#account_vouch_table td {
+	padding-top: 5px;
+}
+#account_vouch_table td input {
+	background: url("../images/account/account_vouch_bg_15.jpg") repeat-x; border: 1px solid rgb(167, 166, 170); width: 180px; height: 24px; line-height: 24px;
+}
+.getbind_table td input.getback {
+	background: url("../images/account/account_vouch_bg_15.jpg") repeat-x; border: 1px solid rgb(167, 166, 170); width: 180px; height: 24px; line-height: 24px;
+}
+#account_vouch_table td input#code {
+	width: 74px;
+}
+.account_vouch_msg {
+	background: url("../images/account/account_vouch_07.jpg") no-repeat left 15px; color: rgb(253, 75, 5); padding-left: 20px; display: none;
+}
+#call_record_title {
+	height: 48px;
+}
+#call_record_title font {
+	height: 48px; color: rgb(102, 102, 102); line-height: 48px; font-size: 12px; float: left; display: block;
+}
+#call_record_title h3 {
+	height: 48px; line-height: 48px; margin-right: 15px; float: left;
+}
+#call_record_title span {
+	height: 48px; line-height: 48px; float: right; display: block; _height: 38px; _padding-top: 10px;
+}
+#change_pwd_title {
+	width: 100%; height: 48px; border-bottom-color: rgb(224, 224, 224); border-bottom-width: 1px; border-bottom-style: dashed;
+}
+#change_pwd_title h3 {
+	height: 48px; line-height: 48px; margin-right: 15px; float: left;
+}
+#change_pwd_title h2 {
+	color: rgb(102, 102, 102); margin-top: 14px; float: left;
+}
+#address_title {
+	width: 100%; height: 48px; border-bottom-color: rgb(224, 224, 224); border-bottom-width: 1px; border-bottom-style: dashed;
+}
+#address_title h3 {
+	height: 48px; line-height: 48px; margin-right: 15px; float: left;
+}
+#address_title font {
+	height: 48px; line-height: 48px; font-size: 12px; float: left; display: block;
+}
+#account_vouch_table td input#address_input {
+	width: 300px; height: 24px; line-height: 24px;
+}
+#address_con span {
+	text-align: right; color: red; float: right;
+}
+#address_con font {
+	color: red; font-size: 12px;
+}
+#privacy_tips {
+	padding: 10px 0px; border-bottom-color: rgb(224, 224, 224); border-bottom-width: 1px; border-bottom-style: dashed;
+}
+#privacy_tips h4 {
+	height: 36px; color: rgb(51, 51, 51); line-height: 36px; font-weight: bold;
+}
+#privacy_con_t {
+	height: 48px; line-height: 48px;
+}
+#privacy_con_t span {
+	color: rgb(253, 75, 5); float: left; display: block;
+}
+#privacy_con_t_links {
+	float: right;
+}
+#privacy_con ul li {
+	width: 150px; float: left;
+}
+#privacy_con2 {
+	margin: 0px auto; width: 500px; text-align: center;
+}
+#privacy_con2 table td {
+	text-align: left;
+}
+#privacy_con2 table td input {
+	background: url("../images/account/account_vouch_bg_15.jpg") repeat-x; border: 1px solid rgb(167, 166, 170); width: 180px; height: 24px; line-height: 24px;
+}
+#gift_tips {
+	color: rgb(102, 102, 102);
+}
+#gift_tips strong {
+	color: rgb(51, 51, 51);
+}
+#gift_title {
+	height: 36px; color: rgb(253, 75, 5); line-height: 36px; font-size: 14px; font-weight: bold;
+}
+#gift_jihuo {
+	line-height: 36px; padding-top: 5px;
+}
+#jihuo_text {
+	background: url("../images/account/account_vouch_bg_15.jpg") repeat-x; border: 1px solid rgb(167, 166, 170); width: 180px; height: 24px; line-height: 24px;
+}
+#jihuo_btn {
+	width: 60px; height: 24px; line-height: 20px;
+}
+#send_gift_msg {
+	background: url("../images/account/gift_03.jpg") no-repeat left; color: red; padding-left: 20px;
+}
+.gift_common td {
+	height: 44px; line-height: 44px; border-bottom-color: rgb(224, 224, 224); border-bottom-width: 1px; border-bottom-style: dashed;
+}
+.gift_select td {
+	height: 44px; color: rgb(253, 75, 5); line-height: 44px; font-weight: bold;
+}
+#gift_detail_show td {
+	color: rgb(51, 51, 51); border-bottom-color: rgb(224, 224, 224); border-bottom-width: 1px; border-bottom-style: dashed;
+}
+#gift_detail_show td img {
+	margin-bottom: 15px; margin-left: 200px;
+}
+.pwd_protect1_table td select {
+	border: 1px solid rgb(126, 157, 185); width: 165px; height: 20px;
+}
+.pwd_pro_text1 {
+	border: 1px solid rgb(126, 157, 185); width: 165px; height: 20px; line-height: 20px;
+}
+.pwd_pro_text2 {
+	border: 1px solid rgb(126, 157, 185); width: 100px; height: 20px; line-height: 20px;
+}
+#pwd_pro_tips {
+	padding: 15px 0px; color: rgb(102, 102, 102);
+}
+#pwd_pro_tips strong {
+	color: rgb(51, 51, 51);
+}
+#pwd_pro_ul {
+	background: url("../images/account/protect_03.jpg") repeat-x; width: 590px; height: 30px; padding-left: 40px;
+}
+#pwd_pro_ul li {
+	padding: 1px 10px; height: 22px; color: rgb(2, 110, 219); line-height: 22px; font-weight: bold; margin-top: 4px; margin-right: 20px; float: left;
+}
+#pwd_pro_ul li#pwd_pro_li_on {
+	background: white; border-width: 1px; border-style: solid; border-color: rgb(92, 188, 249) rgb(92, 188, 249) white; color: rgb(253, 77, 4);
+}
+#maincon_c_r table.pwd_protect1_table td {
+	height: 32px; line-height: 32px;
+}
+#pwd_protect1_table td select.pwd_protect_sel2 {
+	width: 120px;
+}
+#pwd_pro_tips font {
+	color: rgb(255, 74, 5); font-size: 12px;
+}
+#pwd_pro_dl1 dt {
+	float: left;
+}
+#pwd_pro_dl1 dd {
+	width: 210px; color: rgb(102, 102, 102); padding-left: 20px; float: left;
+}
+#pwd_pro_dl1 dd h5 {
+	color: rgb(2, 110, 219); font-size: 14px; font-weight: bold;
+}
+#pwd_pro_dl1 dd strong {
+	color: rgb(102, 102, 102);
+}
+#pwd_pro_con3 h4 {
+	color: rgb(51, 51, 51); font-weight: bold;
+}
+#pwd_pro_con3 {
+	color: rgb(51, 51, 51);
+}
+#pwd_pro_con3 span {
+	color: rgb(253, 74, 7); font-weight: bold;
+}
+#paginglist tr td {
+	text-align: right;
+}
+#paginglist font {
+	color: rgb(102, 102, 102); font-weight: normal;
+}
+.colorText1 {
+	color: rgb(85, 187, 41); font-weight: bold;
+}
+.colorText2 {
+	color: rgb(251, 6, 47); font-weight: bold;
+}
+#infoLab {
+	color: rgb(252, 75, 7); font-weight: bold;
+}
+table.pwd_protect1_table {
+	margin: 0px; text-align: left;
+}
+table.pwd_protect1_table td {
+	text-align: left; padding-left: 5px;
+}
+table#account_vouch_table td {
+	text-align: left; padding-left: 5px;
+}
+#bind_success {
+	margin: 0px auto; width: 360px; text-align: center; color: rgb(51, 51, 51); line-height: 36px; font-size: 14px;
+}
+#bind_success strong {
+	background: url("../images/account/success_03.jpg") no-repeat left; height: 36px; text-align: left; padding-left: 36px; float: left; display: block;
+}
+#bind_success font {
+	color: rgb(253, 74, 7); font-size: 12px; font-weight: bold; float: left; display: block;
+}
+.change_bind1 {
+	background: rgb(250, 234, 235); margin: 0px auto; padding: 3px 9px; border: 1px solid rgb(254, 93, 101); width: 430px; height: 18px; text-align: center; line-height: 18px;
+}
+.change_bind1 span {
+	background: url("../images/account/bind_chage_03.jpg") no-repeat left; text-align: left; color: rgb(245, 11, 12); padding-left: 20px; display: block;
+}
+.change_bind2 {
+	margin: 0px auto; width: 450px; text-align: center; color: rgb(51, 51, 51); font-size: 14px;
+}
+.change_bind2 strong {
+	height: 36px; text-align: left; padding-left: 36px; float: left;
+}
+.change_bind2 font {
+	color: rgb(253, 74, 7); font-size: 12px; font-weight: bold; float: left;
+}
+.change_bind2 label {
+	font-size: 12px;
+}
+#last_news {
+	height: 78px; overflow: hidden;
+}
+#maincon_l_c_r_con ul#last_news li a {
+	font-weight: normal;
+}
+#gift_choose_btn a:hover {
+	color: rgb(254, 76, 4);
+}
+.ullist li {
+	color: rgb(1, 112, 220); font-family: Tahoma,SimSun,Arial;
+}
+.ullist li label {
+	cursor: pointer;
+}
+.ullist li input {
+	vertical-align: middle;
+}

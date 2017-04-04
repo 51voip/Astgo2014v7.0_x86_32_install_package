@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="css/mainstyle.css"/>
+	<link rel="stylesheet" href="./css/themes/base/jquery.ui.all.css">
+	<script src="./js/jquery-1.6.2.min.js"></script>
+    <link rel="stylesheet" href="./css/demos.css">
+<title>前缀对照主叫号码列表</title>
+</head>
+
+<script>
+
+        
+
+	function delete_confirm()
+	{
+		if (confirm("确定要删除这个号码吗?"))  {
+			 return true;	
+		}
+		return false;	
+	}
+
+
+
+
+//页码导航 
+function post_list(index,curpage,maxpage)
+{ 
+     if ( parseInt(index) <= parseInt(maxpage) && parseInt(index) > 0  && parseInt(curpage)!= parseInt(index) )
+	 {
+         document.form1.action = '?action=list&curpage='+index; 
+		//alert(document.form1.action);
+	    document.form1.submit(); 
+	    return true;
+	 }
+	 return false;
+}
+function  change_acct_id(acct_id)
+{
+        //document.form1.action = '?action=list&curpage='+goto_index; 
+		
+		//alert(acct_id);
+	    document.form1.submit(); 
+	    return true;		 
+	
+}
+	function goback(old_curpage,agent_id)
+	{
+		var gotourl = '?action=list&curpage='+old_curpage+'&agent_id='+agent_id  ; 
+		//alert(gotourl);
+	    document.form1.action = gotourl;
+	
+		document.form1.submit();
+	}	
+	
+	
+</script>
+<body>
+
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="24" bgcolor="#353c44"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                
+                <td width="97%" valign="bottom"><span class="table_caption">前缀对照主叫号码列表管理 &nbsp;&nbsp; 
+                
+                 <a href="#"  onClick="goback('<% $old_curpage %>','<% $agent_id %>')"  >返回</a>
+                </span></td>
+              </tr>
+            </table></td>
+            <td><div align="right"><span class="table_caption">
+            <img src="images/add.gif" width="10" height="10" /> <a href="?action=add_send&curpage=<% $curpage %>" >添加</a>
+             </span>
+             
+             
+             
+             </div></td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+  
+
+  
+  <form name="form1" method="post" action="?action=calle_list&curpage=<% $curpage %>&agent_id=<% $agent_id %>&calleegroup_id=<% $calleegroup_id %>">
+  
+  <tr>
+    <td><table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">
+
+
+           
+          <tr>
+            <td width="2%"  height="24"    bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">序号</div></td>
+            <td width="10%"  height="24"    bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title"><span class="STYLE1">中继主叫号码</span></div></td>
+			<td width="20%"  height="24"    bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">前缀</div></td>
+            <td width="10%"  height="24"    bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title"><span class="STYLE1">替换后主叫号码</span></div></td>
+            <td width="8%"  height="24"    bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">操作</div></td>
+          </tr>
+
+          
+          <% foreach from=$table_array item=eachone key=keyname %>  
+           <tr>
+            <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"><% $eachone.check_id %></div></td>
+            <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"><% $eachone.caller %></div></td>
+            <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"><% $eachone.prefix %></div></td>
+			<td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"><% $eachone.newcaller  %></div></td>
+            <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19">
+			<a href="?action=edit_send&id=<% $eachone.decode_id %>&curpage=<% $curpage %>"  onClick="return true" >编辑</a>
+			<a href="?action=delete_post&id=<% $eachone.decode_id %>&curpage=<% $curpage %>"  onClick="return delete_confirm()" >删除</a></div></td>
+          </tr>
+                   	
+        
+
+ 
+        <% /foreach %>
+    </table></td>
+  </tr>
+  </form>
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="41%"><div align="left"><span class="STYLE21">共
+              <% $record_count %>
+              条记录，当前第
+              <% $curpage %>
+              /
+              <% $maxpage %>
+              页，每页
+              <% $pagelimtcount %>
+          条记录</span></div></td>
+        <td width="59%"><table width="180" border="0" align="right" cellpadding="0" cellspacing="0">
+          <tr>
+            <td width="40"><div align="center"> <a href="#" class="STYLE21" onClick="return post_list('1',<% $curpage %>,'<% $maxpage %>')"  >首页</a> </div></td>
+            <td width="40"><div align="center"> <a href="#" class="STYLE21" onClick="return post_list('<% $curpage-1 %>','<% $curpage %>','<% $maxpage %>')" >上一页</a></div></td>
+            <td width="40"><div align="center"> <a href="#" class="STYLE21" onClick="return post_list('<% $curpage+1 %>','<% $curpage %>','<% $maxpage %>')" >下一页</a></div></td>
+            <td width="40"><div align="center"> <a href="#" class="STYLE21" onClick="return post_list('<% $maxpage  %>','<% $curpage %>','<% $maxpage %>')" >尾页</a></div></td>
+           
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="css/mainstyle.css"/>
+<title>编辑呼入路由</title>
+<script>
+	function trim_all_input()
+	{
+		var inpus = document.getElementsByTagName("INPUT")
+        for(var i=0; i<inpus.length; i++)
+        {
+            if(inpus[i].type=="text")
+            {
+               inpus[i].value =  inpus[i].value.replace(/\s/g,"");
+            }
+        }
+		
+	}
+	
+	// 提交前检测输入是否合法
+	function check()
+	{
+		trim_all_input(); //所有input 去空格
+			
+		if (document.form1.btobcallee.value==""  )
+		{
+			document.getElementById("userTip").innerHTML="<div align='center'><span class='STYLE4'><font color=red>请输入正确的亲情号码</font></span></div>";
+      		document.form1.btobcallee.focus();
+			return false;
+			
+		}		
+
+		return true;
+
+	}
+
+	function goback(curpage,agent_id)
+	{
+		var gotourl = '?action=btobtellist&curpage='+curpage+'&agent_id='+ agent_id;
+        document.form2.action = gotourl;
+		document.form2.submit();
+	}
+
+    </script>
+
+<body>
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="24" bgcolor="#353c44"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="2%" height="19" valign="bottom"><div align="center"><img src="images/tb.gif" width="14" height="14" /></div></td>
+                <td width="98%" valign="bottom"><span class="STYLE10"> 添加亲情号码</span></td>
+              </tr>
+            </table></td>
+            <td><div align="right"><span class="STYLE1">
+              </span></div></td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+  
+    <form name="form1" method="post" action="?action=add_list_post&curpage=<% $curpage %>">
+  <tr>
+    <td><table width="744" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">
+     
+      <tr>
+            <td height="18" colspan="3" bgcolor="#FFFFFF">&nbsp;            </td>
+            </tr>
+
+          <tr>
+            <td width="356" height="18" align="right" bgcolor="#FFFFFF"><span class="table_title">亲情号</span></td>
+            <td width="385" height="18" colspan="2" bgcolor="#FFFFFF"><span class="STYLE7">
+              <input name="btobcallee" type="text" class="STYLE1" style="height:18px; width:125px;" size="30"  value='' />
+            </span></td>
+          </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span class="table_title">中继号码</span></td>
+            <td height="18" colspan="2" bgcolor="#FFFFFF"><span class="table_title">
+              <select name="callee" class="STYLE1" id="callee"  >
+                  <%foreach from=$inboundcalleelist item=eachone key=keyname %>
+                  <option  value="<% $eachone.prefix %>"  >
+                  <% $eachone.prefix %>[<% $eachone.routername %>]                  </option>
+                  <%/foreach%>
+              </select>
+              请到中继管理-&gt;呼入路由 中添加 亲情号码预约
+            </span></td>
+          </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span class="table_title">说明</span></td>
+            <td height="18" colspan="2" bgcolor="#FFFFFF"><input name="remark" type="text" class="STYLE1" id="remark" size="30" maxlength="80" value="" /></td>
+          </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF">&nbsp;</td>
+            <td height="18" colspan="2" bgcolor="#FFFFFF">&nbsp;</td>
+          </tr>
+
+  
+  
+          <tr>
+            <td id="userTip" height="18" colspan="3" align="right" bgcolor="#FFFFFF"><div align="center"></div></td>
+            </tr>
+          <tr>
+            <td height="18" colspan="3" align="center" bgcolor="#FFFFFF">
+              
+              <input type="submit"  class="STYLE1"   name="submitbtn" id="submitbtn"   onClick="return check()" value=" 确认提交 ">
+              <input  type="button"  class="STYLE1"   name="backbutton" id="button"   onClick="goback('<% $curpage %>','<% $agent_id %>')" value=" 取消返回 ">              </td>
+            </tr>
+                 
+ 
+    </table></td>
+  </tr>
+  </form>
+  
+  <form name="form2" method="post">
+    </form>
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+       
+        <td width="67%"><table width="312" border="0" align="right" cellpadding="0" cellspacing="0">
+          <tr>
+
+            <td width="35">&nbsp;</td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+</body>
+</html>

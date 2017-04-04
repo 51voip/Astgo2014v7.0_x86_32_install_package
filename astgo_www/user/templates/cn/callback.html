@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!-- saved from url=(0039)http://www.AsgoCall.com/u/showUserInfo.do -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><HTML 
+xmlns="http://www.w3.org/1999/xhtml"><HEAD>
+<META content="text/html; charset=utf-8" http-equiv="Content-Type"><TITLE>网页回拨 - <% $astgoConf.title %></TITLE>
+<META name="keywords" content="网络电话，免费网络电话，免费电话，<% $astgoConf.logname %>，免费打电话">
+<META name="description" content="<% $astgoConf.logname %>是一款用电脑免费打电话的网络电话聊天软件，下载后即可拨打全球任意手机和电话，包月价格更低至0.05元/分钟。全力打造中国网络电话第一品牌，互联网语音通信专家。">
+<LINK rel="stylesheet" type="text/css" href="css/global.css">
+<LINK rel="stylesheet" type="text/css" href="css/account_con.css">
+<SCRIPT type="text/javascript" src="js/base.js"></SCRIPT>
+<SCRIPT type="text/javascript" src="js/form.js"></SCRIPT>
+<% include file="head.html" %>
+<SCRIPT type="text/javascript" src="js/script.js"></SCRIPT>
+<STYLE>
+	#maincon_c_l ul li.account_btn_on8{background:url(images/account/account_con_08.jpg) left no-repeat;}
+	#maincon_c_l ul li.account_btn_on8 a{font-weight:bold;color:#FE4C04;}
+	</STYLE>
+
+    
+<DIV id="maincon">
+<DIV><IMG src="images/account/account_con_03.jpg"></DIV>
+<DIV id="maincon_c">
+<% include file="leftmenu.html" %>
+  
+  
+<SCRIPT type="text/javascript" src="js/script.js"></SCRIPT>
+<SCRIPT type="text/javascript">
+function bindtel_post()
+{
+   var bindtel = G('bindtel');
+   if (trim(bindtel.value) == '') {
+	  makeMsg("绑定电话号码不能为空");
+	  bindtel.focus();
+	  return false;
+   }				
+
+	document.form1.submit();
+	return true;
+	
+}
+			function trim(str) {
+				return str.replace(/^\s+|\s+$/g, "");
+			}
+			function makeMsg(str) {
+				var msg = G('page_msg');
+				msg.innerHTML = "<span>" + str + "</span>";
+			}
+			function clearMsg(){
+				G('page_msg').innerHTML = "";
+			}
+			
+</SCRIPT>
+
+<DIV id="maincon_c_r">
+<DIV id="pwd_protect_title">
+<H3>网页回拨</H3></DIV>
+<P style="display: none;" id="p_step3"></P>
+<DIV id="msg"></DIV>
+<DIV id="step1">
+<DIV class="clear"></DIV>
+<FORM method="post" name="form1" action="?action=callback_post">
+<TABLE class="getbind_table" border="0" cellSpacing="0" cellPadding="0">
+  <TBODY>
+   <TR>
+     <TD style="text-align: right;"><strong>绑定号码：</strong></TD>
+     <TD><SELECT  style="width: 184px; height:26px"  class="getback" id="bindtel"  name="bindtel">
+          <% if  $user.tranfer_callee1 neq '' %> <option value="<% $user.tranfer_callee1 %>" ><% $user.tranfer_callee1 %></option><%/if%>
+          <% if  $user.tranfer_callee1 neq '' %> <option value="<% $user.tranfer_callee2 %>" ><% $user.tranfer_callee2 %></option><%/if%>
+          <% if  $user.tranfer_callee1 neq '' %> <option value="<% $user.tranfer_callee3 %>" ><% $user.tranfer_callee3 %></option><%/if%>
+             
+        </SELECT>
+      </TD>
+     <TD>&nbsp;</TD>
+   </TR>
+   <TR>
+     <TD style="text-align: right;"><strong>被叫号码：</strong></TD>
+     <TD><input id="callee" class="getback" name="callee" maxlength="20" type="text" value="" /></TD>
+     <TD>&nbsp;</TD>
+   </TR>
+   <TR>
+    <TD width="105" style="text-align: right;">&nbsp;</TD>
+    <TD width="220" id="page_msg">&nbsp;
+      <%if $res eq '0' %>提交成功:<% $callee %><%/if%></TD>
+    <TD width="72">&nbsp;</TD>
+   </TR>      
+   </TBODY>
+ </TABLE>
+<DIV class="clear"></DIV><BR>
+<DIV id="account_vouch_btnzone">
+
+<INPUT style="border: currentColor; width: 107px; height: 31px;" name="submit" src="images/account/account_vouch_11.jpg"  type="image" onClick=" return bindtel_post()">
+      
+ </DIV></FORM></DIV>
+
+<BR>
+<HR>
+<BR>
+<STRONG>使用方法：</STRONG><BR>
+• 输入要拨打电话号码，系统会自动接通您绑定的电话号码和被叫号码<BR>
+<BR>
+<BR></DIV>
+<DIV class="clear"></DIV></DIV>
+<DIV><IMG src="images/account/account_con_15.jpg"></DIV></DIV>
+
+
+
+
+<% include file="footer.html" %>
+
+
+
+
+</html>

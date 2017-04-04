@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="css/mainstyle.css"/>
+     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="./css/themes/base/jquery.ui.all.css">
+	<script src="./js/jquery-1.6.2.min.js"></script>
+    <link rel="stylesheet" href="./css/demos.css">
+<title>代理流量成本利润报表统计</title>
+</head>
+
+<script>
+	
+
+        
+
+//页码导航 
+function post_list(index,curpage,maxpage)
+{ 
+     if (parseInt(index) <= parseInt(maxpage) && parseInt(index) > 0  && parseInt(curpage)!= parseInt(index) )
+	 {
+        document.form1.action = '?action=agentcost_list&curpage='+index+'&agent_id=<% $agent_id %>'; 
+	    document.form1.submit(); 
+	    return true;
+	 }
+	 return false;
+}
+
+
+
+
+function  change_acct_id(acct_id)
+{
+	    document.form1.submit(); 
+	    return true;		 
+	
+}    
+ </script>
+
+<body>
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="24" bgcolor="#353c44"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                
+                <td width="97%" valign="bottom"><span  align="left" class="table_caption">代理流量成本利润报表统计 </span></td>
+              </tr>
+            </table></td>
+            <td><div align="right"><span class="table_caption"></span>
+             
+             
+             
+             </div></td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td><table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">
+    
+  <form name="form1" method="post" action="?action=agentcost_list">
+
+
+     <tr>
+       <td   height="24" colspan="7"   bgcolor="#FFFFFF" class="STYLE6"><span class="STYLE1">统计对象
+           <select name="agent_id" class="STYLE1" id="agent_id" onchange= "change_acct_id(this.value)" >
+             <%if   $res_acct.accttype eq '1'  %>
+             <option  value="<% $res_acct.decode_id %>"  <% if $res_acct.decode_id eq $agent_id %> selected <%/if%> >一级代理商</option>
+             <%/if%>
+             <%foreach from=$acctchild item=eachone key=keyname %>
+             <option  value="<% $eachone.decode_id %>" <% if $eachone.decode_id eq $agent_id %> selected <%/if%> >
+               <% $eachone.acctname %>
+              </option>
+             <%/foreach%>
+           </select>
+           <label for="years">日期</label>
+           <select name="years" class="STYLE1">
+             <option value="2010" <% if $post_data.years eq 2010 %>selected<%/if%>>2010</option>
+             <option value="2011" <% if $post_data.years eq 2011 %>selected<%/if%>>2011</option>
+             <option value="2012" <% if $post_data.years eq 2012 %>selected<%/if%>>2012</option>
+             <option value="2013" <% if $post_data.years eq 2013 %>selected<%/if%>>2013</option>
+             <option value="2014" <% if $post_data.years eq 2014 %>selected<%/if%>>2014</option>
+             <option value="2015" <% if $post_data.years eq 2015 %>selected<%/if%>>2015</option>
+             <option value="2016" <% if $post_data.years eq 2016 %>selected<%/if%>>2016</option>
+             <option value="2017" <% if $post_data.years eq 2017 %>selected<%/if%>>2017</option>
+             <option value="2018" <% if $post_data.years eq 2018 %>selected<%/if%>>2018</option>
+           </select>
+年
+<select name="month" class="STYLE1">
+  <option value="01" <% if $post_data.month eq "01" %>selected<%/if%>>01</option>
+  <option value="02" <% if $post_data.month eq "02" %>selected<%/if%>>02</option>
+  <option value="03" <% if $post_data.month eq "03" %>selected<%/if%>>03</option>
+  <option value="04" <% if $post_data.month eq "04" %>selected<%/if%>>04</option>
+  <option value="05" <% if $post_data.month eq "05" %>selected<%/if%>>05</option>
+  <option value="06" <% if $post_data.month eq "06" %>selected<%/if%>>06</option>
+  <option value="07" <% if $post_data.month eq "07" %>selected<%/if%>>07</option>
+  <option value="08" <% if $post_data.month eq "08" %>selected<%/if%>>08</option>
+  <option value="09" <% if $post_data.month eq "09" %>selected<%/if%>>09</option>
+  <option value="10" <% if $post_data.month eq "10" %>selected<%/if%>>10</option>
+  <option value="11" <% if $post_data.month eq "11" %>selected<%/if%>>11</option>
+  <option value="12" <% if $post_data.month eq "12" %>selected<%/if%>>12</option>
+</select>
+月
+<input id="begin_day" class="STYLE1" size = "1"  title="数字-起始天数" value="<% $post_data.begin_day %>" name="begin_day"  />
+日-
+<input id="end_day" class="STYLE1" size = "1"  title="数字-截至天数" value="<% $post_data.end_day %>"   name="end_day"  />
+日
+统计周期：<input id="billsec_count" class="STYLE1" size = "1" value="<% $post_data.billsec_count %>" name="billsec_count"  />秒
+<input name="querybtn" type="submit" class="STYLE1"   id="querybtn"  value=" 查询 " />
+       </span></td>
+       </tr>
+            </form>
+        
+     <tr>
+                          <td width="2%"   height="24"   bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">序号</div></td>
+                          <td width="8%"   height="24"   bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">下级代理商</div></td>
+                          <td width="6%"  height="24"   bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">计费时长</div></td>
+                         <td width="4%"   height="24"   bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">成本</div></td>
+                          <td width="4%"   height="24"   bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">消费</div></td>
+                          <td width="4%"  height="24"   bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">利润</div></td>
+                          <td width="4%"  height="24"   bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">呼叫次数</div></td>
+                    
+                           
+  </tr>     
+
+          
+          
+       <% foreach from=$table_array item=eachone key=keyname %>  	
+        <tr>
+        
+          <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"><% $eachone.check_id %></div></td>
+          <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"><% $eachone.agent_acctname %></div></td>
+          <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"><% $eachone.billsec %></div></td>
+           <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"><% $eachone.cost|string_format:"%.4f" %></div></td>
+          <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"><% $eachone.fees|string_format:"%.4f" %></div></td>
+          <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"><%  $eachone.profit|string_format:"%.4f" %></div></td>       
+          <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"><%  $eachone.callrecord_count  %></div></td>               
+        
+       </tr>
+          
+ 
+       <% /foreach %>
+    </table></td>
+  </tr>
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="75%"><div align="left"><span class="STYLE21">共
+                    <% $record_count %>
+                    条记录，总时长:<% $billsec %>
+                    秒   <% $post_data.billsec_count %>秒数:<% $billsec6 %>个
+					
+					费用:
+                    <% $fees|string_format:"%.2f" %>元
+                    成本:<% $cost|string_format:"%.2f" %>元  利润:<% $profit|string_format:"%.2f" %>
+                    元
+                    </span></div></td>
+        <td width="25%"><table width="180" border="0" align="right" cellpadding="0" cellspacing="0">
+
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+
+
+
+</body>
+
+</html>

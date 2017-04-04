@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="css/mainstyle.css"/>
+<title>编辑套餐</title>
+<script src="./js/jquery-1.6.2.min.js"></script>
+
+<script>
+	//所有input 去空格
+	function trim_all_input()
+	{
+		var inpus = document.getElementsByTagName("INPUT")
+        for(var i=0; i<inpus.length; i++)
+        {
+            if(inpus[i].type=="text")
+            {
+               inpus[i].value =  inpus[i].value.replace(/\s/g,"");
+            }
+        }
+		
+	}
+	
+	// 提交前检测输入是否合法
+	function check()
+	{
+		trim_all_input(); //所有input 去空格
+			
+		if (document.form1.packagename.value==""  )
+		{
+			document.getElementById("userTip").innerHTML="<div align='center'><span class='STYLE4'><font color=red>请输入正确的套餐名称</font></span></div>";
+      		document.form1.packagename.focus();
+			return false;
+			
+		}		
+		if (document.form1.packagprice.value=="" || ( isNaN(document.form1.packagprice.value) ) )
+		{
+			document.getElementById("userTip").innerHTML="<div align='center'><span class='STYLE4'><font color=red>请输入正确的套餐租金</font></span></div>";
+      		document.form1.packagprice.focus();
+			return false;
+			
+		}		
+		if (document.form1.minimum.value=="" || ( isNaN(document.form1.minimum.value) ) )
+		{
+			document.getElementById("userTip").innerHTML="<div align='center'><span class='STYLE4'><font color=red>请输入正确的套餐最低消费</font></span></div>";
+      		document.form1.minimum.focus();
+			return false;
+			
+		}		
+		
+		return true;
+
+	}
+	
+	function goback(curpage,rategroup_agent_id)
+	{
+	    document.form1.action = '?action=pay_package_config_list&curpage='+curpage +'&agent_id=' + rategroup_agent_id;
+		document.form1.submit();
+	}
+    </script>
+
+<body>
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="24" bgcolor="#353c44"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="2%" height="19" valign="bottom"><div align="center"><img src="images/tb.gif" width="14" height="14" /></div></td>
+                <td width="98%" valign="bottom"><span class="table_caption"><% if $action eq 'edit_post' %>
+                   修改 
+                   <% elseif $action eq 'add_post' %>
+                    新增
+                    <%else%>管理<%/if%></span></td>
+              </tr>
+            </table></td>
+            <td><div align="right"><span class="STYLE1">
+              </span></div></td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+  
+   <form name="form1" method="post" action="?action=<% $action %>&id=<% $pay_package_config.decode_id %>&curpage=<% $curpage %>&agent_id=<% $agent_id %>">
+  <tr>
+    <td>
+    <table width="803" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">
+ <tr>
+            <td width="23%" height="18" align="right" bgcolor="#FFFFFF"><span class="STYLE1">显示名称</span></td>
+            <td width="77%" height="18" bgcolor="#FFFFFF"><span class="STYLE7">
+              <input name="name" type="text" class="STYLE1" style="height:18px; width:280px;" size="10"  value='<% $pay_package_config.name %>'  />
+            </span></td>
+          </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF" class="STYLE1">]用户消费套餐</td>
+            <td height="18" bgcolor="#FFFFFF"><span class="STYLE2 STYLE1">
+              <select name="consumerpackage_id"  class="STYLE1" id="consumerpackage_id" ><br />
+                <%foreach from=$consumerpackages item=eachone key=keyname %>
+                <option value="<% $eachone.id %>"       <% if $pay_package_config.ratepackage_id eq $eachone.id %>selected="selected" <%/if%>    >    <% $eachone.packagename %>   </option>
+                <%/foreach%>
+              </select>              
+            </span></td>
+          </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF" class="STYLE1">顺序</td>
+            <td height="18" bgcolor="#FFFFFF"><span class="STYLE7">
+              <input name="priority" type="text" class="STYLE1" style="height:18px; width:80px;" size="10"  value='<% $pay_package_config.priority %>'  />
+            </span></td>
+          </tr>
+          <tr>
+            <td height="21" align="right" bgcolor="#FFFFFF"><span class="STYLE1">详细说明</span></td>
+            <td height="21" bgcolor="#FFFFFF"><span class="STYLE7">
+              <input name="pay_desc" type="text" class="STYLE1" style="height:18px; width:580px;"  value='<% $pay_package_config.pay_desc %>'  />
+            </span></td>
+          </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span class="STYLE1">卡面图片文件</span></td>
+            <td height="18" bgcolor="#FFFFFF"><span class="STYLE7">
+              <input name="imagefilename" type="text" class="STYLE1" style="height:18px; width:580px;"   value='<% $pay_package_config.imagefilename %>'  />
+            </span></td>
+          </tr>
+          <tr>
+            <td height="18" colspan="2" align="right" bgcolor="#FFFFFF"><div align="center" class="STYLE1"> 
+            <img src="<% $pay_package_config.imagefilename %>" > </div></td>
+          </tr>
+          <tr>
+            <td height="18" colspan="2" align="right" bgcolor="#FFFFFF"><div align="center">
+              <input type="submit"  class="STYLE1"   name="submitbtn" id="submitbtn"   onClick="return check()" value=" 确认提交 ">
+              <input  type="button"  class="STYLE1"   name="backbutton" id="button"   onClick="goback('<% $curpage %>','<% $agent_id %>')" value=" 取消返回 ">
+            </div></td>
+            </tr>
+   
+          
+          <tr>
+            <td height="18" colspan="2" align="center" bgcolor="#FFFFFF">&nbsp;</td>
+            </tr>
+         
+    </table>
+    </td>
+  </tr>
+  </form>
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+       
+        <td width="67%"><table width="312" border="0" align="right" cellpadding="0" cellspacing="0">
+          <tr>
+
+            <td width="35">&nbsp;</td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+</body>
+</html>

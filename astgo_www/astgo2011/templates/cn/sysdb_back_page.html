@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="css/mainstyle.css"/>
+     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="./css/themes/base/jquery.ui.all.css">
+	<script src="./js/jquery-1.6.2.min.js"></script>
+    <link rel="stylesheet" href="./css/demos.css">
+<title>数据备份</title>
+</head>
+
+<script>
+
+
+function post_list(index,curpage,maxpage)
+{ 
+
+     if (parseInt(index) <= parseInt(maxpage) && parseInt(index) > 0  && parseInt(curpage) != parseInt(index) )
+	 {
+        document.form1.action = '?action=dbback_send&curpage='+index;
+		//alert(document.form1.action);
+	    document.form1.submit(); 
+	    return true;
+	 }
+	 return false;
+}
+
+	
+    
+ </script>
+
+<body>
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="24" bgcolor="#353c44"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                
+                <td width="97%" valign="bottom"><span  align="left" class="table_caption">数据备份
+                </span></td>
+              </tr>
+            </table></td>
+            <td><div align="right"><span class="STYLE1"></span>
+             
+             
+             
+             </div></td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td><table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">
+    
+    <form name="form1" method="post" action="?action=dbback_send">
+         <tr>
+           <td  height="26" colspan="3"  bgcolor="#FFFFFF" class="STYLE6"><span class="STYLE1">
+             <input name="querybtn2" type="button" class="STYLE1"   id="querybtn2"  onclick="dbback_post('1')" value=" 备份重要数据 " />
+            <input name="querybtn" type="button" class="STYLE1"   id="querybtn"  onclick="dbback_post('0')" value=" 备份全部数据 " />
+           </span></td>
+         </tr>
+          </form>
+         <tr>
+ 
+          <td width="30%"  height="24"  bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">数据文件</div></td>
+                          <td width="6%"  height="24"  bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">大小</div></td>
+                          <td width="10%" height="24"  bgcolor="d3eaef" class="STYLE6"><div align="center" class="table_title">选项</div></td>
+                     
+                          
+        </tr>     
+
+          
+          
+          <% foreach from=$table_array item=eachone key=keyname %>  	
+        <tr>
+ 
+    <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"><% $eachone.filename %>  </div></td>
+                      <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"><% $eachone.filesize %> </div></td>
+                      <td height="20" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19">
+                      [<a href="#"  onClick="call_dbdown('<%  $eachone.filename %>')">下载</a>]
+                      [<a href="#"  onClick="call_dbback('<%  $eachone.filename %>')">恢复</a>]
+                      [<a href="#"  onClick="call_delete('<%  $eachone.filename %>')">删除</a>]</div></td>
+                            
+             </tr>
+          
+ 
+        <% /foreach %>
+    </table></td>
+  </tr>
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="33%"><div align="left"><span class="STYLE21">共
+              <% $record_count %>
+              条记录，当前第
+              <% $curpage %>
+              /
+              <% $maxpage %>
+              页，每页
+              <% $pagelimtcount %>
+          条记录</span></div></td>
+        <td width="67%"><table width="180" border="0" align="right" cellpadding="0" cellspacing="0">
+          <tr>
+            <td width="40"><div align="center"> <a href="#" class="STYLE21" onClick="return post_list('1','<% $curpage %>','<% $maxpage %>')"  >首页</a> </div></td>
+            <td width="40"><div align="center"> <a href="#" class="STYLE21" onClick="return post_list('<% $curpage-1 %>','<% $curpage %>','<% $maxpage %>')" >上一页</a></div></td>
+            <td width="40"><div align="center"> <a href="#" class="STYLE21" onClick="return post_list('<% $curpage+1 %>','<% $curpage %>','<% $maxpage %>')" >下一页</a></div></td>
+            <td width="40"><div align="center"> <a href="#" class="STYLE21" onClick="return post_list('<% $maxpage  %>' ,'<% $curpage %>','<% $maxpage %>')" >尾页</a></div></td>
+           
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+<script> 
+/*备份数据*/	
+function dbback_post(havetale)
+{
+	if (confirm("您要确备份数据库到文件吗？"))  {
+	 $.get("syslog.php?action=dbback_post",{res_havetale:havetale}, function(data){
+		 if (data == 1)
+		 {
+		    alert('备份成功');
+			document.form1.submit(); 
+		 }
+		 else  alert('备份失败');
+	  });	
+	}
+}
+
+function call_dbdown(filename)
+{
+        document.form1.action = '?action=dbback_download&filename='+filename ; 
+	    document.form1.submit(); 	 
+}
+
+function call_delete(filename)
+{
+		if (confirm("您要确定删除系统数据库备份文件吗？"))  {
+            document.form1.action = '?action=dbback_delete&filename='+filename ; 
+	        document.form1.submit(); 	 
+			return true;	
+		}
+  	    return false;	
+			
+
+}
+function call_dbback(filename)
+{
+		if (confirm("您要确定按选定文件恢复数据吗？"))  {
+            document.form1.action = '?action=dbback_load&filename='+filename ; 
+	        document.form1.submit(); 	 
+			return true;	
+		}
+  	    return false;	
+			
+
+}	  
+	  
+</script> 
+</body>
+
+</html>

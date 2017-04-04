@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=5; IE=7" />
+<link rel="stylesheet" type="text/css" href="css/mainstyle.css"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="./css/themes/base/jquery.ui.all.css">
+<script src="./js/jquery-1.6.2.min.js"></script>
+<script src="./js/external/jquery.bgiframe-2.1.2.js"></script>
+<script src="./js/ui/jquery.ui.core.js"></script>
+<script src="./js/ui/jquery.ui.widget.js"></script>
+<script src="./js/ui/jquery.ui.mouse.js"></script>
+<script src="./js/ui/jquery.ui.button.js"></script>
+<script src="./js/ui/jquery.ui.draggable.js"></script>
+<script src="./js/ui/jquery.ui.position.js"></script>
+<script src="./js/ui/jquery.ui.resizable.js"></script>
+<script src="./js/ui/jquery.ui.dialog.js"></script>
+<script src="./js/ui/jquery.ui.datepicker.js"></script>
+<script src="./js/ui/i18n/jquery.ui.datepicker-zh-CN.js"></script>
+<link rel="stylesheet" href="./css/demos.css">
+<title>亲情号码管理</title>
+</head>
+<script type='text/javascript'>
+	function delete_confirm()
+	{
+		if (confirm("确定要删除这个亲情号码吗?"))  {
+			 return true;	
+		}
+		return false;	
+	}
+    //页码导航 
+function post_list(index,curpage,maxpage,agent_id)
+{ 
+     if ( parseInt(index) <= parseInt(maxpage) && parseInt(index) > 0  && parseInt(curpage)!=parseInt(index) )
+	 {
+        document.form1.action = '?action=list&curpage='+index+'&agent_id='+agent_id+'&id=<% $id %>'; 
+	    document.form1.submit(); 
+	    return true;
+	 }
+	 return false;
+}
+
+
+	function goback(old_curpage,agent_id)
+	{
+		var gotourl = 'user.php?action=list&curpage='+old_curpage+'&agent_id='+agent_id ; 
+		//alert(gotourl);
+	    document.form1.action = gotourl;
+	
+		document.form1.submit();
+	}	
+	
+	
+    
+ </script>
+<div class="main">
+<body>
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td height="24" bgcolor="#353c44"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <td width="97%" valign="bottom"><span  align="left" class="table_caption">亲亲号码管理
+                        &nbsp; &nbsp; <a href="#"  onClick="goback('<% $old_curpage %>','<% $agent_id %>')">返
+                        回</a> </span></td>
+                    </tr>
+                  </table></td>
+                <td></td>
+              </tr>
+            </table></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr>
+    <td><table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">
+        <form name="form1" method="post" action="?action=add_post&id=<% $user.decode_id %>&curpage=<% $curpage %>&agent_id=<% $agent_id %>&old_curpage=<% $old_curpage %>&old_agent_id=<% $old_agent_id %>">
+          <tr>
+            <td  height="26" colspan="7"   bgcolor="#FFFFFF">
+			 <span class="STYLE1">
+              亲情号
+			  <select name="callee" class="STYLE1" id="callee"  >
+                 <%foreach from=$calleelist item=eachone key=keyname %>
+                 <option  value="<% $eachone.btobcallee %>_<% $eachone.callee %>"  >  <% $eachone.btobcallee %>[  <% $eachone.callee %>  ] </option>
+                 <%/foreach%>            
+		    </select>
+			
+              被叫号码
+              <input name="dest" type="text" class="STYLE1" id="dest" size="20" maxlength="30" value="" />
+              <input type="submit"  class="STYLE1"   name="submitbtn" id="submitbtn"   value=" 添加 " />
+            &nbsp;</span></td>
+          </tr>
+        </form>
+        <tr>
+          <td width="2%"  height="26"   bgcolor="d3eaef"><div align="center" class="table_title">序号</div></td>
+          <td width="8%" height="26"    bgcolor="d3eaef"><div align="center" class="table_title">代理商</div></td>
+          <td width="8%"  height="26"   bgcolor="d3eaef"><div align="center" class="table_title">用户帐号</div></td>
+          <td width="8%"  height="26"   bgcolor="d3eaef"><div align="center" class="table_title">亲情号</div></td>
+          <td width="6%"  height="26"   bgcolor="d3eaef"><div align="center" class="table_title">中继号码</div></td>
+          <td width="8%"  height="26"   bgcolor="d3eaef"><div align="center" class="table_title">被叫号码</div></td>
+          <td width="6%"  height="26"   bgcolor="d3eaef"><div align="center" class="table_title">操作</div></td>
+        </tr>
+        <% foreach from=$table_array item=eachone key=keyname %>
+        <tr>
+          <td height="18" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="SSTYLE19">
+              <% $eachone.check_id %>
+            </div></td>
+          <td height="18" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19">
+              <% $eachone.agent_acctname %>
+            </div></td>
+          <td height="18" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19">
+              <% $eachone.accountcode %>
+            </div></td>
+          <td height="18" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19">
+              <% $eachone.btobcallee  %>
+            </div></td>
+          <td height="18" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19">
+              <% $eachone.callee  %>
+            </div></td>
+          <td height="18" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19">
+              <% $eachone.dest %>
+            </div></td>
+          <td height="18" bgcolor="<% if $keyname is even %>#FFFFFF<%else%>#F3F3F3<%/if%>"><div align="center" class="STYLE19"><a href="?action=del_post&btobtel_id=<% $eachone.decode_id %>&id=<% $user.decode_id %>&curpage=<% $curpage %>&agent_id=<% $agent_id %>&old_curpage=<% $old_curpage %>&old_agent_id=<% $old_agent_id %>"  onClick="return delete_confirm()" >删除</a> </div></td>
+        </tr>
+        <% /foreach %>
+      </table></td>
+  </tr>
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="52%"><div align="left"><span class="STYLE21">共
+              <% $record_count %>
+              条记录，当前第
+              <% $curpage %>
+              /
+              <% $maxpage %>
+              页，每页
+              <% $pagelimtcount %>
+          条记录</span></div></td>
+          <td width="48%"><table width="180" border="0" align="right" cellpadding="0" cellspacing="0">
+              <tr>
+                <td width="40"><div align="center"> <a href="#" class="STYLE21" onClick="return post_list('1',<% $curpage %>,<% $maxpage %>,'<% $agent_id %>')"  >首页</a> </div></td>
+                <td width="40"><div align="center"> <a href="#" class="STYLE21" onClick="return post_list('<% $curpage-1 %>',<% $curpage %>,<% $maxpage %>,'<% $agent_id %>')" >上一页</a></div></td>
+                <td width="40"><div align="center"> <a href="#" class="STYLE21" onClick="return post_list('<% $curpage+1 %>',<% $curpage %>,<% $maxpage %>,'<% $agent_id %>')" >下一页</a></div></td>
+                <td width="40"><div align="center"> <a href="#" class="STYLE21" onClick="return post_list('<% $maxpage  %>',<% $curpage %>,<% $maxpage %>,'<% $agent_id %>')" >尾页</a></div></td>
+              </tr>
+          </table></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+</body>
+</div>
+</div>
+</html>

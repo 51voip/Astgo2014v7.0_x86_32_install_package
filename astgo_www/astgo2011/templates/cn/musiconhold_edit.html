@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="css/mainstyle.css"/>
+<script src="./js/jquery-1.6.2.min.js"></script>
+<title>编辑添加彩铃组</title>
+<script>
+  $(document).bind("contextmenu",function(e){
+    return false;
+  });
+//所有input 去空格
+	function trim_all_input()
+	{
+		var inpus = document.getElementsByTagName("INPUT")
+        for(var i=0; i<inpus.length; i++)
+        {
+            if(inpus[i].type=="text")
+            {
+               inpus[i].value =  inpus[i].value.replace(/\s/g,"");
+            }
+        }
+		
+	}
+	
+	function goback(curpage,agent_id)
+	{
+	    document.form1.action = '?action=list&curpage='+curpage +'&agent_id=' + agent_id;
+		document.form1.submit();
+	}
+    </script>
+
+<body>
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="24" bgcolor="#353c44"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="2%" height="19" valign="bottom"><div align="center"><img src="images/tb.gif" width="14" height="14" /></div></td>
+                <td width="98%" valign="bottom"><span class="table_caption"> <% if $action eq 'edit_post' %>
+         修改彩铃组 
+         <% elseif $action eq 'add_post' %>
+          新增彩铃组
+          <%else%>
+          彩铃组管理<%/if%></span></td>
+              </tr>
+            </table></td>
+            <td><div align="right"><span class="STYLE1">
+              </span></div></td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+  
+  <form name="form1" method="post" action="?action=<% $action %>&agent_id=<% $agent_id %>&curpage=<% $curpage %>&id=<% $id %>">
+  <tr>
+    <td><table width="605" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">
+    	
+          <tr>
+            <td height="18" colspan="3" bgcolor="#FFFFFF">&nbsp;
+            </td>
+          </tr>
+
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span class="STYLE1">代理商</span></td>
+            <td height="18" colspan="2" bgcolor="#FFFFFF"><span class="STYLE2 STYLE1">
+              <select name="agent_id" class="STYLE1" id="agent_id"  <% if  $action   eq 'edit_post' %>  disabled <%/if%> onchange= "change_acct_id(this.value)"  >
+                <option  value="<% $res_acct.decode_id%>"  <% if $res_acct.decode_id eq $agent_id %> selected <%/if%>> <% $res_acct.acctname %> </option>
+                  <%foreach from=$acctchild item=eachone key=keyname %>
+                  <option  value="<% $eachone.decode_id %>" <% if $eachone.decode_id eq $agent_id %> selected="selected" <%/if%> >
+                    <% $eachone.acctname %>
+                  </option>
+                  <%/foreach%>
+                </select>
+            </span></td>
+          </tr>
+     
+          <tr>
+            <td width="35%" height="18" align="right" bgcolor="#FFFFFF"><span   class="STYLE1" >彩铃组名称</span></td>
+            <td height="18" colspan="2" bgcolor="#FFFFFF"><label for="rategroupname"></label>
+              <span class="STYLE7">
+              <input name="description" id="description" type="text" class="STYLE1" style="height:18px; width:180px;" size="30"  value='<% $post_data.description %>' />
+              </span></td>
+          </tr>
+
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span class="STYLE1">随机播放</span></td>
+            <td height="18" colspan="2" bgcolor="#FFFFFF"><span class="STYLE7">
+              <select name="random" id="random"  >
+                <option  value="yes"  <% if $post_data.random eq 'yes'  %> selected <%/if%> > 是 </option>
+                <option  value="no"   <% if $post_data.random eq 'no'   %> selected <%/if%> > 否 </option>
+              </select>
+            </span></td>
+            </tr>
+          <tr>
+            <td height="18" colspan="3" align="right" bgcolor="#FFFFFF">&nbsp;</td>
+            </tr>
+  
+          <tr>
+            <td id="userTip" height="18" colspan="3" align="right" bgcolor="#FFFFFF"></td>
+          </tr>
+          
+          <tr>
+            <td height="18" colspan="3" align="center" bgcolor="#FFFFFF">
+              
+              <input type="submit"  class="STYLE1"   name="submitbtn" id="submitbtn"   onClick="return check()" value=" 确认提交 ">
+              <input  type="button"  class="STYLE1"   name="backbutton" id="button"   onClick="goback('<% $curpage %>','<% $agent_id %>')" value=" 取消返回 ">
+              </td>
+            </tr>
+ 
+    </table></td>
+  </tr>
+  </form>
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+       
+        <td width="67%"><table width="312" border="0" align="right" cellpadding="0" cellspacing="0">
+          <tr>
+
+            <td width="35">&nbsp;</td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+</body>
+</html>

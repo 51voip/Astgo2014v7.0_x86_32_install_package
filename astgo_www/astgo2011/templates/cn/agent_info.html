@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="css/mainstyle.css"/>
+	<link rel="stylesheet" href="./css/themes/base/jquery.ui.all.css">
+	<script src="./js/jquery-1.6.2.min.js"></script>
+  <link rel="stylesheet" href="./css/demos.css">
+    
+<title>账户信息</title>
+</head>
+
+<body>
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="24" bgcolor="#353c44"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="2%" height="19" valign="bottom"><div align="center"><img src="images/tb.gif" width="14" height="14" /></div></td>
+                <td width="98%" valign="bottom"><span class="STYLE10"> 账户信息</span></td>
+              </tr>
+            </table></td>
+      
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td><table width="904" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">
+	
+<% if $res_acct.accttype eq '2' %>  	
+   
+          
+            <tr>
+              <td height="18" align="right" bgcolor="#FFFFFF" class="STYLE1">&nbsp;</td>
+              <td height="18" colspan="2" bgcolor="#FFFFFF" class="STYLE1"><div align="center"><span class="STYLE21">账户信息</span></div></td>
+              <td height="18" colspan="4" bgcolor="#FFFFFF" class="STYLE1">&nbsp;</td>
+            </tr>
+            <td height="18" align="right" bgcolor="#FFFFFF" class="STYLE1">账户名称</td>
+            <td width="28%" bgcolor="#FFFFFF" class="STYLE1">
+              <span class="STYLE1">
+              
+                <% $res_acct.acctname %>
+              </span></td>
+            <td width="12%" height="18" align="right" bgcolor="#FFFFFF" class="STYLE1">账户余额</td>
+            <td width="39%" height="18" colspan="4" bgcolor="#FFFFFF" class="STYLE1">
+              <span class="STYLE1">
+              <% $res_acct.balance|string_format:"%.2f" %>
+              元</span></td>
+          </tr>
+
+          <tr>
+              <td height="18" align="right" bgcolor="#FFFFFF" class="STYLE1">已经消费</td>
+              <td bgcolor="#FFFFFF" class="STYLE1"><% $res_acct.costbalance|string_format:"%.2f" %> 
+元</td>
+            <td height="18" align="right" bgcolor="#FFFFFF" class="STYLE1">透支</td>
+              <td height="18" colspan="4" bgcolor="#FFFFFF" class="STYLE1"><% $res_acct.prebalance|string_format:"%.2f" %>元</td>
+        </tr>
+
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF" class="STYLE1">&nbsp;</td>
+            <td height="18" colspan="2" bgcolor="#FFFFFF" class="STYLE1"><div align="center">
+              <% $res_acct.acctname %>
+消费信息(<span class="STYLE4">不含话务对接和群呼</span>)</div></td>
+            <td height="18" colspan="4" bgcolor="#FFFFFF" class="STYLE1">&nbsp;</td>
+          </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF" class="STYLE1">本月</td>
+            <td bgcolor="#FFFFFF" class="STYLE1">
+			<% $cost_data.fees|string_format:"%.2f" %>&nbsp;-&nbsp;<% $cost_data.cost|string_format:"%.2f" %> = &nbsp;<% $cost_data.profit|string_format:"%.2f" %>
+元</td>
+            <td height="18" align="right" bgcolor="#FFFFFF" class="STYLE1">24小时</td>
+            <td height="18" colspan="4" bgcolor="#FFFFFF" class="STYLE1">
+		<% $cost_data.24fees|string_format:"%.2f" %>&nbsp;-&nbsp;<% $cost_data.24cost|string_format:"%.2f" %> = &nbsp; <% $cost_data.24profit|string_format:"%.2f" %>
+			
+			
+元</td>
+          </tr>
+          <tr>
+            <td height="20" align="right" bgcolor="#FFFFFF" class="STYLE1">今天</td>
+            <td bgcolor="#FFFFFF" class="STYLE1">
+	<% $cost_data.curdayfees|string_format:"%.2f" %>&nbsp;-&nbsp;<% $cost_data.curdaycost|string_format:"%.2f" %> = &nbsp;<% $cost_data.curdayprofit|string_format:"%.2f" %>
+			
+元</td>
+            <td height="20" align="right" bgcolor="#FFFFFF" class="STYLE1">昨天</td>
+            <td height="20" colspan="4" bgcolor="#FFFFFF" class="STYLE1">
+			<% $cost_data.yesterdayfees|string_format:"%.2f" %>&nbsp;-&nbsp;<% $cost_data.yesterdaycost|string_format:"%.2f" %>=&nbsp;<% $cost_data.yesterdayprofit|string_format:"%.2f" %>
+			
+元</td>
+          </tr>
+
+    
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF" class="STYLE1">&nbsp;</td>
+            <td height="18" colspan="2" bgcolor="#FFFFFF" class="STYLE1"> <div align="center">路由和费率组</div></td>
+            <td height="18" colspan="4" bgcolor="#FFFFFF" class="STYLE1">&nbsp;</td>
+          </tr>
+          <tr>
+            <td width="21%" height="18" align="right" bgcolor="#FFFFFF" class="STYLE1">被叫路由组</td>
+            <td bgcolor="#FFFFFF" class="STYLE1">
+              
+                <% $post_data.gatewaygroupname %>            </td>
+            <td height="18" align="right" bgcolor="#FFFFFF" class="STYLE1">回拨路由组</td>
+            <td height="18" colspan="4" bgcolor="#FFFFFF" class="STYLE1">
+            <% $post_data.gatewaygroupname_acall %>            </td>
+        </tr>
+       
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF" class="STYLE1">被叫费率组</td>
+            <td bgcolor="#FFFFFF" class="STYLE1">
+            
+                <% $post_data.rategroupname %>            </td>
+            <td height="18" align="right" bgcolor="#FFFFFF" class="STYLE1">回拨费率组</td>
+            <td height="18" colspan="4" bgcolor="#FFFFFF" class="STYLE1">
+            <% $post_data.rategroupname_acall %>            </td>
+        </tr>
+
+
+<%/if %>
+
+<% if $res_acct.accttype eq '1' %>  
+
+
+          <tr>
+            <td height="18" colspan="6" align="center" bgcolor="#FFFFFF" class="STYLE21" id="userTip2">系统信息(<span class="STYLE1"><span class="STYLE1">仅供参考</span></span>)</td>
+          </tr>
+          <tr>
+            <td id="userTip" height="18" colspan="6" align="center" bgcolor="#FFFFFF"> <div class="STYLE19" id="div_trips" >根目录磁盘空间:
+              <% $post_data.disk_used_space %>
+              已使用,
+              总共:
+                <% $post_data.disk_total_space %>
+            </div></td>
+        </tr>
+          <tr>
+            <td height="18" colspan="6" align="center" bgcolor="#FFFFFF"><span class="STYLE1">系统内存:
+                <% $post_data.mem_used_space %>
+已使用,
+              总共:
+<% $post_data.mem_total_space %>            
+            </span></td>
+          </tr>
+          
+          
+          <tr>
+            <td height="18" colspan="6" align="center" bgcolor="#FFFFFF"><span class="STYLE21">CPU使用</span></td>
+          </tr>
+          
+          
+        <%foreach from=$cpu_used_list item=eachone key=keyname %>
+          <tr>
+            <td height="18" colspan="6" align="center" bgcolor="#FFFFFF"><span class="STYLE1">
+              <% $eachone.name %>
+              :<% $eachone.info %>
+            </span></td>
+          </tr>
+       <%/foreach%>
+     
+          <tr>
+            <td height="18" colspan="6" align="center" bgcolor="#FFFFFF"><span class="STYLE21">网络使用</span></td>
+          </tr>
+        <%foreach from=$net_used_list item=eachone key=keyname %>
+          <tr>
+            <td height="18" colspan="6" align="center" bgcolor="#FFFFFF"><span class="STYLE1">
+              <% $eachone.name %>
+收发数据包:
+              :
+<% $eachone.info %>
+            </span></td>
+          </tr>
+       <%/foreach%>            
+    </table></td>
+  </tr>
+ <%/if %>   
+  
+
+
+</table>
+</body>
+</html>

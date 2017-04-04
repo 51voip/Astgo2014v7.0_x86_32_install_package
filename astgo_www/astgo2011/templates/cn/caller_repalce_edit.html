@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="css/mainstyle.css"/>
+<title>编辑新增储值卡</title>
+<script src="./js/jquery-1.6.2.min.js"></script>
+<script>
+//所有input 去空格
+	function trim_all_input()
+	{
+		var inpus = document.getElementsByTagName("INPUT")
+        for(var i=0; i<inpus.length; i++)
+        {
+            if(inpus[i].type=="text")
+            {
+               inpus[i].value =  inpus[i].value.replace(/\s/g,"");
+            }
+        }
+		
+	}
+	
+	// 提交前检测输入是否合法
+	function check()
+	{
+		trim_all_input(); //所有input 去空格
+
+	
+	
+
+		if (document.form1.caller.value==""  )
+		{
+			document.getElementById("userTip").innerHTML="<div align='center'><span class='STYLE4'><font color=red>请输入正确中继主叫号码</font></span></div>";
+      		document.form1.caller.focus();
+			return false;
+		}		
+		
+
+
+		if (document.form1.prefix.value==""  )
+		{
+			document.getElementById("userTip").innerHTML="<div align='center'><span class='STYLE4'><font color=red>请输入正确被叫前缀</font></span></div>";
+      		document.form1.prefix.focus();
+			return false;
+		}		
+		
+		if (document.form1.newcaller.value==""  )
+		{
+			document.getElementById("userTip").innerHTML="<div align='center'><span class='STYLE4'><font color=red>请输入正确主叫号码</font></span></div>";
+      		document.form1.newcaller.focus();
+			return false;
+		}		
+			
+	    return true;
+		//return true;
+
+	}
+
+	function goback(curpage,agent_id)
+	{
+	    document.form2.action = '?action=list&curpage='+curpage +'&agent_id=' + agent_id;
+		document.form2.submit();
+		return true;	
+	}
+	
+
+    </script>
+
+<body>
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="24" bgcolor="#353c44"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="2%" height="19" valign="bottom"><div align="center"><img src="images/tb.gif" width="14" height="14" /></div></td>
+                <td width="98%" valign="bottom"><span class="STYLE10"> 添加前缀替换</span></td>
+              </tr>
+            </table></td>
+            <td><div align="right"><span class="STYLE1">
+              </span></div></td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+
+  <form name="form1" method="post" action="?action=<% $action %>&curpage=<% $curpage %>">
+  <tr>
+    <td><table width="884" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">
+     
+      <tr>
+            <td height="18" colspan="2" bgcolor="#FFFFFF">&nbsp;            </td>
+            </tr>
+          <tr>
+            <td width="50%" height="18" align="right" bgcolor="#FFFFFF"><span   class="STYLE1" >中继主叫号码</span></td>
+            <td width="50%" height="19" bgcolor="#FFFFFF">
+              <span class="STYLE7">
+			  
+			    <input name="id" type="hidden"   class="STYLE1" style="height:18px; width:80px;" size="30"  value='<% $caller_repalcelist.decode_id%>' />
+				
+                <input name="caller" type="text" class="STYLE1" style="height:18px; width:80px;" size="30"  value='<% $caller_repalcelist.caller %>' />
+              </span></td>
+            </tr>
+		
+		          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span   class="STYLE1" >被叫前缀</span></td>
+            <td height="19" bgcolor="#FFFFFF">
+              <span class="STYLE7">
+                <input name="prefix" type="text" class="STYLE1" style="height:18px; width:80px;" size="30"  value="<% $caller_repalcelist.prefix %>" />
+              </span></td>
+            </tr>
+			
+		          <tr>
+		            <td height="18" align="right" bgcolor="#FFFFFF"><span class="STYLE1">替换后主叫号码</span></td>
+		            <td height="19" bgcolor="#FFFFFF"><span class="STYLE7">
+		              <input name="newcaller" type="text"  style="height:18px; width:80px;" size="30"  value="<% $caller_repalcelist.newcaller %>" />
+		            </span></td>
+          </tr>
+		          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF">&nbsp;</td>
+            <td height="19" bgcolor="#FFFFFF">&nbsp;</td>
+            </tr>
+
+  
+          <tr>
+            <td id="userTip" height="18" colspan="2" align="right" bgcolor="#FFFFFF"></td>
+            </tr>
+          <tr>
+            <td height="18" colspan="2" align="center" bgcolor="#FFFFFF">
+              
+              <input type="submit"  class="STYLE1"   name="submitbtn" id="submitbtn"   onClick="return check()" value=" 确认提交 ">
+              <input  type="button"  class="STYLE1"   name="backbutton" id="button"   onClick="goback('<% $curpage %>','<% $agent_id %>')" value=" 取消返回 ">              </td>
+            </tr>
+ 
+    </table></td>
+  </tr>
+  </form>
+  
+      <form name="form2" method="post" action="?action=<% $action %>&curpage=<% $curpage %>">
+    </form>
+  
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+       
+        <td width="67%"><table width="312" border="0" align="right" cellpadding="0" cellspacing="0">
+          <tr>
+
+            <td width="35">&nbsp;</td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+<p class="STYLE19">&nbsp;</p>
+</body>
+</html>

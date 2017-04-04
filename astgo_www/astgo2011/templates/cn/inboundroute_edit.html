@@ -1,0 +1,209 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="css/mainstyle.css"/>
+<title>编辑呼入路由</title>
+<script>
+	//所有input 去空格
+	function trim_all_input()
+	{
+		var inpus = document.getElementsByTagName("INPUT")
+        for(var i=0; i<inpus.length; i++)
+        {
+            if(inpus[i].type=="text")
+            {
+               inpus[i].value =  inpus[i].value.replace(/\s/g,"");
+            }
+        }
+		
+	}
+	
+	// 提交前检测输入是否合法
+	function check()
+	{
+		trim_all_input(); //所有input 去空格
+			
+		if (document.form1.routername.value==""  )
+		{
+			document.getElementById("userTip").innerHTML="<div align='center'><span class='STYLE4'><font color=red>请输入正确呼入路由名称</font></span></div>";
+      		document.form1.name.focus();
+			return false;
+			
+		}		
+		if (document.form1.prefix.value==""  )
+		{
+			document.getElementById("userTip").innerHTML="<div align='center'><span class='STYLE4'><font color=red>请输入正确被叫前缀</font></span></div>";
+      		document.form1.prefix.focus();
+			return false;
+			
+		}			
+		
+
+				
+		return true;
+
+	}
+
+	function goback(curpage)
+	{
+		var gotourl = '?action=list&curpage='+curpage;
+		//alert(gotourl);
+	    document.form1.action = gotourl;
+		document.form1.submit();
+	}
+    </script>
+
+<body>
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="24" bgcolor="#353c44"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="2%" height="19" valign="bottom"><div align="center"><img src="images/tb.gif" width="14" height="14" /></div></td>
+                <td width="98%" valign="bottom"><span class="STYLE10"> <% if $action eq 'edit_post' %> 修改呼入路由 <% elseif $action eq 'add_post' %> 新增呼入路由<%else%>呼入路由管理<%/if%></span></td>
+              </tr>
+            </table></td>
+            <td><div align="right"><span class="STYLE1">
+              </span></div></td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+  
+    <form name="form1" method="post" action="?action=<% $action %>&id=<% $inboundroute.decode_id %>&curpage=<% $curpage %>">
+  <tr>
+    <td><table width="744" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">
+     
+      <tr>
+            <td height="18" colspan="3" bgcolor="#FFFFFF">&nbsp;            </td>
+            </tr>
+          <tr>
+            <td width="38%" height="18" align="right" bgcolor="#FFFFFF"><span   class="STYLE1" >呼入路由名称</span></td>
+            <td width="31%" height="18" bgcolor="#FFFFFF">
+              <label for="routername"></label>
+              <span class="STYLE7">
+                <input name="routername" type="text" class="STYLE1" style="height:18px; width:125px;" size="30"  value='<% $inboundroute.routername %>' />
+                </span>            </td>
+            <td width="31%" height="18" align="right" bgcolor="#FFFFFF">&nbsp;</td>
+            </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span   class="STYLE1" >被叫号码</span></td>
+            <td height="18" bgcolor="#FFFFFF"><label for="host"></label>
+              <span class="STYLE7">
+                <input name="prefix" type="text" class="STYLE1" style="height:18px; width:125px;" size="30"  value='<% $inboundroute.prefix %>' />
+              </span></td>
+            <td height="18" align="right" bgcolor="#FFFFFF">&nbsp;</td>
+            </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span   class="STYLE1" >主叫替换</span></td>
+            <td height="18" colspan="2" bgcolor="#FFFFFF"><label for="host"></label>
+              <span class="STYLE7">
+                <input name="prexrule" type="text" class="STYLE1" style="height:18px; width:230px;" size="30"  value='<% $inboundroute.prexrule %>' />
+                <span class="STYLE4">例如01替换为1 写01&gt;1 多个用;分开</span></span></td>
+          </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span   class="STYLE1" >被叫替换</span></td>
+            <td height="18" colspan="2" bgcolor="#FFFFFF"><label for="host"></label>
+              <span class="STYLE7">
+                <input name="callee_prexrule" type="text" class="STYLE1" style="height:18px; width:230px;" size="30"  value='<% $inboundroute.callee_prexrule %>' />
+              </span></td>
+          </tr>
+
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span   class="STYLE1" >业务类型</span></td>
+            <td height="18" bgcolor="#FFFFFF"><label for="priority"></label>
+              <select name="codetype" class="STYLE7" id="codetype" >
+                 <%foreach from=$codetypes item=eachone key=keyname %>
+                 <option  value="<% $eachone.codetype %>" <% if $eachone.codetype eq $inboundroute.codetype %> selected <%/if%> ><% $eachone.codetypename %></option>
+                <%/foreach%>
+              </select>
+              <label for="trunkname"></label></td>
+            <td height="18" align="right" bgcolor="#FFFFFF">&nbsp;</td>
+            </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span class="STYLE1">IVR提示语言</span></td>
+            <td height="18" bgcolor="#FFFFFF"><select name="language" class="STYLE7" id="language" >
+              <option  value="select"  <% if $inboundroute.language eq  'select' %> selected="selected" <%/if%>  > 提示选择语言种类 </option>
+              <option  value="cn"  <% if $inboundroute.language eq  'cn'  %> selected="selected" <%/if%>  > 中文 </option>
+			  <option  value="en"  <% if $inboundroute.language eq  'en' %> selected="selected" <%/if%>  > 英语 </option>
+			  <option  value="fr"  <% if $inboundroute.language eq  'fr' %> selected="selected" <%/if%>  > 法语 </option>
+              <option  value="selectcn"  <% if $inboundroute.language eq  'selectcn'  %> selected="selected" <%/if%> > 默认中文-提示 </option>
+			  <option  value="selecten"  <% if $inboundroute.language eq  'selecten' %> selected="selected" <%/if%>  > 默认英语-提示</option>
+			  <option  value="selectfr"  <% if $inboundroute.language eq  'selectfr' %> selected="selected" <%/if%>  > 默认法语-提示 </option>
+			  			
+			</select>
+		</td>
+            <td height="18" align="right" bgcolor="#FFFFFF">&nbsp;</td>
+          </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span   class="STYLE1" >是否接通</span></td>
+            <td height="18" bgcolor="#FFFFFF"><span class="STYLE1">
+              <input name="answer" type="checkbox" class="STYLE2" <% if $inboundroute.answer eq '1' %>checked <%/if%> />
+            </span></td>
+            <td height="18" align="right" bgcolor="#FFFFFF">&nbsp;</td>
+            </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span   class="STYLE1" >未绑定进入</span></td>
+            <td height="18" bgcolor="#FFFFFF"><span class="STYLE1">
+              <select name="cbvoucher" class="STYLE7" id="cbvoucher" >
+                <option  value="0" <% if $inboundroute.cbvoucher eq '0' %> selected="selected" <%/if%> >  不启用  </option>
+                <option  value="1" <% if $inboundroute.cbvoucher eq '1' %> selected="selected" <%/if%> >  开户充值流程  </option>
+                <option  value="2" <% if $inboundroute.cbvoucher eq '2' %> selected="selected" <%/if%> >  播放语音  </option>
+                <option  value="3" <% if $inboundroute.cbvoucher eq '3' %> selected="selected" <%/if%> >  呼叫队列  </option>
+                <option  value="4" <% if $inboundroute.cbvoucher eq '4' %> selected="selected" <%/if%> >  执行脚本  </option>
+                <option  value="5" <% if $inboundroute.cbvoucher eq '5' %> selected="selected" <%/if%> >  呼叫SIP帐号  </option>
+				<option  value="6" <% if $inboundroute.cbvoucher eq '6' %> selected="selected" <%/if%> >  回拨预约提交  </option>
+				
+              </select>
+            </span></td>
+            <td height="18" align="right" bgcolor="#FFFFFF">&nbsp;</td>
+            </tr>
+          <tr>
+            <td height="18" align="right" bgcolor="#FFFFFF"><span class="STYLE1">适用代理商</span></td>
+            <td height="18" bgcolor="#FFFFFF"><span class="STYLE7">
+              <select   class="STYLE1"   name="agent_id" id="agent_id">
+                <option value="<% $inboundroute.agent_all %>">---------所有代理都适用---------</option>
+                <%foreach from=$accts item=eachone key=keyname %>
+                <option  value="<% $eachone.decode_id %>"  <% if $eachone.id eq $inboundroute.only_agent_id %> selected <%/if%> > <% $eachone.acctname %> </option>
+                <%/foreach%>
+              </select>
+            </span></td>
+            <td height="18" align="right" bgcolor="#FFFFFF">&nbsp;</td>
+            </tr>
+  
+  
+          <tr>
+            <td id="userTip" height="18" colspan="3" align="right" bgcolor="#FFFFFF"></td>
+            </tr>
+          <tr>
+            <td height="18" colspan="3" align="center" bgcolor="#FFFFFF">
+              
+              <input type="submit"  class="STYLE1"   name="submitbtn" id="submitbtn"   onClick="return check()" value=" 确认提交 ">
+              <input  type="button"  class="STYLE1"   name="backbutton" id="button"   onClick="goback('<% $curpage %>')" value=" 取消返回 ">              </td>
+            </tr>
+                 
+ 
+    </table></td>
+  </tr>
+  </form>
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+       
+        <td width="67%"><table width="312" border="0" align="right" cellpadding="0" cellspacing="0">
+          <tr>
+
+            <td width="35">&nbsp;</td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+</body>
+</html>

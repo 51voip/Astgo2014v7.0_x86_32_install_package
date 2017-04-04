@@ -1,0 +1,81 @@
+#whyuse {
+	background: url("../images/know_astgo_17.jpg") no-repeat 700px 385px;
+}
+#whyuse dl {
+	height: 120px; margin-bottom: 30px;
+}
+#whyuse dl dt {
+	float: left;
+}
+#whyuse dl dd {
+	float: left;
+}
+#whyuse dl dt {
+	width: 340px; height: 120px;
+}
+#whyuse dl dd {
+	width: 590px; height: 30px; text-align: left; line-height: 30px;
+}
+#whyuse dl dd strong {
+	color: rgb(52, 52, 52); font-size: 14px; font-weight: normal; float: left;
+}
+#whyuse dl dd span {
+	background: url("../images/index_body_24.jpg") no-repeat left 12px; width: 190px; text-align: left; padding-left: 10px; float: right; display: block;
+}
+#howuse ul {
+	background: url("../images/know_astgo1_03.jpg"); padding: 20px 10px 20px 30px; width: 880px; height: 169px; overflow: hidden;
+}
+#howuse ul li {
+	text-align: left; float: left;
+}
+#howuse ul li strong {
+	color: rgb(255, 140, 15);
+}
+#howuse_li1 {
+	background: url("../images/know_astgo1_05.jpg") no-repeat right top; padding-right: 20px;
+}
+#howuse_li2 {
+	background: url("../images/know_astgo1_05.jpg") no-repeat right top; padding-right: 20px; padding-left: 20px;
+}
+#howuse_li3 {
+	background: url("../images/know_astgo1_05.jpg") no-repeat right top; padding-right: 20px; padding-left: 20px;
+}
+#howuse_li4 {
+	padding-left: 15px;
+}
+#navList a.top_banner_on1 {
+	background: url("../images/index_top_bg.gif") no-repeat left 0px; color: rgb(0, 142, 218);
+}
+#navList a.top_banner_on1:hover {
+	background: url("../images/index_top_bg.gif") no-repeat left 0px;
+}
+#navList a.top_banner_on1:link {
+	color: rgb(0, 142, 218);
+}
+#navList a.top_banner_on1:visited {
+	color: rgb(0, 142, 218);
+}
+#navList a.top_banner_on1:hover {
+	color: rgb(0, 142, 218);
+}
+.news-box {
+	margin: 0px auto 7px; width: 930px; height: 14px; line-height: 14px; overflow: hidden;
+}
+.news-box h3 {
+	height: 14px; line-height: 14px; font-weight: bold; margin-right: 5px; float: left;
+}
+.news-box .news-list-c {
+	width: 830px; height: 14px; line-height: 14px; float: left;
+}
+.news-box .news-list-c ul li {
+	height: 14px; line-height: 14px; margin-right: 46px; float: left; white-space: nowrap;
+}
+.intro-top {
+	background: url("../images/know_astgo_03.jpg") no-repeat; width: 930px; height: 252px; position: relative;
+}
+.intro-p {
+	left: 31px; top: 85px; width: 418px; height: 100px; text-align: left; color: rgb(102, 102, 102); line-height: 30px; text-indent: 2em; font-size: 14px; font-weight: normal; position: absolute;
+}
+.intro-link {
+	left: 70px; top: 199px; width: 360px; height: 29px; position: absolute;
+}

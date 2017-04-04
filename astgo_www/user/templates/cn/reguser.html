@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!-- saved from url=(0039)http://www.astgo.net -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><HTML 
+xmlns="http://www.w3.org/1999/xhtml"><HEAD>
+<META content="text/html; charset=utf-8" http-equiv="Content-Type">
+<TITLE>新用户注册 - <% $astgoConf.title %></TITLE>
+<META name="keywords" content="网络电话，免费网络电话，免费电话，<% $astgoConf.logname %>，免费打电话">
+<META name="description" content="<% $astgoConf.logname %>是一款用电脑免费打电话的网络电话聊天软件，下载后即可拨打全球任意手机和电话，包月价格更低至0.05元/分钟。全力打造中国网络电话第一品牌，互联网语音通信专家。">
+<LINK rel="stylesheet" type="text/css" href="css/global.css">
+<LINK rel="stylesheet" type="text/css" href="css/register.css">
+<STYLE type="text/css">
+.reg_list ol li{float:left;background:url(images/reg/reg_one.gif) no-repeat left 2px; height:24px; overflow:hidden;text-indent:20px;}
+.reg_list ol li.regtwo{ background-position:left -26px;}
+.reg_list ol li.regone strong{color:#FF6C02;}
+</STYLE>
+
+<SCRIPT type="text/javascript" src="js/base.js"></SCRIPT>
+<SCRIPT type="text/javascript" src="js/util.js"></SCRIPT>
+<SCRIPT type="text/javascript" src="js/Pwd2.js"></SCRIPT>
+<SCRIPT type="text/javascript" src="js/jquery-1.6.2.min.js"></SCRIPT>
+
+
+<META name="GENERATOR" content="MSHTML 9.00.8112.16437"></HEAD>
+<BODY onLoad="if (document.activeElement.id != 'U_UserName') UserId.value = '请输入11位手机号码';">
+<DIV style="margin: 0px auto; width: 930px;" id="header">
+<H1 id="logo"><A href="index.php"><IMG src="images/logo.jpg"></A></H1>
+<DIV id="top_r">
+<DIV id="top_r_t">
+<UL class="style1">
+  <LI><A href="index.php">首页</A></LI>
+  <LI><A href="index.php?action=download">软件下载</A></LI>
+  </UL></DIV>
+<DIV class="clear"></DIV>
+<DIV id="top_r_b">
+<DIV id="top_userzone" class="reg_list">
+<OL id="regliId">
+  <LI class="regone"><STRONG>填写注册信息</STRONG>&nbsp;&gt;&nbsp;</LI>
+  <LI class="regtwo">注册成功并领取免费体验话费</LI></OL></DIV></DIV></DIV>
+<DIV class="clear"></DIV></DIV>
+
+<DIV class="reg_wrap">
+<P class="reg_login">已有<% $astgoConf.logname %>帐号请&nbsp;<A href="?action=login">登录</A></P>
+
+<% if $astgoConf.timelonggift >0 %>
+<H2>20秒钟完成注册，注册成功即可领取<STRONG style="color: green; font-size: 14px;"><% $astgoConf.timelonggift  %>分钟</STRONG>免费话费！</H2>
+<% /if %>
+
+<DIV class="reg-form">
+<FORM id="RegForm" onSubmit="return UserInfoBut();" method="post" name="accountForm" action="?action=do_reg"><INPUT name="to" type="hidden">
+<UL>
+  <LI id="UserNameField" class="field">
+  
+  <DIV class="input">
+  <LABEL><FONT>*</FONT>用户名：</LABEL>
+  <INPUT id="U_UserName"   class="input_other" tabIndex="1" name="acctname" maxLength="30" type="text">
+  </DIV>
+  
+  <DIV class="msg attention">
+  <P class="attention">请输入11位手机号码</P>
+  <P class="error"></P>
+  <P class="ok">&nbsp;</P>
+  </DIV>
+  
+  </LI>
+  
+  <LI id="U_PasswordField" class="field">
+  
+  <DIV class="input">
+  <LABEL><FONT>*</FONT>密码：</LABEL>
+  <INPUT id="U_Password"  class="U_Field" tabIndex="2" name="password" maxLength="16"   type="password">
+  </DIV>
+  
+  <DIV class="msg attention">
+  <P class="attention">密码长度6-16位，建议使用英文加数字或符号<BR><STRONG>密码强度：</STRONG>
+  <SPAN  class="status-bar"><SPAN id="schedule"></SPAN></SPAN><STRONG   id="schetext">弱</STRONG></P>
+  <P class="error"></P>
+  <P class="ok">&nbsp;</P></DIV></LI>
+  <LI id="U_RePasswordField" class="field">
+  
+  <DIV class="input">
+  <LABEL><FONT>*</FONT>确认密码：</LABEL>
+  <INPUT id="U_RePassword"   class="U_Field" tabIndex="3" name="password2" maxLength="16"   type="password">
+  </DIV>
+  
+  <DIV class="msg attention">
+  <P class="attention">请再次输入密码。</P>
+  <P class="error"></P>
+  <P class="ok">&nbsp;</P>
+  </DIV>
+  </LI>
+  
+  <LI id="U_CodeField" class="field code-field">
+  <DIV class="input"><LABEL><FONT>*</FONT>验证码：</LABEL>
+  <INPUT id="U_Code" class="U_Field"   tabIndex="5" name="randvalue" maxLength="4" type="text">
+  <IMG id="U_CheckCode"  border="0" src="Validate.php?'+ Math.random();" width="80"  height="25" onClick="this.src='Validate.php?'+ Math.random();"/>
+  </DIV>
+  
+  <DIV class="msg attention">
+  <P class="attention">请输入4位的验证码</P>
+  <P class="error"></P>
+  <P class="ok">&nbsp;</P>
+  </DIV>
+  </LI>
+  
+  <LI class="confer-field">
+  <DIV class="input">
+  <INPUT id="U_confer" name="userProtocol" value="on"  CHECKED="checked" type="checkbox"><LABEL  for="U_confer">我已阅读并同意<% $astgoConf.logname %>的</LABEL>
+  <A href="regAgreement.html"  target="_blank">《服务条款》</A>
+  </DIV>
+  </LI>
+  
+  
+  <LI class="submit-field">
+  <DIV class="input">
+   <BUTTON id="U_SubmitBtn" class="disabled"  type="submit"></BUTTON>
+   </DIV>
+  </LI>
+  
+  </UL>
+  </FORM>
+  </DIV>
+  </DIV>
+
+<DIV style="margin: 0px auto; width: 930px;">
+
+</BODY>
+<% include file="footer.html" %>
+</DIV>
+<SCRIPT type="text/javascript" src="js/register.js"></SCRIPT>
+
+
+
+
+
+
+
+
+</HTML>

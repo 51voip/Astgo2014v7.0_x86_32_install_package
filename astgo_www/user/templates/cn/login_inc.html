@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!-- saved from url=(0034)http://account.AstgoCall.com/login.do -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><HTML 
+xmlns="http://www.w3.org/1999/xhtml"><HEAD>
+<META content="text/html; charset=utf-8" 
+http-equiv="Content-Type"><TITLE>用户登录 </TITLE>
+<META name="keywords" content="网络电话">
+<META name="description" content="是一款用电脑免费打电话的网络电话聊天软件，下载后即可拨打全球任意手机和电话，包月价格更低至0.05元/分钟。全力打造中国网络电话第一品牌，互联网语音通信专家。"><LINK 
+rel="stylesheet" type="text/css" href="css/global.css"><LINK 
+rel="stylesheet" type="text/css" href="css/login.css">
+<SCRIPT type="text/javascript" src="js/base.js"></SCRIPT>
+
+<SCRIPT type="text/javascript">
+			function submitForm() {
+				var loginname = G('username');
+				var password = G('password');
+				if (trim(loginname.value) == '') {
+					makeMsg("帐号不能为空");
+					loginname.focus();
+					return false;
+				}
+				if (trim(password.value) == '') {
+					makeMsg("密码不能为空");
+					password.focus();
+					return false;
+				}
+				
+			}
+			function trim(str) {
+				return str.replace(/^\s+|\s+$/g, "");
+			}
+			function makeMsg(str) {
+				var msg = G('page_msg');
+				msg.innerHTML = "<span>" + str + "</span>";
+			}
+			function clearMsg(){
+				G('page_msg').innerHTML = "";
+			}
+		</SCRIPT>
+
+<META name="GENERATOR" content="MSHTML 9.00.8112.16437"></HEAD>
+<BODY onLoad="G('username').focus();">
+<FORM onSubmit="return submitForm();" method="post" name="accountForm" action="?action=do_login">
+<INPUT name="to" type="hidden">
+<DIV id="header">
+<H1 id="logo">&nbsp;</H1>
+<DIV id="top_r">
+<DIV id="top_r_t">
+<UL class="style1">
+ 
+  </UL></DIV></DIV>
+<DIV class="clear"></DIV></DIV>
+<DIV id="maincon">
+<STYLE>#loginzone table td{line-height:14px;vertical-align:top;}
+		#loginzone table td *{vertical-align:top;}
+		</STYLE>
+
+<DIV id="loginzone">
+<TABLE class="loginta" border="0" cellSpacing="0" cellPadding="0" width="340">
+  <TBODY>
+  <TR>
+    <TD style="padding-top: 0px;" height="28" colSpan="3"><LABEL 
+      id="page_msg"></LABEL></TD></TR>
+  <TR height="35">
+    <TD width="65"><STRONG>&nbsp;&nbsp;帐&nbsp;&nbsp;号</STRONG></TD>
+    <TD width="185"><INPUT style="ime-mode: disabled;" onKeyDown="clearMsg();" 
+      id="username" tabIndex="1" name="acctname" maxLength="30" 
+type="text"></TD>
+    <TD width="90">&nbsp;</TD></TR>
+  <TR height="35">
+    <TD><STRONG>&nbsp;&nbsp;密&nbsp;&nbsp;码</STRONG></TD>
+    <TD><INPUT style="ime-mode: disabled;" onKeyDown="clearMsg();" id="password" 
+      tabIndex="2" name="pwd" maxLength="16" type="password"></TD>
+    <TD style="line-height: 26px;">&nbsp;<A href="?action=getpwd">忘记密码？</A></TD></TR>
+  <TR height="47">
+    <TD height="47" colSpan="3"></TD></TR>
+  <TR>
+    <TD>&nbsp;</TD>
+    <TD class="tdcenter"><INPUT id="login_submit" name="submit" src="images/login/login_05.jpg" 
+      width="126" height="42" type="image"></TD>
+    <TD>&nbsp;</TD></TR></TBODY></TABLE>
+    
+<% if $air_acctname neq '' %> 
+<P style="padding-top: 8px;">还未注册<% $astgoConf.logname %>?&nbsp;&nbsp;<A href="index.php?action=reg">立即注册</A></P>
+<%/if%> 
+  
+</DIV>
+</DIV>
+<% include file="footer.html" %>
+</FORM>
+</html>
