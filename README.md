@@ -1,9 +1,19 @@
 ### ·首先确定你需要使用astgo 2014 7.0还是7.3：
 
 
-astgo 2014 v 7.0 用centos 5.10 32位系统，优点：稳定，无BUG，缺点，不支持语音验证码，如果是破解官方的APP，就必须用7.3，如果自己开发或找人常规开发（不是破解别人或官方的忽悠人的），就用7.0
- 
-astgo 2014 v7.3用centos 5.10 64位系统，优点：支持语音验证码，可以直接破解官方的APP对决，缺点：回拨的时候被叫没接通会扣主叫话费，如果你确定你是破解带语音验证码的APP或要语音验证码，必须使用7.3版本
+
+
+- astgo 2014 v 7.0 用centos 5.10 32位系统，优点：稳定，无BUG，缺点，不支持语音验证码，如果是破解官方的APP，就必须用7.3，如果自己开发或找人常规开发（不是破解别人或官方的忽悠人的），就用7.0
+
+- astgo 2014 v7.3用centos 5.10 64位系统，优点：支持语音验证码，可以直接破解官方的APP对决，缺点：回拨的时候被叫没接通会扣主叫话费，如果你确定你是破解带语音验证码的APP或要语音验证码，必须使用7.3版本
+
+
+
+
+- 7.0的安装教程和资源下载页面：[https://git.oschina.net/voipcenter/Install_Astgo2014v7.0x86](https://git.oschina.net/voipcenter/Install_Astgo2014v7.0x86)
+
+- 7.3的安装教程和资源下载页面：[https://git.oschina.net/voipcenter/Install_Astgo2014v7.3x64](https://git.oschina.net/voipcenter/Install_Astgo2014v7.3x64)
+
 
 
 ### Astgo 2014 v7.0安装说明
