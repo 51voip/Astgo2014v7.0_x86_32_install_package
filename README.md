@@ -74,6 +74,12 @@ source /root/astgo2014/astgodb.sql
 quit
 echo "----------install success-----------"
 ```
+
+安装完成，重启服务器
+```
+reboot
+```
+
 ### ·安装完成后的初始化参数：
 
 安装后默认端口为80，可修改 /etc/httpd/conf/httpd.conf里面的Listen 80为别的端口例如
