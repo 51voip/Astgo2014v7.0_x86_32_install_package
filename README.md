@@ -87,7 +87,9 @@ rm -rf /root/astgo2014.tar.gz
 
 示例  激活信息复制下面这部分即可：
 ```
-这里输入代码
+-------------------------- COPY START  -------------------------
+-BROAD_START:        Serial Number: 4a93a503-9cdc-4978-b144-10d66af67c9f:BROAD_END--HD_START::HD_END--IP_START:10.25.160.251:IP_END--MAC_START:00163e0602cc:MAC_END-
+---------------------------- COPY END --------------------------
 ```
 
 
