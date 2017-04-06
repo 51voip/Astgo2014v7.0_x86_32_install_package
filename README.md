@@ -42,9 +42,8 @@
 
 
 
-1. 下载Astgo 2014 v7.0 32位安装包：http://pan.baidu.com/s/1jI3aXt8 密码：td7s
-1. 若上面百度网盘链接失效，请访问 http://www.51voip.org/ 获取安装包
-1. 使用WINSCP或其他SSH工具连接服务器
+1. 下载Astgo 2014 v7.0 32位安装包：[http://www.51voip.org/post/3.html](http://www.51voip.org/post/3.html)
+1. 使用SSHSecureShell、WinSCP或其他SSH工具连接服务器（下载地址：[http://www.51voip.org/post/12.html](http://www.51voip.org/post/12.html)）
 1. 上传压缩包astgo2014_70_x32.tar.gz到root目录
 1. 在命令界面复制粘贴执行下面命令：
 
